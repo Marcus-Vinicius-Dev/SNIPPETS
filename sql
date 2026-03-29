@@ -1,0 +1,796 @@
+{
+
+  // SERVER_CPU
+  "SERVER_CPU": {
+    "scope": "sql",
+    "prefix": "ZSYSCPU",
+    "body": [
+      "${1:SELECT              }",
+      "   cpu_count / NULLIF(hyperthread_ratio, 0) AS QTD_CPU_FISICA,",
+      "   physical_memory_kb / 1024 / 1024 AS RAM_FISICA_GB,",
+      "   virtual_machine_type_desc AS TIPO_CPU_VIRTUAL,",
+      "   virtual_memory_kb / 1024 / 1024 / 1024 AS RAM_VIRTUAL_GB",
+      "FROM sys.dm_os_sys_info"
+      ],
+    "description": "INFO SOBRE CPU DO SERVER"
+  },
+
+  // SERVERS
+  "SERVERS": {
+    "scope": "sql",
+    "prefix": "ZSYSSERV",
+    "body": [
+      "${1:SELECT              }",
+      "   NAME,",
+      "   data_source,",
+      "   modify_date",
+      "FROM sys.servers",
+      "ORDER BY modify_date"
+      ],
+    "description": "LISTE OS SERVERS SQL"
+  },
+
+  // QUAL_BD_ESTOU?
+  "QUAL_BD_ESTOU?": {
+    "scope": "sql",
+    "prefix": "ZSYSBD?",
+    "body": [
+      "${1:SELECT DB_NAME()}"    
+      ],
+    "description": "QUAL_BD_ESTOU?"
+  },
+
+  // LISTE_BD
+  "LISTE_BD": {
+    "scope": "sql",
+    "prefix": "ZSYSBDLIST",
+    "body": [
+      "${1:SELECT              }",
+      "   NAME,",
+      "   CREATE_DATE,",
+      "   STATE_DESC",
+      "FROM sys.databases",
+      "ORDER BY NAME"
+      ],
+    "description": "LISTE OS BANCOS DE DADOS"
+  },
+
+  // EXECUTE_BD
+  "EXECUTE_BD": {
+    "scope": "sql",
+    "prefix": "ZSYSBDEXEC",
+    "body": [
+      "${2:EXEC sp_helpdb '${1:nome_do_banco}'}"    
+      ],
+    "description": "EXECUTE_BD"
+  },
+
+  // LISTAR_TEBELAS
+  "LISTAR_TEBELAS": {
+    "scope": "sql",
+    "prefix": "ZSYSTABLIST",
+    "body": [  
+      "SELECT", 
+      "t.name AS NOME_TABELA,",
+      "SCHEMA_NAME(t.schema_id) AS ESQUEMA,",
+      "YEAR(t.create_date) AS ANO_CRIACAO,",
+      "YEAR(t.modify_date) AS ANO_MODIFICACAO,",
+      "(SELECT COUNT(*) FROM sys.columns c WHERE c.object_id = t.object_id) AS QTD_COLUNAS,",
+      "SUM(p.rows) AS QTD_LINHAS_APROX",
+      "FROM sys.tables t",
+      "LEFT JOIN sys.partitions p ON t.object_id = p.object_id",
+      "GROUP BY ",
+      "    t.name,",
+      "    t.schema_id,",
+      "    t.create_date,",
+      "    t.modify_date,",
+      "    t.object_id ",
+      "ORDER BY ",
+      "    QTD_LINHAS_APROX DESC"      
+      ],
+    "description": "LISTAR TEBELAS"
+  },
+
+  // COLUNAS_NA_VERTICAL
+  "COLUNAS_NA_VERTICAL": {
+    "scope": "sql",
+    "prefix": "ZSYSCOLV",
+    "body": [
+      "${4:SELECT                                    }",    
+      "COLUMN_NAME AS COLUNA",
+      "FROM INFORMATION_SCHEMA.COLUMNS",
+      "WHERE TABLE_SCHEMA = '${1:dbo}'      ${3:-- schema separado sem colchetes [dbo] = dbo e [022026] = 022026}",
+      "  AND TABLE_NAME = '${2:tabela}'  ${3:-- nome da tabela sem colchetes}",
+      "ORDER BY ORDINAL_POSITION"
+      ],
+    "description": "TERMINAL COM COLUNAS_NA_VERTICAL"
+  },
+
+      // QUERY COLETIVA
+  "QUERY COLETIVA": {
+      "scope": "sql",
+      "prefix": "ZCOLET",
+      "body": [
+          "--QUERY COLETIVA",
+          "/*",
+          "     SOLICITAÇÃO:",
+          "${1:COLE O TEXTO DA SOLICITAÇÃO AQUI}",
+          "*/",
+          "-------------- SCRIPT COLETIVO --------------",
+          "",
+          "-------------- SCRIPT COLETIVO FIM --------------",            
+      ],
+      "description": "QUERY COLETIVA"
+  },
+
+    // USE_BD
+  "USE_BD": {
+    "scope": "sql",
+    "prefix": "ZUSE",
+    "body": [
+      "${2:USE ${1:CEPEA_SAS}}"
+    ],
+    "description": "USE_BD"
+  },
+
+  // TOP 10
+  "TOP 10": {
+    "scope": "sql",
+    "prefix": "ZTOP",
+    "body": [
+      "${2:SELECT TOP 10 *      }",
+      "FROM CTG${1:02}26"
+    ],
+    "description": "TOP 10"
+  },
+
+  // SELECT
+  "SELECT": {
+    "scope": "sql",
+    "prefix": "ZSEL",
+    "body": [
+      "${2:SELECT *          }",
+      "FROM CTG${1:02}26"
+    ],
+    "description": "SELECT SIMPLES"
+  },
+
+  // DISTINCT
+  "DISTINCT": {
+    "scope": "sql",
+    "prefix": "ZDIS",
+    "body": [
+      "${3:SELECT DISTINCT}",
+      "   ${2:-- COLUNA}",
+      "FROM CTG${1:02}26"
+    ],
+    "description": "DISTINCT"
+  },
+
+    // 00_EAT1
+  "00_EAT1": {
+    "scope": "sql",
+    "prefix": "Z00EAT1",
+    "body": [
+      "${3:SELECT *                                 }",
+      "FROM [00_NOVO_ESQUEMA_EAT1${1:02}26]",
+      "WHERE END_COMPLETO LIKE '%${2:DADO}%'",
+      "ORDER BY DT DESC"
+    ],
+    "description": "00_EAT1"
+  },
+
+  // 00_SQL
+  "00_SQL": {
+    "scope": "sql",
+    "prefix": "Z00SQL",
+    "body": [
+      "${3:SELECT *                                 }",
+      "FROM [00_SQL_SERVER_SCRIPTS${1:02}26]",
+      "WHERE END_COMPLETO LIKE '%${2:DADO}%'",
+      "ORDER BY DT DESC"
+    ],
+    "description": "00_SQL"
+  },
+
+  // 00_MAPEAMENTO_BD
+  "00_MAPEAMENTO_BD": {
+    "scope": "sql",
+    "prefix": "ZMAP",
+    "body": [
+      "${2:SELECT *                                          }",
+      "FROM [dbo].[00_MAPEAMENTO_BD]",
+      "WHERE END_COMPLETO LIKE '%${1:DADO}%'",
+      "ORDER BY ANO_TABELA DESC, BD, TABELA, COLUNA"
+    ],
+    "description": "00_SQL"
+  },
+
+    // CRIAR E-MAIL DE ESCOLA
+  "CRIAR_E-MAIL_ESCOLA": {
+    "scope": "sql",
+    "prefix": "ZEMA",
+    "body": [
+      "${1:CASE                                                              }",
+      "   WHEN CATESC='VINCULADA' THEN",
+      "      CONCAT('e', FORMAT(ESCVINC, '000000'), 'a@educacao.sp.gov.br')",
+      "   ELSE",
+      "       CONCAT('e', FORMAT(CODESC, '000000'), 'a@educacao.sp.gov.br')",
+      "END",
+      "AS EMAIL"
+    ],
+    "description": "CRIAÇÃO DE E-MAIL DE ESCOLAS"
+  },
+
+      // EXTRAIR ZEROS RG 12
+  "EXTRAIR_ZEROS_RG_12": {
+    "scope": "sql",
+    "prefix": "ZDDRG",
+    "body": [
+      "${1:LEFT(NR_RG, 12) AS RG_TRUNCADO,}"
+    ],
+    "description": "EXTRAIR ZEROS RG 12"
+  },
+
+  // E-MAILS_VAZIOS
+  "E-MAILS_VAZIOS": {
+    "scope": "sql",
+    "prefix": "ZEMAVAZIO",
+    "body": [
+      "${2:COALESCE(NULLIF(EMAIL_INST2, ''), EMAIL_INST1) AS EMAILI_DIRETOR,}  -- NULLIF converte string vazia para NULL, só assim COALESCE funciona para acrescentar e-mail2 quando email1 for vazio ",
+      "${1:-- COALESCE(NULLIF(EMAIL_INST2, ''), NULLIF(EMAIL_INST1, ''), 'SEM_EMAIL') AS EMAIL_DIRETOR -- valor padrão quando ambos forem vazios}"
+    ],
+    "description": "E-MAILS_VAZIOS"
+  },
+
+    // WHERE
+  "WHERE": {
+    "scope": "sql",
+    "prefix": "ZWHERE",
+    "body": [
+      "${5:WHERE ${1:coluna1} ${2:LIKE} '%${3:DADO}%' ${4:-- LIKE '%%', NOT LIKE '%%', = '', <> '', MAIOR/MENOR/IGUAL, OR, AND, BETWEEN, IN ('','',''), NOT IN('','',''), NULL/NOTNULL}}"    
+      ],
+    "description": "WHERE"
+  },
+
+    // WHERE_DATAS
+  "WHERE_DATAS": {
+    "scope": "sql",
+    "prefix": "ZWHERED",
+    "body": [
+      "${7:WHERE ${1:coluna1} BETWEEN '%${2:DATA1}%' AND '%${3:DATA2}%' ${6:-- LIKE '%%', NOT LIKE '%%', = '', <> '', MAIOR/MENOR/IGUAL, OR, AND, BETWEEN, IN ('','',''), NOT IN('','',''), NULL/NOTNULL}}",   
+      "${4:--YEAR(coluna1) = 2024}", 
+      "${5:--MONTH(coluna1) = 01}"
+      ],
+    "description": "WHERE_DATAS"
+  },
+
+    // ROW_NUMBER
+  "ROW_NUMBER_SEM_DUPLICATAS": {
+    "scope": "sql",
+    "prefix": "ZROW",
+    "body": [
+      "WITH BASE_RANK${1:1} AS (",                                                              
+      "   --SELECT *",
+      "   --FROM BASE",
+      "),",
+      "RANK${2:1} AS (",
+      "   SELECT *,",
+      "      ROW_NUMBER() OVER (PARTITION BY ${3:CPF_DI} ORDER BY (SELECT NULL)) AS ROW${4:1}",
+      "   FROM BASE_RANK${1:1}",
+      ")",
+      "SELECT *",
+      "FROM RANK${2:1}",
+      "WHERE ROW${4:1} = 1 --PRIMEIRA LINHA DA DUPLICATA",  
+      "ORDER BY ${3:CPF_DI}"
+      ],
+    "description": "FILTRA UMA COLUNA ELIMINANDO DADOS DUPLICADOS"
+  },
+
+    // ROW_NUMBER_MULTIPLO
+  "ROW_NUMBER_MULTIPLO": {
+    "scope": "sql",
+    "prefix": "ZROWMULT",
+    "body": [
+      "WITH BASE_RANK${1:1} AS (",                                                              
+      "   --SELECT *",
+      "   --FROM BASE",
+      "),",
+      "RANK${2:1} AS (",
+      "   SELECT *,",
+      "      ROW_NUMBER() OVER (PARTITION BY ${3:coluna1} ORDER BY (SELECT NULL)) AS RANK_${3:coluna1},",
+      "      ROW_NUMBER() OVER (PARTITION BY ${4:coluna2} ORDER BY (SELECT NULL)) AS RANK_${4:coluna2}",
+      "   FROM BASE_RANK${1:1}",
+      ")",
+      "SELECT *",
+      "INTO ${7:BASE_SEM_DUPLICIDADE}",
+      "FROM RANK${2:1}",
+      "WHERE RANK_${3:coluna1} = 1   -- Primeira linha de cada DADO DA COLUNA ${3:coluna1}",  
+      "   OR RANK_${4:coluna2} = 1   -- Primeira linha de cada DADO DA COLUNA ${4:coluna2}", 
+      "ORDER BY ${3:CPF_DI}"
+      ],
+    "description": "FILTRO DUPLO EM LISTA ÚNICA"
+  },
+
+  // EXTRAI_TEMPO
+  "EXTRAI_TEMPO": {
+    "scope": "sql",
+    "prefix": "ZDDTEMP",
+    "body": [
+      "YEAR(A.create_date) AS ANO_TABELA",
+      "MONTH(A.create_date) AS MES_TABELA,",
+      "DAY(A.create_date) AS DIA_TABELA,",
+      "DATEPART(HOUR, A.create_date) AS HORA_TABELA,",
+      "DATEPART(MINUTE, A.create_date) AS MINUTO_TABELA,",
+      "DATEPART(SECOND, A.create_date) AS SEGUNDOS_TABELA"
+      ],
+    "description": "EXTRAI REGISTROS DE TEMPOS COMPOSTOS DD/MM/YYYY HH:MM:SS"
+  },
+
+  // COLA_DE_DADOS
+  "COLA_DE_DADOS": {
+    "scope": "sql",
+    "prefix": "ZCOLADATA",
+    "body": [
+      "/*",
+      "REGRAS DE BOAS PRÁTICAS:",
+      "  - VARCHAR para textos (a menos que precise de Unicode)",
+      "  - Tipos numéricos para números (nunca guarde números em VARCHAR)",
+      "  - Tipos de data para datas (nunca guarde datas em texto)",
+      "  - Evite MAX a menos que necessário (índices não funcionam bem)",
+      "",
+      "TIPO          |                                        | OCUPAÇÃO       | EXEMPLO DE USO                 | O QUE ARMAZENA",
+      "--------------|----------------------------------------|----------------|--------------------------------|-------------------------------",
+      "BIT 0 ou 1                                             | 1 byte         | ativo BIT DEFAULT 1            | 1 (verdadeiro), 0 (falso)",
+      "TINYINT(0 a 255)                                       | 1 byte         | idade TINYINT                  | 25, 0, 255",
+      "INT(-2,1Bi a 2,1Bi)                                    | 4 bytes        | id INT IDENTITY(1,1)           | 1, 999, -4587",
+      "DECIMAL(p,s) Até 38 dígitos                            | 5-17 bytes     | salario DECIMAL(10,2)          | 12345.67, -999.99",
+      "NUMERIC(p,s) Mesmo que DECIMAL                         | 5-17 bytes     | nota NUMERIC(4,2)              | 9.75, 7.50",
+      "MONEY(-922 tri a 922 tri)                              | 8 bytes        | salario MONEY                  | 5250.75, 125000.00",
+      "FLOAT(-1.79E+308 a 1.79E+308)                          | 4 ou 8 bytes   | temperatura FLOAT              | 23.56789, -15.3",
+      "CHAR(1 a 8000) Fixo, n = 1-8000                        | n bytes        | uf CHAR(2)                     | 'SP', 'RJ', 'MG'",
+      "VARCHAR(1-8000) Variável, n = 1-8000                   | tam + 2 bytes  | nome VARCHAR(100)              | 'João Silva', 'Ana'",
+      "VARCHAR(MAX) Até 2GB                                   | tam + 2 bytes  | observacao VARCHAR(MAX)        | Textos longos",
+      "NCHAR(1 a 4000) Unicode fixo, n = 1-4000               | n * 2 bytes    | nome_japones NCHAR(50)         | '田中太郎'",
+      "NVARCHAR(1-4000) Unicode var, n = 1-4000               | (tam*2)+2 bytes| nome_completo NVARCHAR(100)    | 'João', '张伟', '😊'",
+      "NVARCHAR(MAX) Unicode até 2GB                          | (tam*2)+2 bytes| comentario NVARCHAR(MAX)       | Textos c/ emojis",
+      "TEXT Obsoleto (use VARCHAR(MAX))                       | Variável       | descricao TEXT (evitar)        | 'Texto antigo...'",
+      "NTEXT Obsoleto (use NVARCHAR(MAX))                     | Variável       | descricao NTEXT (evitar)       | 'Texto unicode antigo'",
+      "DATE do tipo 0001-01-01 a 9999-12-31                   | 3 bytes        | data_nascimento DATE           | '1990-05-15'",
+      "TIME(n) do tipo 00:00:00 a 23:59:59.9999999            | 3-5 bytes      | hora_entrada TIME              | '14:30:00'",
+      "DATETIME do tipo 1753-01-01 a 9999-12-31               | 8 bytes        | data_cadastro DATETIME         | '2024-03-19 15:45:30'",
+      "*/"
+    ],
+    "description": "Cola de tipos de dados SQL Server"
+  },
+
+  // ID_PRIMRIRA_VEZ
+  "ID_PRIMRIRA_VEZ": {
+    "scope": "sql",
+    "prefix": "ZID",
+    "body": [
+      "${1:ID INT IDENTITY(1,1) PRIMARY KEY}"    
+      ],
+    "description": "ID_PRIMRIRA_VEZ"
+  },
+
+  // ID_ACRESCENTADO_EM_COLUNA
+  "ID_ACRESCENTADO_EM_COLUNA": {
+    "scope": "sql",
+    "prefix": "ZID+",
+    "body": [
+      "ALTER TABLE ${1:tabela}",
+      "ADD ID INT IDENTITY(1,1) PRIMARY KEY",
+    ],
+    "description": "ACRESCENTA COLUNA ID COM PRIMARY KEY (direto)"
+  },
+
+  // CRIAR_TABELA
+  "CRIAR_TABELA": {
+    "scope": "sql",
+    "prefix": "ZCRIARTAB",
+    "body": [
+      "CREATE TABLE ${1:nome_da_tabela} (",
+      "    coluna1,",
+      "    coluna2",
+      ")"    
+      ],
+    "description": "CRIAR_TABELA"
+  },
+
+  // CRIAR_COLUNA
+  "CRIAR_COLUNA": {
+    "scope": "sql",
+    "prefix": "ZCRIARCOL",
+    "body": [
+      "ALTER TABLE ${1:nome_da_tabela}",
+      "    ADD  ${2:coluna1} NVARCHAR(${3:100}) NULL,",
+      "    ADD  ${4:coluna1} NVARCHAR(${5:100}) NULL"   
+      ],
+    "description": "CRIAR_COLUNA"
+  },
+  
+  // DROP_TABLE
+  "DROP_TABLE": {
+    "scope": "sql",
+    "prefix": "ZDROP",
+    "body": [
+      "${2:DROP TABLE IF EXISTS ${1:#BASE}}",
+      ],
+    "description": "DROP TABLE IF EXISTS"
+  },
+
+    // EXCLUIR_COLUNA
+  "EXCLUIR_COLUNA": {
+    "scope": "sql",
+    "prefix": "ZEXCLCOL",
+    "body": [
+      "ALTER TABLE ${1:tabela}",
+      "DROP COLUMN ${2:coluna1}, ${3:coluna2}"   
+      ],
+    "description": "EXCLUIR_COLUNA"
+  },
+  // EXCLUIR_LINHAS_NULL
+  "EXCLUIR_LINHAS_NULL": {
+    "scope": "sql",
+    "prefix": "ZEXCLLINULL",
+    "body": [
+      "DELETE FROM ${1:tabela}",
+      "WHERE ${2:coluna1} IS NULL",
+      "   AND ${3:coluna2} IS NULL",  
+      "   AND ${4:coluna3} IS NULL", 
+      ],
+    "description": "EXCLUIR_LINHAS_NULL"
+  },
+
+  // COUNT
+  "COUNT": {
+    "scope": "sql",
+    "prefix": "ZCOUNT",
+    "body": [
+      "SELECT ",
+      "     ${1:coluna1},",
+      "     COUNT(*) AS ${2:TOTAL}",  
+      "FROM ${3:BASE}", 
+      "GROUP BY ${1:coluna1}",
+      "ORDER BY ${2:TOTAL} DESC"
+      ],
+    "description": "CONTAR E AGRUPAR"
+  },	
+
+	//QUANTIDADE_DE_CARACTERES
+	"QUANTIDADE_DE_CARACTERES": {
+		"scope": "sql",
+		"prefix": "ZDDQTDCHAR",
+		"body": [
+			"DATALENGTH(${1:coluna1}) AS BYTE"
+		],
+		"description": "CONTA A QUANTIDADE DE CARACTERES"
+	},  
+
+	//RENOMEAR_TABELA
+	"RENOMEAR_TABELA": {
+		"scope": "sql",
+		"prefix": "ZRENTAB",
+		"body": [
+			"EXEC sp_rename '${1:nome_atual}', '${2:novo_nome}'"
+		],
+		"description": "RENOMEIA TABELA"
+	},
+
+	//BACKUP_DE_BD
+	"BACKUP_DE_BD": {
+		"scope": "sql",
+		"prefix": "ZBKPBD",
+		"body": [
+			"BACKUP DATABASE ${1:CNOME_BD} TO DISK = 'C:ENDERECO_COMPLETO_NOME_BANCO_BACKUP.bak'"
+		],
+		"description": "BACKUP_DE_BD"
+	},
+
+	//BACKUP_DE_TABELA
+	"BACKUP_DE_TABELA": {
+		"scope": "sql",
+		"prefix": "ZBKPTAB",
+		"body": [
+     	    "SELECT *",
+			"INTO #BKP",
+			"FROM ${1:BD} -- depois INTO BD_BKP FROM #BKP" 
+		],
+		"description": "BACKUP_DE_TABELA"
+	},
+
+	//CONCATENAR
+	"CONCATENAR": {
+		"scope": "sql",
+		"prefix": "ZCONC",
+		"body": [
+			"CONCAT('${1:col1}', '${2:col2}')"
+		],
+		"description": "CONCATENAR"
+	},
+
+  // TIPO_DADOS_TABELA
+  "TIPO_DADOS_TABELA": {
+    "scope": "sql",
+    "prefix": "ZDDTIPO",
+    "body": [
+      "${2:EXEC sp_help '${1:nome_da_tabela}'}"    
+      ],
+    "description": "TIPO DE DADOS DA TABELA POR COLUNA"
+  },
+
+  // ALTERAR_TIPO_DADOS_COLUNA
+  "ALTERAR_TIPO_DADOS_COLUNA": {
+    "scope": "sql",
+    "prefix": "ZDDALTERTIPO",
+    "body": [
+      "ALTER TABLE ${1:tabela}",    
+      "${6:ALTER COLUMN ${2:coluna1} ${3:TIPO}(${4:tamanho}) NULL ${5:-- VERIFICAR ZCOLA}}"
+      ],
+    "description": "ALTERAR O TIPO DE DADO DA COLUNA"
+  },
+
+	//EXTRAIR_CARACTERES_DA_ESQUERDA_OU_DIREITA
+	"EXTRAIR_CARACTERES_DA_ESQUERDA_OU_DIREITA": {
+		"scope": "sql",
+		"prefix": "ZDDEXTRCHAR",
+		"body": [
+			"${1:LEFT}${2:RIGHT}(${3:coluna}, ${4:3}) AS ${5:EXTRACAO_ESQUERDA}"
+		],
+		"description": "EXTRAIR_CARACTERES_DA_ESQUERDA_OU_DIREITA"
+	},
+
+	//LIMPAR_ESPACOS_VAZIOS_DA_ESQUERDA_OU_DIREITA
+	"LIMPAR_ESPACOS_VAZIOS_DA_ESQUERDA_OU_DIREITA": {
+		"scope": "sql",
+		"prefix": "ZDDLIMP1",
+		"body": [
+			"${1:LTRIM}${2:RTRIM}(${3:COLUNA}) AS LIMPA_${4:ESQUERDA}${5:DIREITA}"
+		],
+		"description": "LIMPAR_ESPACOS_VAZIOS_DA_ESQUERDA_OU_DIREITA"
+	},
+
+	//LIMPAR_TODOS_OS_ESPACOS_VAZIOS
+	"LIMPAR_TODOS_OS_ESPACOS_VAZIOS": {
+		"scope": "sql",
+		"prefix": "ZDDLIMP",
+		"body": [
+			"TRIM('     SQL Tutorial!     ') AS SEM_ESPACOS"
+		],
+		"description": "LIMPAR_TODOS_OS_ESPACOS_VAZIOS"
+	},
+
+	//MUDAR_CARACTER_POR_OUTRO
+	"MUDAR_CARACTER_POR_OUTRO": {
+		"scope": "sql",
+		"prefix": "ZDDMUDCHAR",
+		"body": [
+			"REPLACE(${1:colnua1}, '${2:T}', '${3:M}') ${4:-- muda a coluna original onde é T vira M}",
+			"${5:--REPLACE(REPLACE(nome, 'T', 'M'), 't', 'm') AS coluna2 -- mantém coluna original e cria coluna editada}"
+		],
+		"description": "MUDAR_CARACTER_POR_OUTRO"
+	},
+
+	//EXTRAI_TRECHO_DE_STRING
+	"EXTRAI_TRECHO_DE_STRING": {
+		"scope": "sql",
+		"prefix": "ZDDEXTR",
+		"body": [
+			"SUBSTRING(${1:COLUNA}, ${2:1}, ${3:3}) AS ${4:EXTRATOR}",
+		],
+		"description": "EXTRAI_TRECHO_DE_STRING"
+	},
+
+	//TRANSFORMAR_NUMERO_EM_STRING
+	"TRANSFORMAR_NUMERO_EM_STRING": {
+		"scope": "sql",
+		"prefix": "ZDDNUM2STR",
+		"body": [
+			"STR(185.476, 6, 2)",
+		],
+		"description": "TRANSFORMAR_NUMERO_EM_STRING"
+	},
+
+	//DELETA_E_ACRESCENTA
+	"DELETA_E_ACRESCENTA": {
+		"scope": "sql",
+		"prefix": "ZDDDEL_ACRES",
+		"body": [
+			"STUFF('SQL Tutorial', 1, 3, 'HTML') -- COMEÇA DA POSIÇÃO CATRACTER 1, APAGA 3 CARACTERES A PARTIR DE 1 E ACRESCENTA HTML",
+		],
+		"description": "DELETA_E_ACRESCENTA"
+	},
+
+	//TRANSFORMAR_EM_MAIUSCULA
+	"TRANSFORMAR_EM_MAIUSCULA": {
+		"scope": "sql",
+		"prefix": "ZDDUPPER",
+		"body": [
+			"UPPER(${1:COLUNA})",
+		],
+		"description": "TRANSFORMAR_EM_MAIUSCULA"
+	},
+
+	//MÓDULO_DO_NUMERO
+	"MÓDULO_DO_NUMERO": {
+		"scope": "sql",
+		"prefix": "ZMOD",
+		"body": [
+			"Abs(-243.5) AS MODULO",
+		],
+		"description": "MÓDULO_DO_NUMERO"
+	},
+
+	//MEDIA
+	"MEDIA": {
+		"scope": "sql",
+		"prefix": "ZMED",
+		"body": [
+			"AVG(${1:COLUNA}) AS MEDIA",
+		],
+		"description": "MÉDIA"
+	},
+
+	//MAIOR
+	"MAIOR": {
+		"scope": "sql",
+		"prefix": "ZMAX",
+		"body": [
+			"MAX(${1:COLUNA}) AS MAIOR_VALOR",
+		],
+		"description": "MAIOR"
+	},
+
+	//MENOR
+	"MENOR": {
+		"scope": "sql",
+		"prefix": "ZMIN",
+		"body": [
+			"MIN(${1:COLUNA}) AS MENOR_VALOR",
+		],
+		"description": "MENOR"
+	},
+
+	//ARREDONDAR
+	"ARREDONDAR": {
+		"scope": "sql",
+		"prefix": "ZARRED",
+		"body": [
+			"ROUND(235.415, 0) AS ARREDONDADO",
+		],
+		"description": "ARREDONDAR"
+	},
+
+	//SOMAR
+	"SOMAR": {
+		"scope": "sql",
+		"prefix": "ZSUM",
+		"body": [
+			"SUM(${1:COLUNA}) AS SOMA",
+		],
+		"description": "SOMAR"
+	},
+
+	//DATA_ATUAL
+	"DATA_ATUAL": {
+		"scope": "sql",
+		"prefix": "ZDTATUAL",
+		"body": [
+			"CURRENT_TIMESTAMP",
+		],
+		"description": "DATA_ATUAL"
+	},
+
+	//EXTRAIR_DATA
+	"EXTRAIR_DATA": {
+		"scope": "sql",
+		"prefix": "ZDDEXTRDATA",
+		"body": [
+			"DATENAME(YEAR, '2017/08/25') AS DATE -- YEAR, MONTH, DAY",
+		],
+		"description": "EXTRAIR_DATA"
+	},
+	
+	//CONVERTER
+	"CONVERTER": {
+		"scope": "sql",
+		"prefix": "ZDDCONVERT",
+		"body": [
+			"CONVERT(int, 25.65)",
+		],
+		"description": "CONVERTER"
+	},
+	
+	//IF
+	"IF": {
+		"scope": "sql",
+		"prefix": "ZIF",
+		"body": [
+			"IIF(${1:COLUNA}>1, 'YES', 'NO') -- =, <>, !=, >, <", 
+		],
+		"description": "IF"
+	},
+
+	//NULIFICA
+	"NULIFICA": {
+		"scope": "sql",
+		"prefix": "ZNULLIF",
+		"body": [
+			"SELECT NULLIF(${1:COLUNA}, 25) AS SEM_25", 
+		],
+		"description": "NULIFICA"
+	},
+
+	// CASE_WHEN
+  "CASE_WHEN": {
+    "scope": "sql",
+    "prefix": "ZCASE",
+    "body": [
+      "CASE",
+      "   WHEN ${1:SITUACAO1} THEN ${2:SITUACAO2}",
+      "   ${3:WHEN ${4:SITUACAO1} THEN ${5:SITUACAO2}}",
+      "   ELSE ${6:SITUACAO3}",
+      "END AS ${7:COLUNA}"
+    ],
+    "description": "CASE_WHEN"
+  },
+
+  // JOIN
+  "JOIN": {
+    "scope": "sql",
+    "prefix": "ZJOIN",
+    "body": [
+      "${1:LEFT} JOIN ${2:Tabela} ${3:B} ON ${4:A}.${5:coluna} = ${6:B}.${7:coluna}"
+    ],
+    "description": "JOIN"
+  },
+
+  // TRATAMENTO_DE_DADOS
+  "TRATAMENTO_DE_DADOS": {
+    "scope": "sql",
+    "prefix": "ZDDTRAT",
+    "body": [
+	  "${1:CASE}",
+	  "      WHEN ${2:COLUNA} ${3:IS NOT NULL} THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(NOMEUA_COMPLETO, 'Á', 'A'), 'Ã', 'A'), 'À', 'A'), 'Â', 'A'), 'É', 'E'), 'Ê', 'E'), 'Ó', 'O'), 'Õ', 'O'), 'Ú', 'U'), 'Ü', 'U'), 'Ç', 'C'), 'Ñ', 'N')",
+	  "     ${1:ELSE COLUNA}",
+	  "${1:END AS COLUNA}"
+    ],
+    "description": "TRATAR DADOS RETIRANDO CARACTERES ESPECÍFICOS"
+  },
+
+  // COMPARAR_DADOS_DE_TABELAS_DIFERENTES
+  "COMPARAR_DADOS_DE_TABELAS_DIFERENTES": {
+    "scope": "sql",
+    "prefix": "ZDDCOMPTABLE",
+    "body": [
+	  "SELECT",
+      "     CPF",
+	  "FROM #BASE1 A",
+	  "WHERE EXISTS (  -- ou NOT EXISTS",
+	  "SELECT",
+      "     CPF",
+	  "FROM #BASE2 B",
+	  "WHERE A.CPF = B.CPF)"
+    ],
+    "description": "COMPARAR_DADOS_DE_TABELAS_DIFERENTES"
+  },
+
+  // CALCULO_DE_DATA
+  "CALCULO_DE_DATA": {
+    "scope": "sql",
+    "prefix": "ZDDCOMPTABLE",
+    "body": [
+	  "SELECT",
+      "     CPF",
+	  "FROM #BASE1 A",
+	  "WHERE EXISTS (  -- ou NOT EXISTS",
+	  "SELECT",
+      "     CPF",
+	  "FROM #BASE2 B",
+	  "WHERE A.CPF = B.CPF)"
+    ],
+    "description": "CALCULO_DE_DATA"
+  }
+
+}
