@@ -1364,6 +1364,20 @@
 		],
 		"description": "Soma total das contagens por grupo DO COUNT"
 	},
+
+// FILTRAR_CARACTERES_INICIO_FIM - T-SQL
+"FILTRAR_CARACTERES_INICIO_FIM": {
+	"scope": "sql",
+	"prefix": "ZDDINICFIM",
+	"body": [
+	  "SELECT DISTINCT",
+	  "      ${1:COLUNA}",
+	  "FROM ${2:BASE}",
+	  "WHERE UPPER(LEFT(${1:COLUNA}, 1)) IN (${3:'A','E','I','O','U'})  -- CARACTERES NO INICIO",
+	  "  AND UPPER(RIGHT(${1:COLUNA}, 1)) IN (${4:'A','E','I','O','U'})  -- CARACTERES NO FINAL"
+	],
+	"description": "FILTRAR DADOS QUE COMEÇAM OU TERMINAM COM DETERMINADO CARACTER - T-SQL"
+},
   
 	// COLA_CATEGORIAS
 	"COLA_CATEGORIAS": {
@@ -1535,6 +1549,21 @@
 	  ],
 	  "description": "COLA_ESTADO_CIVIL"
   },
+
+  // SELECIONAR MENOR/MAIOR DADO DA COLUNA
+	"SELECIONAR MENOR/MAIOR DADO DA COLUNA": {
+		"scope": "sql",
+		"prefix": "ZDDMINMAX",
+		"body": [
+		  "$1(SELECT TOP 1 ",
+		  "    NOME, ",
+		  "    LEN(NOME) AS TAMANHO",
+		  " FROM CTG0626",
+		  " WHERE LEN(NOME) = (SELECT MIN(LEN(NOME)) FROM CTG0626) -- OU MAX PARA MAIOR",
+		  ")"
+		  ],
+		"description": "SELECIONA O MENOR OU MAIOR DADO DE UMA COLUNA ESPECÍFICA"
+	  },
   
 	// SAS_PAPUA_022026
   "SAS_PAPUA_022026": {
@@ -16431,7 +16460,6 @@
 	"description": "DATABRICKS_SILVER_TB_PROFESSOR"
   },
   
-  {
 	// DATABRICKS_SILVER_TB_PSICOLOGO
 	"DATABRICKS_SILVER_TB_PSICOLOGO": {
 	  "scope": "sql",
@@ -17000,7 +17028,6 @@
 		"LIMIT 100"
 	  ],
 	  "description": "DATABRICKS_SILVER_TB_PSICOLOGO_SED"
-	}
   },
   
   // DATABRICKS_SILVER_TB_RACA_COR
@@ -19688,6 +19715,41 @@
 	  "-- OBS: MySQL 8.0+ suporta funcoes de janela (OVER)"
 	],
 	"description": "Soma total das contagens por grupo DO COUNT - VERSAO MYSQL"
+},
+
+// SELECIONAR_MENOR_OU_MAIOR - VERSÃO MYSQL
+"SELECIONAR_MENOR_OU_MAIOR": {
+	"scope": "sql",
+	"prefix": "MYDDMINMAX",
+	"body": [
+	  "SELECT",
+	  "    ${1:COLUNA},",
+	  "    LENGTH(${1:COLUNA}) AS TAMANHO",
+	  "FROM ${2:STATION}",
+	  "WHERE LENGTH(${1:COLUNA}) = (",
+	  "    SELECT",
+	  "        ${3:MIN}(LENGTH(${1:COLUNA}))  -- MIN PARA MENOR, MAX PARA MAIOR",
+	  "    FROM ${2:STATION}",
+	  ")",
+	  "ORDER BY ${1:COLUNA} ASC",
+	  "LIMIT 1;  -- MYSQL USA LIMIT EM VEZ DE TOP",
+	  "-- OBS: TROQUE MIN POR MAX PARA OBTER O MAIOR VALOR"
+	],
+	"description": "SELECIONAR O MENOR OU MAIOR TAMANHO DE STRING - VERSAO MYSQL"
+},
+
+// FILTRAR_CARACTERES_INICIO_FIM - VERSÃO MYSQL
+"FILTRAR_CARACTERES_INICIO_FIM": {
+	"scope": "sql",
+	"prefix": "MYDDINICFIM",
+	"body": [
+	  "SELECT DISTINCT",
+	  "      ${1:COLUNA}",
+	  "FROM ${2:BASE}",
+	  "WHERE UPPER(LEFT(${1:COLUNA}, 1)) IN (${3:'A','E','I','O','U'})  -- CARACTERES NO INICIO",
+	  "  AND UPPER(RIGHT(${1:COLUNA}, 1)) IN (${4:'A','E','I','O','U'})  -- CARACTERES NO FINAL"
+	],
+	"description": "FILTRAR DADOS QUE COMEÇAM OU TERMINAM COM DETERMINADO CARACTER - VERSAO MYSQL"
 }
 
   }
