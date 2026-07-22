@@ -229,7 +229,7 @@
 	},
   
 	// SELECT
-	"SELECT": {
+	"SELECTCTG": {
 	  "scope": "sql",
 	  "prefix": "ZSEL",
 	  "body": [
@@ -507,6 +507,34 @@
 	  ],
 	  "description": "CRIAÇÃO DE E-MAIL DE ESCOLAS"
 	},
+
+	// 00MATRIZ
+"00MATRIZ": {
+	"scope": "sql",
+	"prefix": "Z00MATRIZ",
+	"body": [
+	  "SELECT ",
+	  "    MATERIA            ,",
+	  "    DEN_MATERIA        ,",
+	  "    MATRIZ",
+	  "FROM [dbo].[00_MATRIZ_2026]"
+	],
+	"description": "00_MATRIZ_2026_CONSULTA"
+  },
+
+  // DADOSABERTOS
+"DADOSABERTOS": {
+	"scope": "sql",
+	"prefix": "Z00DADOSABERTOS",
+	"body": [
+	  "SELECT ",
+	  "    DATASET                ,",
+	  "    DATASET_LINK           ,",
+	  "    DATASET_DOWNLOAD",
+	  "FROM [dbo].[00_DADOS_ABERTOS]"
+	],
+	"description": "00_DADOS_ABERTOS_CONSULTA"
+  },
   
 	// EXTRAIRZEROSRG12
 	"EXTRAIRZEROSRG12": {
@@ -1125,13 +1153,13 @@
   },
   
   // JOIN
-  "JOIN": {
+  "LEFTJOIN": {
 	"scope": "sql",
 	"prefix": "ZJOIN",
 	"body": [
 	  "${1:LEFT} JOIN ${2:Tabela} ${3:B} ON ${4:A}.${5:coluna} = ${6:B}.${7:coluna}"
 	],
-	"description": "JOIN"
+	"description": "LEFTJOIN"
   },
   
   // TRATAMENTODEDADOS
@@ -19734,4 +19762,4 @@
 	"description": "FILTRAR DADOS QUE COMEÇAM OU TERMINAM COM DETERMINADO CARACTER - VERSAO MYSQL"
 }
 
-}
+  }
