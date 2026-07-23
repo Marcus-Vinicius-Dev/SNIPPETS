@@ -239,8 +239,8 @@
 	  "description": "SELECT SIMPLES"
 	},
   
-	// DISTINCT
-	"DISTINCT": {
+	// SELECTDISTINCT
+	"SELECTDISTINCT": {
 	  "scope": "sql",
 	  "prefix": "ZDIS",
 	  "body": [
@@ -879,14 +879,14 @@
 	"description": "BACKUP_DE_BD"
   },
   
-  // CONCATENAR
-  "CONCATENAR": {
+  // CONCATENARCOLUNAS
+  "CONCATENARCOLUNAS": {
 	"scope": "sql",
 	"prefix": "ZCONC",
 	"body": [
 	  "CONCAT(${1:col1},' - ', ${2:col2}) AS ${3:NOME}"
 	],
-	"description": "CONCATENAR"
+	"description": "CONCATENAR COLUNAS"
   },
   
   // TIPODADOSTABELA
@@ -1404,7 +1404,7 @@
 	  "WHERE UPPER(LEFT(${1:COLUNA}, 1)) IN (${3:'A','E','I','O','U'})  -- CARACTERES NO INICIO",
 	  "  AND UPPER(RIGHT(${1:COLUNA}, 1)) IN (${4:'A','E','I','O','U'})  -- CARACTERES NO FINAL"
 	],
-	"description": "FILTRAR DADOS QUE COMEÇAM OU TERMINAM COM DETERMINADO CARACTER - T-SQL"
+	"description": "CARACTERES NO INICIO E CARACTERES NO FINAL"
   },
   
   // COLACATEGORIAS
@@ -18630,6 +18630,73 @@
 	"description": "CMSP_PESQUISA_TB_BASE_SERVIDOR_DIRETORIA"
   },
 
+  // CGRH_CEPEA_MODULOS_AOE
+  "CGRH_CEPEA_MODULOS_AOE": {
+    "scope": "sql",
+    "prefix": "KK_AOE_MODULO", 
+    "body": [
+      "SELECT ", 
+      "    REGIAO           ,", 
+      "    NOMEDE           ,", 
+      "    MUNICIPIO        ,", 
+      "    CODESC           ,", 
+      "    UA               ,", 
+      "    NOMEESC          ,", 
+      "    TIPO_ESCOLA      ,", 
+      "    CARGA_HORARIA    ,", 
+      "    TURNOS           ,", 
+      "    MODAL            ,", 
+      "    TTCLASSEM        ,", 
+      "    TTCLASSEGVINC    ,", 
+      "    TTCLASSESEM      ,", 
+      "    VINCULADAS       ,", 
+      "    TOT_CLASSIF_4343 ,", 
+      "    MODU_4343        ,", 
+      "    TOT_CLASSIF_4344,", 
+      "    MODU_4344        ", 
+      "FROM cgrh.cepea_modulos.aoe ", 
+      "LIMIT 100" 
+    ],
+    "description": "CGRH_CEPEA_MODULOS_AOE" 
+  },
+
+  // CGRH_CEPEA_MODULOS_AOE_DESC
+  "CGRH_CEPEA_MODULOS_AOE_DESC": {
+    "scope": "sql",
+    "prefix": "KK_AOE_DESC", 
+    "body": [
+      "SELECT ", 
+      "    cpf              ,", 
+      "    di               ,", 
+      "    codua_c          ,", 
+      "    cargo_c          ,", 
+      "    categ_c          ,", 
+      "    categ_c_desc     ,", 
+      "    tipo_desig       ,", 
+      "    estado           ,", 
+      "    motiafas         ,", 
+      "    motlice          ,", 
+      "    sitesp           ,", 
+      "    CODUA_E          ,", 
+      "    cargo_e          ,", 
+      "    categ_e          ,", 
+      "    categ_e_desc     ,", 
+      "    sexo             ,", 
+      "    IDADE            ,", 
+      "    IDADE_FREQ       ,", 
+      "    identcor         ,", 
+      "    identcor_desc    ,", 
+      "    estcivil         ,", 
+      "    estcivil_desc    ,", 
+      "    grauesco         ,", 
+      "    sitesco          ,", 
+      "    esc_desc         ", 
+      "FROM cgrh.cepea_modulos.aoe_desc ", 
+      "LIMIT 100" 
+    ],
+    "description": "CGRH_CEPEA_MODULOS_AOE_DESC" 
+  },
+
   	// SERVER_CPU - VERSÃO MYSQL
 	"MYSERVER_CPU": {
 		"scope": "sql",
@@ -19727,27 +19794,6 @@
 	"description": "Soma total das contagens por grupo DO COUNT - VERSAO MYSQL"
 },
 
-// SELECIONAR_MENOR_OU_MAIOR - VERSÃO MYSQL
-"SELECIONAR_MENOR_OU_MAIOR": {
-	"scope": "sql",
-	"prefix": "MYDDMINMAX",
-	"body": [
-	  "SELECT",
-	  "    ${1:COLUNA},",
-	  "    LENGTH(${1:COLUNA}) AS TAMANHO",
-	  "FROM ${2:STATION}",
-	  "WHERE LENGTH(${1:COLUNA}) = (",
-	  "    SELECT",
-	  "        ${3:MIN}(LENGTH(${1:COLUNA}))  -- MIN PARA MENOR, MAX PARA MAIOR",
-	  "    FROM ${2:STATION}",
-	  ")",
-	  "ORDER BY ${1:COLUNA} ASC",
-	  "LIMIT 1;  -- MYSQL USA LIMIT EM VEZ DE TOP",
-	  "-- OBS: TROQUE MIN POR MAX PARA OBTER O MAIOR VALOR"
-	],
-	"description": "SELECIONAR O MENOR OU MAIOR TAMANHO DE STRING - VERSAO MYSQL"
-},
-
 // FILTRAR_CARACTERES_INICIO_FIM - VERSÃO MYSQL
 "FILTRAR_CARACTERES_INICIO_FIM": {
 	"scope": "sql",
@@ -19760,6 +19806,31 @@
 	  "  AND UPPER(RIGHT(${1:COLUNA}, 1)) IN (${4:'A','E','I','O','U'})  -- CARACTERES NO FINAL"
 	],
 	"description": "FILTRAR DADOS QUE COMEÇAM OU TERMINAM COM DETERMINADO CARACTER - VERSAO MYSQL"
+},
+
+// SELECIONAR MENOR OU MAIOR DADO DA COLUNA - VERSAO MYSQL
+"SELECIONARMENORMAIORDADODACOLUNA": {
+    "scope": "sql",
+    "prefix": "MYDDMINMAX",
+    "body": [
+        "(SELECT",
+        "    ${1:NOME},",
+        "    CHAR_LENGTH(${1:NOME}) AS TAMANHO",
+        " FROM ${2:CTG0626}",
+        " ORDER BY CHAR_LENGTH(${1:NOME}) ${3:ASC}, ${1:NOME} ASC",
+        " LIMIT 1)",
+        "",
+        "-- ABAIXO PODE SER EXCLUÍDO SE QUISER APENAS O MAX OU MIN",
+        "UNION ALL",
+        "",
+        "(SELECT",
+        "    ${1:NOME},",
+        "    CHAR_LENGTH(${1:NOME}) AS TAMANHO",
+        " FROM ${2:CTG0626}",
+        " ORDER BY CHAR_LENGTH(${1:NOME}) ${4:DESC}, ${1:NOME} ASC",
+        " LIMIT 1)"
+    ],
+    "description": "SELECIONA O MENOR OU MAIOR DADO DE UMA COLUNA - VERSAO MYSQL"
 }
 
   }
