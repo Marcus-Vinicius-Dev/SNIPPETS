@@ -28555,6 +28555,7 @@
     "scope": "sql",
     "prefix": "SNIPPETS", 
     "body": [
+	  "/*",
 	  "LISTA DE PREFIXOS",
 	  "",
 	  "PREFIXOS      O QUE MOSTRAM",
@@ -28579,7 +28580,8 @@
       "KKSAND        DATABRICKS SANDBOX",
       "KKSAS         DATABRICKS SAS",
       "KKTRAB        DATABRICKS TRABALHOS_ALEATORIOS",
-      "KKVAL         DATABRICKS VALIDAÇÃO"
+      "KKVAL         DATABRICKS VALIDAÇÃO",
+	  "*/"
     ],
     "description": "LISTA DE PREFIXOS PARA SNIPPETS" 
   }
