@@ -28555,6 +28555,10 @@
     "scope": "sql",
     "prefix": "SNIPPETS", 
     "body": [
+	  "LISTA DE PREFIXOS",
+	  "",
+	  "PREFIXOS      O QUE MOSTRAM",
+	  "",
       "ZSYS          SQL SISTEMA",
       "Z00           SQL TABELAS 00_",
       "ZDD           SQL EDIÇÃO DE DADOS DA TABELA",
