@@ -765,7 +765,7 @@
 	},
   
 	// COUNT
-	"COUNT": {
+	"COUNTCONTAR": {
 	  "scope": "sql",
 	  "prefix": "ZCOUNT",
 	  "body": [
@@ -1168,9 +1168,9 @@
 	"prefix": "ZDDTRAT",
 	"body": [
 	  "${1:CASE}",
-	  "      WHEN ${2:COLUNA} ${3:IS NOT NULL} THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(NOMEUA_COMPLETO, 'Á', 'A'), 'Ã', 'A'), 'À', 'A'), 'Â', 'A'), 'É', 'E'), 'Ê', 'E'), 'Ó', 'O'), 'Õ', 'O'), 'Ú', 'U'), 'Ü', 'U'), 'Ç', 'C'), 'Ñ', 'N')",
-	  "     ${1:ELSE COLUNA}",
-	  "${1:END AS COLUNA}"
+	  "      WHEN ${2:COLUNA} ${3:IS NOT NULL} THEN REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(${2:COLUNA}, 'Á', 'A'), 'Ã', 'A'), 'À', 'A'), 'Â', 'A'), 'É', 'E'), 'Ê', 'E'), 'Ó', 'O'), 'Õ', 'O'), 'Ú', 'U'), 'Ü', 'U'), 'Ç', 'C'), 'Ñ', 'N')",
+	  "     ELSE ${2:COLUNA}",
+	  "END AS ${4:COLUNA}"
 	],
 	"description": "TRATAR DADOS RETIRANDO CARACTERES ESPECÍFICOS"
   },
@@ -1208,6 +1208,25 @@
 	],
 	"description": "INSERIR_DADOS_EM_TEMPORARIA"
   },
+
+    // INSERIRDADOSEMTEMPORARIACOMPOSTA
+	"INSERIRDADOSEMTEMPORARIACOMPOSTA": {
+		"scope": "sql",
+		"prefix": "ZDDINSTEMPCOMPOST",
+		"body": [
+		  "DROP TABLE IF EXISTS #${1:BASE_TEMP}",
+		  "CREATE TABLE #${1:BASE_TEMP} (",
+		  "    ${2:COLUNA1} ${3:VARCHAR}(${4:100})${5:,}",
+		  "    ${6:COLUNA2} ${7:VARCHAR}(${8:100})",
+		  "    ${9:CONTINUAR CRIAND COLUNAS?}",
+		  "    )",
+		  "INSERT INTO #${1:BASE_TEMP} (${2:COLUNA1}${5:,}${6:COLUNA2}) VALUES",
+		  "${10:('DADO1','DADO11'),}",
+		  "${10:('DADO2','DADO12'),}",
+		  "${10:('ETC...'),}"
+		],
+		"description": "INSERIR_VÁRIAS_COLUNAS_EM_TEMPORARIA"
+	  },
   
   // UNIONSEMDUPLICATAS
   "UNIONSEMDUPLICATAS": {
@@ -1370,7 +1389,7 @@
 	"body": [
 	  "REPLACE(REPLACE(A.CPF, '.', ''), '-', '') AS CPF_LIMPO ,"
 	],
-	"description": "TIRAR_TRAOOS_E_PONTOS_CPF"
+	"description": "TIRAR_TRACOS_E_PONTOS_CPF"
   },
   
   // CPFACRESCENTARZEROSAESQUERDA
@@ -3433,6 +3452,128 @@
 	],
 	"description": "CONTAGEH_ATRIB_EVENTO"
   },
+
+    // CONTAGEHATRIBEVENTOBIZU
+  "CONTAGEHATRIBEVENTOBIZU": {
+	"scope": "sql",
+	"prefix": "ZCONTEVENTOBIZU",
+	"body": [
+		  "SELECT",
+		  "    A.NR_CPF AS CPF,",
+		  "    A.NR_DI AS DI,",
+		  "    CONCAT(A.NR_CPF,' - ', A.NR_DI) AS CPF_DI,",
+		  "    A.CD_TIP_EVE,",
+		  "    B.NM_TIP_EVE,",
+		  "    A.CD_EVE,",
+		  "    C.NM_EVE,",
+		  "    A.TP_MOT_TRM,",
+		  "    A.CD_EVE_TRM,",
+		  "    A.ID_SIT_VINC,",
+		  "    A.DT_SIT_VINC,",
+		  "    A.DT_INI_EXERC,",
+		  "    A.DT_INI_VIG,",
+		  "    A.DT_FIM_VIG,",
+		  "    A.DT_INI_VIG_EVE,",
+		  "    A.DT_FIM_VIG_EVE,",
+		  "    A.TP_ATO_OFIC_TRM,",
+		  "    A.DT_INIC_VIGEN_EVENT_TRM,",
+		  "    A.DT_FIM_VIGEN_EVENT_TRM,",
+		  "    A.DT_POSSE,",
+		  "    A.DT_ULT_ALTER,",
+		  "    A.CD_CARGO_FUNC_ATUAL,",
+		  "    A.CD_CARGO_FUNC_EVE,",
+		  "    A.ID_CARGO_FUNC,",
+		  "    A.ID_CAT_FUNC,",
+		  "    A.ID_ORI_CARGO_FUNC,",
+		  "    A.CD_UNID_ADM_CLASS,",
+		  "    A.CD_UNID_ADM_EVE,",
+		  "    A.CD_JORN_ANT,",
+		  "    A.CD_JORN_ATU,",
+		  "    A.CD_UNID_ESCOL_CLASSIF_TIT,",
+		  "    A.CD_UNID_ESCOL_EVE,",
+		  "    A.CD_TIP_PROV,",
+		  "    A.FL_PROLABOR,",
+		  "    A.TP_ATO_OFIC,",
+		  "    A.ID_ORG_ATO_OFIC,",
+		  "    A.NR_ATO_OFIC,",
+		  "    A.NR_ANO_ATO_OFIC,",
+		  "    A.DT_PUBL_ATO_OFIC,",
+		  "    A.ID_REF_FAIXA,",
+		  "    A.ID_GRAU_NIV,",
+		  "    A.QT_HORA_CARGA_SUPL,",
+		  "    A.NR_RG_SUBST,",
+		  "    A.CD_MOT_SUBST,",
+		  "    A.ID_LOCAL_AFAST,",
+		  "    A.NM_LOCAL_AFAST,",
+		  "    A.CD_ACUM_CARGO_1,",
+		  "    A.TP_ACUM_CARGO_1,",
+		  "    A.NR_PAREC_COMIS_ACUM_CARGO_1,",
+		  "    A.NR_ANO_PAREC_ACUM_CARGO_1,",
+		  "    A.DT_PUBL_ACUM_CARGO_1,",
+		  "    A.CD_REG_HABILIT,",
+		  "    A.DT_REG_HABILIT,",
+		  "    A.CD_ORG_EMIS_REG,",
+		  "    A.TP_ATO_OFIC_CES_EXER,",
+		  "    A.ID_ORG_ATO_OFIC_CES_EXER,",
+		  "    A.NR_ATO_OFIC_CES_EXER,",
+		  "    A.NR_ANO_ATO_OFIC_CES_EXER,",
+		  "    A.DT_PUBL_ATO_OFIC_CES_EXER,",
+		  "    A.CD_OPCAO_TRANS_UTIL,",
+		  "    A.CD_TERMINAL,",
+		  "    A.CD_OPER,",
+		  "    A.DT_ALTER,",
+		  "    A.DT_HORA_INIC_ALTER,",
+		  "    A.DT_HORA_FIM_ALTER,",
+		  "    A.FL_FOLHA_PAGTO_HIST,",
+		  "    A.ID_NUM_PROC_SAUDE,",
+		  "    A.NR_ANO_PROC_SAUDE,",
+		  "    A.TP_TEMPO_SIT_ESPEC,",
+		  "    A.DT_PUBL_2,",
+		  "    A.NR_PROC,",
+		  "    A.ID_ORG_EMIS_PROC,",
+		  "    A.NR_ANO_PROC,",
+		  "    A.ACAO_JUDICIAL,",
+		  "    A.DT_ULT_ATUALIZ,",
+		  "    A.ID_ORG_ATO_OFIC_TRM,",
+		  "    A.NR_ATO_OFIC_TRM,",
+		  "    A.NR_ANO_ATO_OFIC_TRM,",
+		  "    A.DT_PUBL_ATO_OFIC_TRM,",
+		  "    A.CD_UNID_ADM_EVE_TRM,",
+		  "    A.CD_CARGO_FUNC_EVE_TRM,",
+		  "    A.FL_PROC_QUEBRA,",
+		  "    A.CD_CARGO_FUNCAO_ATUAL_TRM,",
+		  "    A.CD_UNID_ADM_CLASSIF_TRM,",
+		  "    A.CD_JORN_ANT_TRM,",
+		  "    A.CD_JORN_ATUAL_TRM,",
+		  "    A.CD_UNID_ESCOL_CLASSIF_TITUL_TRM,",
+		  "    A.CD_UNID_ESCOL_EVENT_TRM,",
+		  "    A.CD_TP_PROV_TRM,",
+		  "    A.FL_PROLABOR_TRM,",
+		  "    A.DT_POSSE_TRM,",
+		  "    A.DT_INIC_EXERC_TRM,",
+		  "    A.ID_SIT_VINC_TRM,",
+		  "    A.DT_SIT_VINC_TRM,",
+		  "    A.ID_REF_FAIXA_TRM,",
+		  "    A.ID_GRAU_NIVEL_TRM,",
+		  "    A.ID_CARGO_FUNCAO_TRM,",
+		  "    A.ID_CATEG_FUNCIO_TRM,",
+		  "    A.ID_ORIG_CARGO_FUNCAO_TRM,",
+		  "    A.QTD_HR_CARGA_SUPL_TRM,",
+		  "    A.NR_RG_SUBST_TRM,",
+		  "    A.CD_CARGO_FUNCAO_TRM,",
+		  "    A.TP_EVOL_EVENT,",
+		  "    A.TP_DOC_EVENT,",
+		  "    A.DT_PEDIDO_CERTIF_EVENT,",
+		  "    A.NR_ATO_ACAO_JUDICIAL,",
+		  "    A.NR_RG,",
+		  "    A.FL_FOLHA_PAGTO,",
+		  "    A.[SYS_C00079_14093022:06:13$]",
+		  "FROM CONTAGEH.dbo.TB_ATRIB_EVENTO A",
+		  "LEFT JOIN CONTAGEH.dbo.TB_TIPO_EVENTO B ON A.CD_TIP_EVE = B.CD_TIP_EVE",
+		  "LEFT JOIN CONTAGEH.dbo.TB_EVENTO C ON A.CD_EVE = C.CD_EVE AND A.CD_TIP_EVE = C.CD_TIP_EVE"
+		],
+		"description": "CONTAGEH_ATRIB_EVENTO COM JOINS BIZURADOS" 
+	  },
   
   // CONTAGEHTABEVENTO
   "CONTAGEHTABEVENTO": {
@@ -3638,18 +3779,16 @@
 	"scope": "sql",
 	"prefix": "Z00BRICKS",
 	"body": [
-	  "USE CEPEA_SAS",
-	  "",
 	  "SELECT ",
 	  "    DT_CRIACAO,",
 	  "    DT_ULT_ALTERACAO,",
 	  "    CATALOGO,",
 	  "    ESQUEMA,",
 	  "    TABELA,",
-	  "    COLUNAS,",
 	  "    NOME_DAS_COLUNAS,",
-	  "    PROPRIETARIO,",
-	  "    ENDERECO         ",
+	  "    ENDERECO,         ",
+	  "    COLUNAS,",
+	  "    PROPRIETARIO ",
 	  "FROM [00_BRICKS]",
 	  "-- WHERE ENDERECO LIKE '%ALOC%'",
 	  "-- OR NOME_DAS_COLUNAS LIKE '%ALOC%'",
@@ -4207,6 +4346,8 @@
 	],
 	"description": "Z00CTG"
   },
+
+// ------------------------------------------------------------------- DATABRICKS -------------------------------------------------------------------
   
 // USECATALOG
 "USECATALOG": {
@@ -4326,6 +4467,44 @@
 	],
 	"description": "MAPEAMENTO_DATABRICKS_CRIAR"
   },
+
+    // DATABRICKS_TEMPORÁRIA_COM_DROP
+	"DATABRICKS_TEMPORÁRIA_COM_DROP": {
+		"scope": "sql",
+		"prefix": "KZ_TEMP", 
+		"body": [
+			"CREATE OR REPLACE TEMP VIEW ${1:nome_view} AS -- REPLACE JÁ É O DROP",
+			"SELECT ",
+			"    ${2:COLUNA1},",
+			"    ${3:COLUNA2}",
+			"FROM ${4:TABELA}",
+			"${5:LIMIT 100}"
+		],
+		"description": "CRIA VIEW TEMPORARIA NO DATABRICKS COM DROP" 
+	},
+
+	  // DATABRICKS_COMANDOS_ROWNUMB
+	  "DATABRICKS_COMANDOS_ROWNUMB": {
+		"scope": "sql",
+		"prefix": "KZ_ROWNUMB", 
+		"body": [
+		  "CREATE OR REPLACE TEMP VIEW ROWNUMB AS -- REPLACE JÁ É O DROP",
+		  "WITH BASE_RANK0 AS (",
+		  "   SELECT *",
+		  "   FROM ${1:TABELA}",
+		  "),",
+		  "BASE_RANK1 AS (",
+		  "   SELECT *,",
+		  "      ROW_NUMBER() OVER (PARTITION BY ${2:CPF_DI} ORDER BY (SELECT NULL)) AS ROW1",
+		  "   FROM BASE_RANK0",
+		  ")",
+		  "SELECT *",
+		  "FROM BASE_RANK1",
+		  "WHERE ROW1 = 1",
+		  "ORDER BY ${2:CPF_DI}"
+		],
+		"description": "CRIA VIEW COM ROW_NUMBER PARA DEDUPLICAR REGISTROS" 
+	  },
   
   // BRONZEEVOLUCAOALUNO
   "BRONZEEVOLUCAOALUNO": {
@@ -18628,6 +18807,126 @@
 	  "LIMIT 100"
 	],
 	"description": "CMSP_PESQUISA_TB_BASE_SERVIDOR_DIRETORIA"
+  },
+
+    // PRODUCAO_SILVER_TB_SUB_EVENTUAL
+	"PRODUCAO_SILVER_TB_SUB_EVENTUAL": {
+		"scope": "sql",
+		"prefix": "KS_TB_SUB_EVENTUAL", 
+		"body": [
+		  "SELECT ", 
+		  "    ANO                      ,", 
+		  "    MES                      ,", 
+		  "    DIA                      ,", 
+		  "    DT_IMPORT                ,", 
+		  "    SEQUENCE_RAW             ,", 
+		  "    ID_SUB_EVENTUAL          ,", 
+		  "    CD_DIRETORIA             ,", 
+		  "    CD_ESCOLA                ,", 
+		  "    CD_TURMA                 ,", 
+		  "    DS_TURMA                 ,", 
+		  "    CD_TIPO_ENSINO           ,", 
+		  "    CD_DISCIPLINA            ,", 
+		  "    NR_CPF_EVENTUAL          ,", 
+		  "    NR_DI_EVENTUAL           ,", 
+		  "    DT_AULA                  ,", 
+		  "    NR_DIA_SEMANA            ,", 
+		  "    HR_INICIO                ,", 
+		  "    HR_FIM                   ,", 
+		  "    FL_PRESENCA_EVENTUAL     ,", 
+		  "    FL_SUBSTITUICAO          ,", 
+		  "    ID_USU_INCLUSAO          ,", 
+		  "    DT_INCLUSAO              ,", 
+		  "    ID_USU_ALTERACAO         ,", 
+		  "    DT_ALTERACAO             ,", 
+		  "    ID_USU_EXCLUSAO          ,", 
+		  "    DT_EXCLUSAO              ,", 
+		  "    SEQUENCE                 ,", 
+		  "    _rescued_data            ,", 
+		  "    load_datetime            ", 
+		  "FROM producao.silver.tb_sub_eventual ", 
+		  "LIMIT 100" 
+		],
+		"description": "PRODUCAO_SILVER_TB_SUB_EVENTUAL" 
+	  },
+
+	    // PRODUCAO_SILVER_TB_FUNC_EVENTUAL
+  "PRODUCAO_SILVER_TB_FUNC_EVENTUAL": {
+    "scope": "sql",
+    "prefix": "KS_TB_FUNC_EVENTUAL", 
+    "body": [
+      "SELECT DISTINCT ", 
+      "    ANO                      ,", 
+      "    MES                      ,", 
+      "    DIA                      ,", 
+      "    DT_IMPORT                ,", 
+      "    SEQUENCE_RAW             ,", 
+      "    CD_EVENTUAL              ,", 
+      "    NR_ANO_EXER              ,", 
+      "    NR_CPF                   ,", 
+      "    DT_INI_EXER              ,", 
+      "    CD_UA_EXER               ,", 
+      "    NR_ATO_DECISORIO         ,", 
+      "    CD_STATUS                ,", 
+      "    CD_LOCAL_ACUM            ,", 
+      "    CD_DENOMIN_ACUM          ,", 
+      "    CD_CARGO_ACUM            ,", 
+      "    DS_CARGO_ACUM            ,", 
+      "    CD_MUNICIPIO_DNE_ACUM    ,", 
+      "    NR_BANCO                 ,", 
+      "    NR_AGENCIA               ,", 
+      "    CD_TIPO_CONTA            ,", 
+      "    NR_CONTA                 ,", 
+      "    NR_DIG_CONTA             ,", 
+      "    DT_DOE                   ,", 
+      "    DT_PUB_DOE               ,", 
+      "    NR_PORT_ADMISSAO         ,", 
+      "    DT_EXP_IMESP             ,", 
+      "    DT_EXP_FAZENDA           ,", 
+      "    DT_IMPRESSAO             ,", 
+      "    NR_ANO_ATO_DECISORIO     ,", 
+      "    DT_RETIFICACAO           ,", 
+      "    FL_ACUM_PAEF             ,", 
+      "    FL_DOCENTE_TECNICO       ,", 
+      "    CD_STATUS_ANTERIOR       ,", 
+      "    CD_ERRO_EVENTUAL         ,", 
+      "    DT_VIGENCIA_DISPENSA     ,", 
+      "    TP_DISPENSA              ,", 
+      "    DT_PUBL_DISPENSA         ,", 
+      "    NR_PORT_DISPENSA         ,", 
+      "    DT_INI_CONTRATO          ,", 
+      "    DT_FIM_CONTRATO          ,", 
+      "    DT_FALECIMENTO           ,", 
+      "    NR_RG                    ,", 
+      "    SG_UF_RG                 ,", 
+      "    DS_OBSERVACAO            ,", 
+      "    CD_PERFIL_USU            ,", 
+      "    CD_USU_INCL              ,", 
+      "    DT_INCLUSAO              ,", 
+      "    CD_USU_ALTER             ,", 
+      "    DT_ALTERACAO             ,", 
+      "    DT_TSE_EXTINCAO          ,", 
+      "    DT_TSE_CONTRATO          ,", 
+      "    TP_MOTIVO_TIN            ,", 
+      "    DT_MOTIVO_TIN            ,", 
+      "    DS_ERRO                  ,", 
+      "    CD_IDENT_CAT_FUNC        ,", 
+      "    CD_CARGO                 ,", 
+      "    NR_RG_SIST               ,", 
+      "    NR_PROV                  ,", 
+      "    DS_OBSERVACAO_DISPENSA   ,", 
+      "    DT_RET_VIG               ,", 
+      "    DT_PUBL_RET_VIG          ,", 
+      "    DT_SUSP                  ,", 
+      "    FL_LEI_500_74            ,", 
+      "    DADOS_ACAO_JUDICIAL      ,", 
+      "    SEQUENCE                 ,", 
+      "    _rescued_data            ,", 
+      "    load_datetime            ", 
+      "FROM producao.silver.tb_funcional_eventual ", 
+      "LIMIT 100" 
+    ],
+    "description": "PRODUCAO_SILVER_TB_FUNC_EVENTUAL" 
   },
 
   // CGRH_CEPEA_MODULOS_AOE
