@@ -3451,14 +3451,14 @@
 		  "    A.CD_EVE_TRM,",
 		  "    D.CD_SIT_REG AS CD_SIT_REG_JOIN , -- A = ATIVO, E = EXCLUÍDO , F = falecido, 0 = erro, P CATEGORIA P, I = INATIVO, B = BLOQUEADO",
 		  "	   CASE",
-		  "	   		WHEN D.CD_SIT_REG = 'A' THEN 'ATIVO'",
-		  "	   		WHEN D.CD_SIT_REG = 'E' THEN 'EXCLUÍDO'",
-		  "	   		WHEN D.CD_SIT_REG = 'F' THEN 'FALECIDO'",
-		  "	   		WHEN D.CD_SIT_REG = '0' THEN 'ERRO'",
-		  "	   		WHEN D.CD_SIT_REG = 'P' THEN 'CATEGORIA P'",
-		  "	   		WHEN D.CD_SIT_REG = 'I' THEN 'INATIVO'",
-		  "	   		WHEN D.CD_SIT_REG = 'B' THEN 'BLOQUEADO'",
-		  "	   	ELSE D.CD_SIT_REG ",
+		  "	   	     WHEN D.CD_SIT_REG = 'A' THEN 'ATIVO'",
+		  "	   	     WHEN D.CD_SIT_REG = 'E' THEN 'EXCLUÍDO'",
+		  "	   	     WHEN D.CD_SIT_REG = 'F' THEN 'FALECIDO'",
+		  "	   	     WHEN D.CD_SIT_REG = '0' THEN 'ERRO'",
+		  "	   	     WHEN D.CD_SIT_REG = 'P' THEN 'CATEGORIA P'",
+		  "	   	     WHEN D.CD_SIT_REG = 'I' THEN 'INATIVO'",
+		  "	   	     WHEN D.CD_SIT_REG = 'B' THEN 'BLOQUEADO'",
+		  "	   ELSE D.CD_SIT_REG ",
 		  "	   END AS CD_SIT_REG_DESC ,",
 		  "    A.ID_SIT_VINC,",
 		  "    A.DT_SIT_VINC,",
@@ -4338,6 +4338,22 @@
 	],
 	"description": "Z00CTG"
   },
+
+// Z00SNIPPETS
+"Z00SNIPPETS": {
+  "scope": "sql",
+  "prefix": "Z00SNIPPETS",
+  "body": [
+    "SELECT ",
+    "    prefix         ,",
+    "    description    ,",
+    "    linguagem       ",
+    "FROM [00_SNIPPETS]",
+    "${1:--}WHERE description LIKE '%${2:PALAVRA}%'",
+    "ORDER BY linguagem, prefix"
+  ],
+  "description": "00_SNIPPETS_CONSULTA"
+},
 
 // ------------------------------------------------------------------- DATABRICKS -------------------------------------------------------------------
   
