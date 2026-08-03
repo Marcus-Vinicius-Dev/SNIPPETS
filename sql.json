@@ -783,8 +783,8 @@
 	  "description": "GROUP_BY"
 	},
   
-	// HAVING
-	"HAVING": {
+	// ZHAVING
+	"ZHAVING": {
 	  "scope": "sql",
 	  "prefix": "ZCOUNTHAVING",
 	  "body": [
@@ -795,8 +795,8 @@
 	  "description": "HAVING = FILTRAR APÓS O GROUP BY"
 	},
   
-	// NULL
-	"NULL": {
+	// ZNULL
+	"ZNULL": {
 	  "scope": "sql",
 	  "prefix": "ZNULL",
 	  "body": [
@@ -805,8 +805,8 @@
 	  "description": "NULL"
 	},
   
-// NULIFICA
-"NULIFICA": {
+// ZNULIFICA
+"ZNULIFICA": {
 	"scope": "sql",
 	"prefix": "ZNULLIF",
 	"body": [
@@ -815,8 +815,8 @@
 	"description": "NULIFICA"
   },
   
-  // COALESCE
-  "COALESCE": {
+  // ZCOALESCE
+  "ZCOALESCE": {
 	"scope": "sql",
 	"prefix": "ZCOAL",
 	"body": [
@@ -833,6 +833,16 @@
 	  "COALESCE(NULLIF(${1:COLUNA1}, ''), ${2:COLUNA2}, '') AS ${3:NOVO_NOME} ,"
 	],
 	"description": "COALESCE com NULLIF para NOME, fallback para NOME_SERVIDOR e vazio"
+  },
+
+  // COALESCEDATES
+"COALESCEDATES": {
+	"scope": "sql",
+	"prefix": "ZCOALDATES",
+	"body": [
+	  "COALESCE(CAST(${1:COLUNA} AS VARCHAR(10)), '') AS ${2:NOVO_NOME}"
+	],
+	"description": "COALESCE para DATAS"
   },
   
   // QUANTIDADEDECARACTERES
@@ -2467,11 +2477,15 @@
 	  "     DT_SITREG    ,",
 	  "     DTPOSSE_C    ,",
 	  "     DTPOSSE_E    ,",
+	  "     SITESP       ,",
 	  "     DTISESP      ,",
 	  "     DTIINTE      ,",
 	  "     DTFINTE      ,",
+	  "     MOTIAFAS     ,",
+	  "     MOTIVO       ,",
 	  "     DTIAFAS      ,",
 	  "     DTFAFAS      ,",
+	  "     MOTLICE      ,",
 	  "     DTILICE      ,",
 	  "     DTFLICE      ,",
 	  "     DTIEXCO      ,",
@@ -2484,10 +2498,6 @@
 	  "     SITVINC      ,",
 	  "     SITVINCO     ,",
 	  "     SITVINDE     ,",
-	  "     SITESP       ,",
-	  "     MOTIAFAS     ,",
-	  "     MOTIVO       ,",
-	  "     MOTLICE      ,",
 	  "     COD_BANCO    ,",
 	  "     COD_AGENCIA  ,",
 	  "     TP_CONTA     ,",
@@ -3801,8 +3811,8 @@
 	  "    COLUNAS,",
 	  "    PROPRIETARIO ",
 	  "FROM [00_BRICKS]",
-	  "-- WHERE ENDERECO LIKE '%ALOC%'",
-	  "-- OR NOME_DAS_COLUNAS LIKE '%ALOC%'",
+	  "${1:-- }WHERE ENDERECO LIKE '%${2:PESQUISA}%'",
+	  "${1:-- }OR NOME_DAS_COLUNAS LIKE '%${2:PESQUISA}%'",
 	  "ORDER BY DT_CRIACAO DESC, DT_ULT_ALTERACAO DESC, CATALOGO, ESQUEMA, TABELA"
 	],
 	"description": "MAPEAMENTO_DATABRICKS_CONSULTAR"
