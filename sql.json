@@ -527,8 +527,10 @@
 	"body": [
 	  "SELECT ",
 	  "    DATASET                ,",
-	  "    DATASET_LINK           ,",
-	  "    DATASET_DOWNLOAD",
+	  "    NOME_ARQUIVO           ,",
+	  "    EXTENSAO               ,",
+	  "    URL_DATASET            ,",
+	  "    URL_DOWNLOAD           ",
 	  "FROM [dbo].[00_DADOS_ABERTOS]",
 	  "WHERE DATASET LIKE '%${1:DADO}%'",
 	  "ORDER BY DATASET"
