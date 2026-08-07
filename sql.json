@@ -529,7 +529,9 @@
 	  "    DATASET                ,",
 	  "    DATASET_LINK           ,",
 	  "    DATASET_DOWNLOAD",
-	  "FROM [dbo].[00_DADOS_ABERTOS]"
+	  "FROM [dbo].[00_DADOS_ABERTOS]",
+	  "WHERE DATASET LIKE '%${1:DADO}%'",
+	  "ORDER BY DATASET"
 	],
 	"description": "00_DADOS_ABERTOS_CONSULTA"
   },
@@ -1048,8 +1050,8 @@
 	"description": "ARREDONDAR"
   },
   
-  // SOMAR
-  "SOMAR": {
+  // SOMARSUM
+  "SOMARSUM": {
 	"scope": "sql",
 	"prefix": "ZSUM",
 	"body": [
@@ -1319,12 +1321,12 @@
 	"body": [
 	  "COALESCE(",
 	  "      CASE",
-	  "         WHEN ${1:COLUNA} = 'A' THEN 'A - AMPLIADA (32)'",
-	  "         WHEN ${1:COLUNA} = 'B' THEN 'B - BÁSICA (25)'",
-	  "         WHEN ${1:COLUNA} = 'C' THEN 'C - COMPLETA (20)'",
-	  "         WHEN ${1:COLUNA} = 'L' THEN 'L - COMPLETA (20) - NOVA CARREIRA'",
-	  "         WHEN ${1:COLUNA} = 'I' THEN 'I - INTEGRAL (33)'",
-	  "         WHEN ${1:COLUNA} = 'R' THEN 'R - REDUZIDA (10)'",
+	  "         WHEN ${1:COLUNA} = 'A' THEN 'A - AMPLIADA (32 AULAS / 40H) - NOVA CARREIRA'",
+	  "         WHEN ${1:COLUNA} = 'B' THEN 'B - BÁSICA (24 AULAS / 30H)'",
+	  "         WHEN ${1:COLUNA} = 'C' THEN 'C - INTEGRAL (32 AULAS / 40H)'",
+	  "         WHEN ${1:COLUNA} = 'L' THEN 'L - COMPLETA (20 AULAS / 25H) - NOVA CARREIRA'",
+	  "         WHEN ${1:COLUNA} = 'I' THEN 'I - INICIAL (19 AULAS / 24H)'",
+	  "         WHEN ${1:COLUNA} = 'R' THEN 'R - REDUZIDA (9 AULAS / 12H)'",
 	  "         ELSE ${1:COLUNA}",
 	  "      END,",
 	  "      ''",
@@ -4411,7 +4413,7 @@
 	"scope": "sql",
 	"prefix": "KZ_LISTCATALOG",
 	"body": [
-	  "SHOW CATALOGS"
+	  "SELECT * FROM system.information_schema.catalogs LIMIT 100"
 	],
 	"description": "LISTE_CATALOGOS"
   },
