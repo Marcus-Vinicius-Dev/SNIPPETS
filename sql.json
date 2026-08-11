@@ -1139,6 +1139,16 @@
 	],
 	"description": "CONVERTER_TIPO_DE_DADOS"
   },
+
+  // CONVERTERTIPODEDADOS
+  "CONVERTERTIPODEDADOS": {
+	"scope": "sql",
+	"prefix": "ZDDCONVERT2",
+	"body": [
+	  "CAST(${1:BIGINT}, A.${2:CPF}) AS ${2:CPF}"
+	],
+	"description": "CONVERTER_TIPO_DE_DADOS_2"
+  },
   
   // IF
   "IF": {
@@ -1455,7 +1465,9 @@
 	  "      WHEN ${1:COLUNA} = '8' THEN '8 - COMISSIONADO'",
 	  "      WHEN ${1:COLUNA} = '9' THEN '9 - COMISSIONADO'",
 	  "      ELSE ${1:COLUNA}",
-	  "   END AS ${2:NOVA_COLUNA} ,"
+	  "      END,",
+	  "      ''",
+	  "       ) AS ${2:NOME_COLUNA} ,"
 	],
 	"description": "COLA_CATEGORIAS"
   },
@@ -1501,7 +1513,9 @@
 	  "      WHEN ${1:COLUNA} = '7' THEN '7 - URBANA'    ",
 	  "      WHEN ${1:COLUNA} = '8' THEN '8 - CAICARA'    ",
 	  "      ELSE ${1:COLUNA}",
-	  "   END AS ${2:NOVA_COLUNA} ,"
+	  "      END,",
+	  "      ''",
+	  "       ) AS ${2:NOME_COLUNA} ,"
 	],
 	"description": "COLA_LOCALIZACAO"
   },
@@ -1582,7 +1596,9 @@
 	  "      WHEN ${1:COLUNA} = 'QAE' THEN 'QAE - QUADRO DE APOIO ESCOLAR'    ",
 	  "      WHEN ${1:COLUNA} = 'QSE' THEN 'QSE - QUADRO DA SECRETARIA DA EDUCACAO'    ",
 	  "      ELSE ${1:COLUNA}",
-	  "   END AS ${2:NOVA_COLUNA} ,"
+	  "      END,",
+	  "      ''",
+	  "       ) AS ${2:NOME_COLUNA} ,"
 	],
 	"description": "COLA_QUADRO"
   },
@@ -1604,7 +1620,9 @@
 	  "      WHEN ${1:COLUNA} = 'U' THEN 'U - ERRO'",
 	  "      WHEN ${1:COLUNA} = 'V' THEN 'V - VIUVO'",
 	  "      ELSE ${1:COLUNA}",
-	  "   END AS ${1:COLUNA} ,"
+	  "      END,",
+	  "      ''",
+	  "       ) AS ${2:NOME_COLUNA} ,"
 	],
 	"description": "COLA_ESTADO_CIVIL"
   },
