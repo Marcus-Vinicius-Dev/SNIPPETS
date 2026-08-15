@@ -664,15 +664,15 @@
     "cabecalho_web_scraping": {
         "prefix": "webcab",
         "body": [
-        "# Extrator para: CADASTRO = EVENTO → extrair motivos da 3ª coluna",
-        "# 1) z py_venv_ativar",
-        "# 2) z sys_edge_modo_debug ou ( Start-Process msedge -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\temp\\edge_debug\" ) ou Google Chrome ( Start-Process chrome -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\temp\\chrome_debug\" )",
-        "# 3) Site https://sed.educacao.sp.gov.br/Funcional/Consulta/Index",
-        "# 4) python ${1:teste}.py",
+        "# Extrator",
+        "# 1) z sys_edge_modo_debug ou ( Start-Process msedge -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\temp\\edge_debug\" ) ou Google Chrome ( Start-Process chrome -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\temp\\chrome_debug\" )",
+        "# 2) Site ${1:https://sed.educacao.sp.gov.br/Funcional/Consulta/Index}",
+        "# 3) cd ${2:C:endereço_do_programa}",
+        "# 4) python ${3:programa}.py",
         "",
         "from selenium import webdriver",
         "from selenium.webdriver.edge.options import Options",
-		"from selenium.webdriver.chrome.options import Options",
+		"# from selenium.webdriver.chrome.options import Options",
         "from selenium.webdriver.common.by import By",
         "from selenium.webdriver.support.ui import Select, WebDriverWait",
         "from selenium.webdriver.support import expected_conditions as EC",
@@ -1047,6 +1047,88 @@
 		"    analisar_cabecalhos_e_linhas(arquivo)"
 	],
 	"description": "Verifica cabeçalhos e primeiras linhas de todas as planilhas de um arquivo Excel"
+},
+
+"abrir_navegador_edge_modo_debug_powershell": {
+	"prefix": "webnavedge",
+	"body": [
+		"& \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --remote-debugging-port=9222 --user-data-dir=C:\\temp\\edge_debug"
+	],
+	"description": "Abre o Edge em modo debug pelo PowerShell (porta 9222)"
+},
+
+"abrir_navegador_chrome_modo_debug_powershell": {
+	"prefix": "webnavchrome",
+	"body": [
+		"& \"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" --remote-debugging-port=9222 --user-data-dir=C:\\temp\\chrome_debug"
+	],
+	"description": "Abre o Chrome em modo debug pelo PowerShell (porta 9222)"
+},
+
+"conectar_se_ao_edge_debug": {
+	"prefix": "webnavedgedebugconectar",
+	"body": [
+		"from selenium import webdriver",
+		"from selenium.webdriver.edge.options import Options",
+		"import time",
+		"",
+		"options = Options()",
+		"options.add_experimental_option(\"debuggerAddress\", \"localhost:9222\")",
+		"driver = webdriver.Edge(options=options)",
+		"",
+		"site = \"${1:https://sed.educacao.sp.gov.br/Funcional/Consulta/Index}\"",
+		"driver.get(site)",
+		"",
+		"print(f\"✅ Página acessada com sucesso!\")",
+		"print(f\"📄 Título da página: {driver.title}\")",
+		"print(\"\\n🔍 O navegador está sob seu controle. Faça o login manualmente se necessário.\")",
+		"",
+		"input(\"Pressione Enter para fechar a conexão com o driver (o navegador continuará aberto)...\")",
+		"driver.quit()",
+		"print(\"✅ Conexão encerrada. O navegador ainda está aberto.\")"
+	],
+	"description": "Conecta ao Edge em modo debug e acessa site (URL editável)"
+},
+
+"conectar_se_ao_chrome_debug": {
+	"prefix": "webnavchromedebugconectar",
+	"body": [
+		"from selenium import webdriver",
+		"from selenium.webdriver.chrome.options import Options",
+		"import time",
+		"",
+		"options = Options()",
+		"options.add_experimental_option(\"debuggerAddress\", \"localhost:9222\")",
+		"driver = webdriver.Chrome(options=options)",
+		"",
+		"site = \"${1:https://sed.educacao.sp.gov.br/Funcional/Consulta/Index}\"",
+		"driver.get(site)",
+		"",
+		"print(f\"✅ Página acessada com sucesso!\")",
+		"print(f\"📄 Título da página: {driver.title}\")",
+		"print(\"\\n🔍 O navegador está sob seu controle. Faça o login manualmente se necessário.\")",
+		"",
+		"input(\"Pressione Enter para fechar a conexão com o driver (o navegador continuará aberto)...\")",
+		"driver.quit()",
+		"print(\"✅ Conexão encerrada. O navegador ainda está aberto.\")"
+	],
+	"description": "Conecta ao Chrome em modo debug e acessa site (URL editável)"
+},
+
+"abrir_edge_debug_startprocess_powershell": {
+	"prefix": "webnavedgedebugstart",
+	"body": [
+		"Start-Process \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\temp\\edge_debug\""
+	],
+	"description": "Abre o Edge em modo debug usando Start-Process no PowerShell"
+},
+
+"abrir_chrome_debug_startprocess_powershell": {
+	"prefix": "webnavchromedebugstart",
+	"body": [
+		"Start-Process \"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\temp\\chrome_debug\""
+	],
+	"description": "Abre o Chrome em modo debug usando Start-Process no PowerShell"
 }
 
 }
