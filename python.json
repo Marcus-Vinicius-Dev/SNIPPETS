@@ -1612,6 +1612,36 @@
 		"    resumo = extrair_resumo_basico(driver)"
 	],
 	"description": "Extrator resumido com contagem de elementos (URL editável)"
+},
+
+"web_mostrar_h1": {
+	"prefix": "webmostrarh1",
+	"body": [
+		"# <h1>${1:Consulta Cadastro Funcional}</h1>",
+		"h1 = driver.find_element(By.XPATH, \"//h1[contains(text(), '${2:Consulta}')]\")",
+		"print(f\"h1 encontrado = {h1.text}\")"
+	],
+	"description": "Busca elemento h1 por texto parcial (editável)"
+},
+
+"web_mostrar_label": {
+	"prefix": "webmostrarlabel",
+	"body": [
+		"# <label for=\"${1:txtNrCpf}\">${2:CPF: }</label>",
+		"label_${3:cpf} = driver.find_element(By.XPATH, \"//label[text()='${2:CPF: }']\")",
+		"print(f\"label encontrada = {label_${3:cpf}.text}\")"
+	],
+	"description": "Busca elemento label por texto exato (editável)"
+},
+
+"web_mostrar_button": {
+	"prefix": "webmostrarbutton",
+	"body": [
+		"# <button type=\"button\" class=\"btn btn-primary\" id=\"${1:btnPesquisar}\" onclick=\"${2:Pesquisar();}\"><i class=\"icone-tabela-visualizar mrIcon\"></i>${3:Pesquisar}</button>",
+		"btn_${4:pesquisar} = driver.find_element(By.ID, \"${1:btnPesquisar}\")",
+		"print(f\"botão encontrado = {btn_${4:pesquisar}.text}\")"
+	],
+	"description": "Busca elemento button por ID (editável)"
 }
 
 }
