@@ -560,7 +560,7 @@
 	},
   
 	// WHERE
-	"WHERE": {
+	"WHERE_": {
 	  "scope": "sql",
 	  "prefix": "ZWHERE",
 	  "body": [
@@ -579,6 +579,16 @@
 		"${5:--MONTH(coluna1) = 01}"
 	  ],
 	  "description": "WHERE_DATAS"
+	},
+
+	// BETWEEN_DATAS
+	"BETWEEN_DATAS": {
+		"scope": "sql",
+		"prefix": "ZBETWEEN",
+		"body": [
+		"CONVERT(DATE, ${1:COLUNA}, 103) BETWEEN '${2:2025}-${3:MES}-${4:DIA}' AND '${5:2026}-${6:MES}-${7:DIA}' -- 101 = mm/dd/yyyy; 102 = yyyy.mm.dd; 103 = dd/mm/yyyy; 104 = dd.mm.yyyy; 105 = dd-mm-yyyy; 120 = yyyy-mm-dd hh:mi:ss; 126 = yyyy-mm-ddThh:mi:ss.mmm "
+		],
+		"description": "BETWEEN DATAS CONVERTENDO DATA com formato 103 (dd/mm/yyyy)"
 	},
   
 	// ROWNUMBERSEMDUPLICATAS
@@ -1301,7 +1311,7 @@
 	"body": [
 	  "      B.REGIAO                      ,",
 	  "      B.NOMEDE AS URE               ,",
-	  "LEFT JOIN ARQDEUA0326 A ON A.UA = B.UA"
+	  "LEFT JOIN ARQDEUA0326 B ON A.UA = B.UA"
 	],
 	"description": "REGIAO E URE DE ARQDEUA"
   },
