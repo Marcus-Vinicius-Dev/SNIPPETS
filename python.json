@@ -572,54 +572,8 @@
 "cola_de_cores": {
     "prefix": "pycolacores",
     "body": [
-        "## Cores de texto (foreground) - Normal",
-        "#print(f\"\\n\\n \\033[30m TEXTO PRETO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[31m TEXTO VERMELHO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[32m TEXTO VERDE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[33m TEXTO AMARELO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[34m TEXTO AZUL \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[35m TEXTO MAGENTA \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[36m TEXTO CIANO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[37m TEXTO BRANCO \\033[0m \\n\\n\")",
-        "#",
-        "## Cores de texto (foreground) - Brilhante",
-        "#print(f\"\\n\\n \\033[90m TEXTO PRETO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[91m TEXTO VERMELHO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[92m TEXTO VERDE BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[93m TEXTO AMARELO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[94m TEXTO AZUL BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[95m TEXTO MAGENTA BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[96m TEXTO CIANO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[97m TEXTO BRANCO BRILHANTE \\033[0m \\n\\n\")",
-        "#",
-        "## Cores de fundo (background) - Normal",
-        "#print(f\"\\n\\n \\033[40m FUNDO PRETO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[41m FUNDO VERMELHO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[42m FUNDO VERDE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[43m FUNDO AMARELO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[44m FUNDO AZUL \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[45m FUNDO MAGENTA \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[46m FUNDO CIANO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[47m FUNDO BRANCO \\033[0m \\n\\n\")",
-        "#",
-        "## Cores de fundo (background) - Brilhante",
-        "#print(f\"\\n\\n \\033[100m FUNDO PRETO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[101m FUNDO VERMELHO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[102m FUNDO VERDE BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[103m FUNDO AMARELO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[104m FUNDO AZUL BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[105m FUNDO MAGENTA BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[106m FUNDO CIANO BRILHANTE \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[107m FUNDO BRANCO BRILHANTE \\033[0m \\n\\n\")",
-        "#",
-        "## Estilos e reset",
-        "#print(f\"\\n\\n \\033[1m NEGRITO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[4m SUBLINHADO \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[7m FUNDO E TEXTO INVERTIDOS \\033[0m \\n\\n\")",
-        "#print(f\"\\n\\n \\033[0m RESET TOTAL \\033[0m \\n\\n\")",
-        "#",
-        "## Exemplos combinados",
-        "#print(f\"\\033[1;34mTexto azul em negrito\\033[0m\") # Negrito e azul e fundo branco"
+        "# Acessar link",
+		"# https://www.dev-toolbox.tech/tools/ansi-color-reference"
     ],
     "description": "Exibe todas as cores ANSI (texto e fundo) no terminal"
 },
@@ -892,6 +846,7 @@
         "idna==3.13",
 		"lxml==4.9.3",
         "outcome==1.3.0.post0",
+		"openpyxl==3.1.5",
         "packaging==26.2",
 		"psutil==5.9.5",
         "pycparser==3.0",
@@ -1021,11 +976,6 @@
 "web_cola_emojis": {
 	"prefix": "webcolaemojis",
 	"body": [
-		"# ============================================",
-		"# EMOJIS PARA WEB SCRAPING",
-		"# digite windows + . ou windows + ;",
-		"# ============================================",
-		"#",
 		"# ✅  Sucesso/OK           Operação concluída",
 		"# ❌  Erro/Falha           Algo deu errado",
 		"# ⚠️  Atenção/Aviso        Algo importante",
@@ -1046,6 +996,190 @@
 		"# 🎯  Alvo/Objetivo        Meta"
 	],
 	"description": "Cola de emojis para usar em web scraping"
+},
+
+// webcolarequirements
+"webcolarequirements": {
+    "prefix": "webcolarequirements",
+    "body": [
+        "# PACOTE                      VERSÃO    FUNÇÃO PRINCIPAL",
+        "# aiohttp                     3.9.0     Cliente HTTP assíncrono para downloads rápidos",
+        "# beautifulsoup4              4.12.2    Parseia HTML/XML e extrai dados de forma simples",
+        "# browserforge                1.0.0     Gera fingerprints de browser realistas",
+        "# fake-useragent              1.5.0     Gera user-agents aleatórios",
+        "# httpx                       0.27.0    Cliente HTTP moderno com suporte a HTTP/2",
+        "# lxml                        4.9.3     Parser rápido de HTML/XML",
+        "# mitmproxy                   10.2.0    Intercepta e inspeciona tráfego HTTP/HTTPS",
+        "# openpyxl                    3.1.5     Lê e escreve arquivos .xlsx",
+        "# pandas                      2.3.3     Manipula tabelas e dataframes",
+        "# parsel                      1.9.0     Seletores CSS/XPath",
+        "# pdf2image                   0.1.14    Converte PDFs em imagens",
+        "# playwright                  1.44.0    Automação moderna de browsers",
+        "# polars                      1.0.0     Manipulação de dados ultra-rápida",
+        "# pyarrow                     16.0.0    Formato de dados eficiente",
+        "# pymongo                     4.7.0     Conecta ao MongoDB",
+        "# pyppeteer                   2.0.0     Controle headless do Chrome",
+        "# pyquery                     2.0.0     Sintaxe jQuery para HTML",
+        "# python-dotenv               1.2.2     Lê variáveis de arquivos .env",
+        "# pytesseract                 0.3.10    OCR para imagens",
+        "# pyvirtualdisplay            1.1.0     Browsers headless no Linux",
+        "# redis                       5.0.0     Cache, filas e rate limiting",
+        "# requests                    2.33.1    Chamadas HTTP GET/POST",
+        "# retrying                    1.3.0     Retry automático",
+        "# scrapy                      2.11.0    Framework completo de scraping",
+        "# selectolax                  0.4.0     Parser CSS ultra-rápido",
+        "# selenium                    4.43.0    Automação de Edge/Chrome",
+        "# selenium-stealth             1.0.0     Reduz sinais de automação",
+        "# tenacity                    8.3.0     Biblioteca moderna de retry",
+        "# tqdm                        4.66.0    Barras de progresso",
+        "# trio                        0.33.0    Backend assíncrono",
+        "# trio-websocket              0.12.2    Suporte a WebSocket",
+        "# undetected-chromedriver     3.5.0     ChromeDriver com evasão de detecção",
+        "# webdriver-manager           4.0.2     Gerencia drivers automaticamente",
+        "# wget                        3.2       Download simples por URL",
+        "# websocket-client            1.9.0     Comunicação WebSocket",
+        "# xlrd                        2.0.0     Lê arquivos .xls",
+        "# xlsxwriter                  3.2.0     Cria arquivos .xlsx formatados"
+    ],
+    "description": "Cola de Requirements em formato de tabela"
+},
+
+// cola_de_cores
+"cola_de_cores": {
+    "prefix": "webcolacores",
+    "body": [
+        "# Acessar link",
+		"# https://www.dev-toolbox.tech/tools/ansi-color-reference"
+    ],
+    "description": "Exibe todas as cores ANSI (texto e fundo) no terminal"
+},
+
+// webcolainstrucoes
+"webcolainstrucoes": {
+    "prefix": "webcolainstrucoes",
+    "body": [
+        "# ============================================================================================================================",
+        "# COLA DE INSTRUÇÕES PYTHON",
+        "# ============================================================================================================================",
+        "#",
+        "# INSTRUÇÃO          CATEGORIA                  RESUMO                              EXEMPLO",
+        "# ----------------------------------------------------------------------------------------------------------------------------",
+        "# if / elif / else   Controle de fluxo          Executa blocos condicionais         if x > 0: print(\"Positivo\")",
+        "# for                Controle de fluxo          Itera sobre sequências              for i in range(3): print(i)",
+        "# while              Controle de fluxo          Executa enquanto condição é válida  while x < 10: x += 1",
+        "# break              Controle de fluxo          Sai imediatamente de um laço        for i in range(10): ... break",
+        "# continue           Controle de fluxo          Pula para a próxima iteração       for i in range(5): ... continue",
+        "# pass               Controle de fluxo          Não executa nenhuma ação            if teste: pass",
+        "#",
+        "# try / except       Exceção                    Captura e trata erros               try: ... except: ...",
+        "# finally            Exceção                    Executa sempre                      try: ... finally: print(\"Fim\")",
+        "# raise              Exceção                    Lança uma exceção manualmente       raise ValueError(\"Erro\")",
+        "# assert             Exceção                    Verifica condição durante debug     assert x > 0, \"x deve ser positivo\"",
+        "#",
+        "# with               Contexto                  Gerencia recursos                   with open(\"f.txt\") as f: ...",
+        "#",
+        "# import             Importação                Importa módulos                     import pandas as pd",
+        "# from ... import    Importação                Importa objetos específicos          from math import sqrt",
+        "#",
+        "# def                Definição                 Define funções                      def soma(a, b): return a + b",
+        "# class              Definição                 Define classes                      class Pessoa: pass",
+        "# async def          Definição                 Define funções assíncronas          async def fetch(): ...",
+        "#",
+        "# =                  Atribuição                Atribui valor a uma variável        x = 10",
+        "# del                Atribuição                Deleta valores ou elementos         del x ou del lista[0]",
+        "#",
+        "# return             Retorno                   Retorna valor de uma função         def f(): return 42",
+        "# yield              Retorno                   Gera valores em um generator       def gen(): yield 1",
+        "#",
+        "# global             Escopo                    Declara variável global             global x",
+        "# nonlocal           Escopo                    Declara variável não-local          nonlocal x",
+        "#",
+        "# match / case       Controle de fluxo          Pattern matching Python 3.10+      match x: ... case 1: ...",
+        "#",
+        "# ============================================================================================================================",
+        "# Observação: exemplos abreviados com reticências devem ser expandidos antes da execução.",
+        "# ============================================================================================================================"
+    ],
+    "description": "Cola de instruções Python organizada em formato de tabela"
+},
+
+// webcolafuncoes
+"webcolafuncoes": {
+    "prefix": "webcolafuncoes",
+    "body": [
+        "# ============================================================================================================================",
+        "# COLA DE FUNÇÕES BUILT-IN DO PYTHON",
+        "# ============================================================================================================================",
+        "#",
+        "# FUNÇÃO          CATEGORIA                         RESUMO                              EXEMPLO",
+        "# ----------------------------------------------------------------------------------------------------------------------------",
+        "# print()         Entrada e saída                   Exibe texto no terminal             print(\"Olá\")",
+        "# input()         Entrada e saída                   Lê texto do usuário                nome = input(\"Nome: \")",
+        "# open()          Entrada e saída                   Abre arquivos                      f = open(\"dados.txt\", \"r\")",
+        "#",
+        "# int()            Conversão                         Converte para inteiro              int(\"42\") → 42",
+        "# float()          Conversão                         Converte para decimal              float(\"3.14\") → 3.14",
+        "# str()            Conversão                         Converte para texto                str(100) → \"100\"",
+        "# bool()           Conversão                         Converte para booleano             bool(1) → True",
+        "# list()           Conversão                         Converte para lista                list(\"abc\") → ['a', 'b', 'c']",
+        "# dict()           Conversão                         Cria um dicionário                dict(a=1, b=2)",
+        "# tuple()          Conversão                         Converte para tupla                tuple([1, 2]) → (1, 2)",
+        "# set()            Conversão                         Converte para conjunto             set([1, 2, 2]) → {1, 2}",
+        "#",
+        "# abs()            Matemática                       Retorna o valor absoluto           abs(-5) → 5",
+        "# round()          Matemática                       Arredonda um número                round(3.7) → 4",
+        "# sum()            Matemática                       Soma os elementos                  sum([1, 2, 3]) → 6",
+        "# min()            Matemática                       Retorna o menor valor              min([3, 1, 4]) → 1",
+        "# max()            Matemática                       Retorna o maior valor              max([3, 1, 4]) → 4",
+        "# pow()            Matemática                       Calcula uma potência               pow(2, 3) → 8",
+        "# divmod()         Matemática                       Retorna divisão e resto            divmod(10, 3) → (3, 1)",
+        "#",
+        "# len()            Sequência                        Retorna o tamanho                  len(\"abc\") → 3",
+        "# range()          Sequência                        Gera sequência numérica            list(range(3)) → [0, 1, 2]",
+        "# enumerate()      Sequência                        Retorna índice e valor             list(enumerate(['a', 'b']))",
+        "# zip()            Sequência                        Combina sequências                 list(zip([1, 2], ['a', 'b']))",
+        "# reversed()       Sequência                        Inverte uma sequência              list(reversed([1, 2, 3]))",
+        "# sorted()         Sequência                        Ordena uma sequência               sorted([3, 1, 2]) → [1, 2, 3]",
+        "#",
+        "# iter()           Iteração                         Cria um iterador                  iter([1, 2, 3])",
+        "# next()           Iteração                         Retorna o próximo elemento        next(iter([1, 2])) → 1",
+        "# filter()         Iteração                         Filtra elementos                  list(filter(lambda x: x > 2, [1, 2, 3]))",
+        "# map()            Iteração                         Aplica função aos elementos       list(map(str, [1, 2, 3]))",
+        "#",
+        "# type()           Objetos                          Retorna o tipo do objeto          type(42) → <class 'int'>",
+        "# isinstance()     Objetos                          Verifica o tipo do objeto         isinstance(42, int) → True",
+        "# id()             Objetos                          Retorna o ID do objeto            id(x)",
+        "# hash()           Objetos                          Retorna o hash do objeto          hash(\"abc\")",
+        "# dir()            Objetos                          Lista atributos do objeto         dir([])",
+        "# help()           Objetos                          Exibe a documentação              help(print)",
+        "# callable()       Objetos                          Verifica se é chamável            callable(print) → True",
+        "#",
+        "# chr()            Diversas                         Código Unicode → caractere        chr(65) → 'A'",
+        "# ord()            Diversas                         Caractere → código Unicode        ord('A') → 65",
+        "# bin()            Diversas                         Inteiro → binário                 bin(5) → '0b101'",
+        "# hex()            Diversas                         Inteiro → hexadecimal             hex(255) → '0xff'",
+        "# oct()            Diversas                         Inteiro → octal                   oct(8) → '0o10'",
+        "# repr()           Diversas                         Representação do objeto           repr([1, 2]) → '[1, 2]'",
+        "# format()         Diversas                         Formata um valor                  format(3.14159, '.2f') → '3.14'",
+        "# vars()           Diversas                         Atributos como dicionário         vars(objeto)",
+        "# globals()        Diversas                         Variáveis do escopo global        globals()",
+        "# locals()         Diversas                         Variáveis do escopo local         locals()",
+        "# exec()           Diversas                         Executa código Python             exec(\"print('Oi')\")",
+        "# eval()           Diversas                         Avalia uma expressão              eval(\"2+2\") → 4",
+        "# compile()        Diversas                         Compila código Python              compile(\"x=1\", \"\", \"exec\")",
+        "# breakpoint()     Diversas                         Insere ponto de debug             breakpoint()",
+        "#",
+        "# staticmethod()   Classes e objetos                Define um método estático         @staticmethod",
+        "# classmethod()    Classes e objetos                Define um método de classe        @classmethod",
+        "# property()       Classes e objetos                Define uma propriedade            @property",
+        "# super()          Classes e objetos                Acessa a classe pai               super().metodo()",
+        "# object()          Classes e objetos                Classe base de todos os objetos   object()",
+        "#",
+        "# ============================================================================================================================",
+        "# Observação: as funções exec() e eval() devem ser usadas com cautela, especialmente com código recebido de terceiros.",
+        "# ============================================================================================================================"
+    ],
+    "description": "Cola de funções"
 },
 
 "web_portas": {
@@ -1841,6 +1975,39 @@
 		"    resumo = extrair_resumo_completo(driver)"
 	],
 	"description": "Extrator resumido que mostra apenas totalizações da página (URL editável)"
+},
+
+// web_print
+"web_print": {
+    "prefix": "webprint",
+    "body": [
+        "print(\"\\n\\033[38;2;69;200;255m ${1:texto} \\033[0m\\n\")"
+    ],
+    "description": "print"
+},
+
+// web_funcao
+"web_funcao": {
+    "prefix": "webfuncao",
+    "body": [
+        "def funcao_${1:nome}():",
+        "    ",
+        "    # ${2:Digite sua função}",
+        "",
+        "",
+        "if __name__ == \"__main__\":",
+        "    funcao_${1:nome}()"
+    ],
+    "description": "Cria uma função Python com bloco de execução principal"
+},
+
+// web_lista
+"web_lista": {
+    "prefix": "weblista",
+    "body": [
+        "${1:lista} = [${2:elemento1}, ${3:elemento2}]"
+    ],
+    "description": "Cria uma lista Python com dois elementos editáveis"
 }
 
 }
