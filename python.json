@@ -549,7 +549,7 @@
 		"description": "Teste de internet"
 	},
 
-		//editar_texto_leitor
+	//editar_texto_leitor
 	"editar_texto_leitor": {
 		"prefix": "pyleredicao",
 		"body": [
@@ -578,7 +578,7 @@
 		"description": "Edição de texto a ser lido (comentários, espaços, acentos, caracteres especiais)"
 	},
 
-		//leitor_lista_portas
+	//leitor_lista_portas
 	"leitor_lista_portas": {
 		"prefix": "pyleitorportas",
 		"body": [
@@ -600,7 +600,7 @@
 		"description": "Leitor de linhas com edição de texto e verificação de arquivo"
 	},
 
-		//leitor_testar_portas
+	//leitor_testar_portas
 	"leitor_testar_portas": {
 		"prefix": "pytestaportascompleto",
 		"body": [
