@@ -1133,19 +1133,9 @@
 	"scope": "sql",
 	"prefix": "ZDDCONVERT",
 	"body": [
-	  "CONVERT(${1:BIGINT}, A.${2:CPF}) AS ${2:CPF}"
+	  "CAST(A.CPF AS VARCHAR(20)) AS CPF,"
 	],
 	"description": "CONVERTER_TIPO_DE_DADOS"
-  },
-
-  // CONVERTERTIPODEDADOS
-  "CONVERTERTIPODEDADOS": {
-	"scope": "sql",
-	"prefix": "ZDDCONVERT2",
-	"body": [
-	  "CAST(${1:BIGINT}, A.${2:CPF}) AS ${2:CPF}"
-	],
-	"description": "CONVERTER_TIPO_DE_DADOS_2"
   },
   
   // IF
