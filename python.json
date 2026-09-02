@@ -2,7 +2,7 @@
 
 	//colaprint
 	"colaprint": {
-		"prefix": "pycolaprint",
+		"prefix": "çcolaprint",
 		"body": [
 			"# String      Exibe literalmente                    print(\"Olá\") → Olá",
 			"# Número      Converte para string                  print(42) → 42",
@@ -18,7 +18,7 @@
 
 	//cola_sistema
 	"cola_sistema": {
-		"prefix": "pycolasistema",
+		"prefix": "çcolasistema",
 		"body": [
 			"from datetime import datetime",
 			"import os",
@@ -217,7 +217,7 @@
 
 	//colacor
 	"colacor": {
-		"prefix": "pycolacor",
+		"prefix": "çcolacor",
 		"body": [
 			"# pip install colorama # Instalação",
 			"",
@@ -304,7 +304,7 @@
 
 		//cola_portas
 	"cola_portas": {
-		"prefix": "pycolaportas",
+		"prefix": "çcolaportas",
 		"body": [
 			"# Porta   # Categoria",
 			"# ============================================",
@@ -428,7 +428,7 @@
 
 		//cola_cabecalho
 	"cola_cabecalho": {
-		"prefix": "pycolacabecalho",
+		"prefix": "çcolacabecalho",
 		"body": [
 			"# z py_requirements_instalar",
 			"# python Estudo.py",
@@ -461,7 +461,7 @@
 
 		//cola_requirements
 	"cola_requirements": {
-		"prefix": "pycolarequirements",
+		"prefix": "çcolarequirements",
 		"body": [
 			"ajsonrpc==1.2.0",
 			"anyio==4.13.0",
@@ -508,7 +508,7 @@
 
 	//listar_modulos
 	"listar_modulos": {
-		"prefix": "pylistarmodulos",
+		"prefix": "çlistarmodulos",
 		"body": [
 			"import pkgutil",
 			"",
@@ -520,7 +520,7 @@
 
 	//print
 	"print": {
-		"prefix": "pyprint",
+		"prefix": "çprint",
 		"body": [
 			"print(Fore.YELLOW + Style.BRIGHT + '\n Programa iniciado \n')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT"
 		],
@@ -529,7 +529,7 @@
 
 	//internet_teste
 	"internet_teste": {
-		"prefix": "pyinternetteste",
+		"prefix": "çinternetteste",
 		"body": [
         "conector = socket.socket(socket.AF_INET, socket.SOCK_STREAM)",
         "print(Fore.BLUE + Style.BRIGHT + '\\n conector', conector)  # Fore.YELLOW + Back.BLACK + Style.BRIGHT",
@@ -551,7 +551,7 @@
 
 	//editar_texto_leitor
 	"editar_texto_leitor": {
-		"prefix": "pyleredicao",
+		"prefix": "çleredicao",
 		"body": [
 			"${1:endereco_arquivo = r'${2:C:\\\\endereco.arq}'}",
 			"",
@@ -580,7 +580,7 @@
 
 	//leitor_lista_portas
 	"leitor_lista_portas": {
-		"prefix": "pyleitorportas",
+		"prefix": "çleitorportas",
 		"body": [
 			"#################### leitor lista_portas.txt ####################",
 			"if os.path.exists(${1:endereco_arquivo}):",
@@ -602,7 +602,7 @@
 
 	//leitor_testar_portas
 	"leitor_testar_portas": {
-		"prefix": "pytestaportascompleto",
+		"prefix": "çtestaportascompleto",
 		"body": [
 			"${1:endereco_arquivo = r'${2:C:\\\\endereco.arq}}'",
 			"",

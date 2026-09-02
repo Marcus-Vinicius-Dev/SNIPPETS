@@ -73,7 +73,9 @@
 		"   t.name AS NOME_TABELA,",
 		"   SCHEMA_NAME(t.schema_id) AS ESQUEMA,",
 		"   YEAR(t.create_date) AS ANO_CRIACAO,",
+		"   CONCAT(DAY(t.create_date),'/', MONTH(t.create_date),'/', YEAR(t.create_date)) AS DATA_CRIACAO,",
 		"   YEAR(t.modify_date) AS ANO_MODIFICACAO,",
+		"   CONCAT(DAY(t.modify_date),'/', MONTH(t.modify_date),'/', YEAR(t.modify_date)) AS DATA_MODIFICACAO,",
 		"   (SELECT COUNT(*) FROM sys.columns c WHERE c.object_id = t.object_id) AS QTD_COLUNAS,",
 		"   SUM(p.rows) AS QTD_LINHAS_APROX",
 		"FROM sys.tables t",
@@ -85,7 +87,7 @@
 		"   t.modify_date,",
 		"   t.object_id ",
 		"ORDER BY ",
-		"   ANO_MODIFICACAO DESC"
+		"   t.create_date DESC, t.modify_date DESC, t.name"
 	  ],
 	  "description": "LISTAR TEBELAS"
 	},
@@ -584,19 +586,21 @@
 	  "scope": "sql",
 	  "prefix": "ZROW",
 	  "body": [
-		"WITH BASE_RANK${1:1} AS (",
+		"DROP TABLE IF EXISTS #${1:ROW_SIMPLES};",
+		"WITH BASE_RANK${2:1} AS (",
 		"   --SELECT *",
 		"   --FROM BASE",
 		"),",
-		"RANK${2:1} AS (",
+		"RANK${3:1} AS (",
 		"   SELECT *,",
-		"      ROW_NUMBER() OVER (PARTITION BY ${3:CPF_DI} ORDER BY (SELECT NULL)) AS ROW${4:1} -- OU ORDER BY coluna1 DESC",
-		"   FROM BASE_RANK${1:1}",
+		"      ROW_NUMBER() OVER (PARTITION BY ${4:CPF_DI} ORDER BY (SELECT NULL)) AS ROW${5:1} -- OU ORDER BY coluna1 DESC",
+		"   FROM BASE_RANK${2:1}",
 		")",
 		"SELECT *",
-		"FROM RANK${2:1}",
-		"WHERE ROW${4:1} = 1 --PRIMEIRA LINHA DA DUPLICATA",
-		"ORDER BY ${3:CPF_DI}"
+		"INTO #${1:ROW_SIMPLES}",
+		"FROM RANK${3:1}",
+		"WHERE ROW${5:1} = 1 --PRIMEIRA LINHA DA DUPLICATA",
+		"ORDER BY ${4:CPF_DI}"
 	  ],
 	  "description": "ROW_NUMBER"
 	},
@@ -606,22 +610,23 @@
 	  "scope": "sql",
 	  "prefix": "ZROWMULT",
 	  "body": [
-		"WITH BASE_RANK${1:1} AS (",
+		"DROP TABLE IF EXISTS #${1:ROW_MULT};",
+		"WITH BASE_RANK${2:1} AS (",
 		"   --SELECT *",
 		"   --FROM BASE",
 		"),",
-		"RANK${2:1} AS (",
+		"RANK${3:1} AS (",
 		"   SELECT *,",
-		"      ROW_NUMBER() OVER (PARTITION BY ${3:coluna1} ORDER BY (SELECT NULL)) AS RANK_${3:coluna1}, -- OU ORDER BY ${3:coluna1} DESC",
-		"      ROW_NUMBER() OVER (PARTITION BY ${4:coluna2} ORDER BY (SELECT NULL)) AS RANK_${4:coluna2} -- OU ORDER BY ${4:coluna2} DESC",
-		"   FROM BASE_RANK${1:1}",
+		"      ROW_NUMBER() OVER (PARTITION BY ${4:coluna1} ORDER BY (SELECT NULL)) AS RANK_${4:coluna1}, -- OU ORDER BY ${4:coluna1} DESC",
+		"      ROW_NUMBER() OVER (PARTITION BY ${5:coluna2} ORDER BY (SELECT NULL)) AS RANK_${5:coluna2} -- OU ORDER BY ${5:coluna2} DESC",
+		"   FROM BASE_RANK${2:1}",
 		")",
 		"SELECT *",
-		"INTO ${5:BASE_SEM_DUPLICIDADE}",
-		"FROM RANK${2:1}",
-		"WHERE RANK_${3:coluna1} = 1   -- Primeira linha de cada DADO DA COLUNA ${3:coluna1}",
-		"   OR RANK_${4:coluna2} = 1   -- Primeira linha de cada DADO DA COLUNA ${4:coluna2}",
-		"ORDER BY ${3:CPF_DI}"
+		"INTO #${1:ROW_MULT}",
+		"FROM RANK${3:1}",
+		"WHERE RANK_${4:coluna1} = 1   -- Primeira linha de cada DADO DA COLUNA ${4:coluna1}",
+		"   OR RANK_${5:coluna2} = 1   -- Primeira linha de cada DADO DA COLUNA ${5:coluna2}",
+		"ORDER BY ${4:CPF_DI}"
 	  ],
 	  "description": "FILTRO DUPLO EM LISTA ÚNICA"
 	},
@@ -4473,19 +4478,21 @@
 	"description": "Z00CTG"
   },
 
-  // DISCIPLINA
-"DISCIPLINA": {
+  // DISCIPLINAS
+"DISCIPLINAS": {
 	"scope": "sql",
-	"prefix": "Z00DISCIPLINA",
+	"prefix": "ZDISCIPLINAS",
 	"body": [
 	  "SELECT ",
-	  "    COD ,",
-	  "    DISCIPLINA         ",
-	  "FROM [00_DISCIPLINA]",
-	  "${1:--}WHERE COD = '${2:XXX}' ${3:--}OR DISCIPLINA LIKE '%${4:PESQUISA}%'",
-	  "ORDER BY COD"
+	  "    CODMAE            ,",
+	  "    DEN_CODMAE        ,",
+	  "    MATERIA           ,",
+	  "    DEN_MATERIA       ,",
+	  "FROM TAB_DISC",
+	  "${1:--}WHERE DEN_CODMAE = '${2:XXX}' ${3:--}OR DEN_MATERIA LIKE '%${4:PESQUISA}%'",
+	  "ORDER BY CODMAE"
 	],
-	"description": "00_DISCIPLINA"
+	"description": "DISCIPLINAS"
   },
 
 // Z00SNIPPETS
