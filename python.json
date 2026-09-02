@@ -28,9 +28,9 @@
 			"import subprocess",
 			"import sys",
 			"",
-			"# ============================================",
-			"# COLA SISTEMA - TODOS OS COMANDOS",
-			"# ============================================",
+			"# #============================================",
+			"# #COLA SISTEMA - TODOS OS COMANDOS",
+			"# #============================================",
 			"",
 			"############################## sys ##############################",
 			"#",
@@ -426,13 +426,17 @@
 		"description": "cola portas - lista completa de portas e categorias"
 	},
 
-		//cola_cabecalho
+	//cola_cabecalho
 	"cola_cabecalho": {
 		"prefix": "çcolacabecalho",
 		"body": [
-			"# z py_requirements_instalar",
-			"# python Estudo.py",
-			"# falta estudar objetos da biblioteca requests",
+			"# python -m venv venv (cria venv se necessário)",
+			"# .\\venv\\Scripts\\activate (ativa a venv)",
+			"# deactivate (desativa venv)",
+			"# pip install -r requirements.txt",
+			"# se não der certo, use python -m pip install -r requirements.txt",
+			"# cd (endereço do programa)",
+			"# (comando para ativar python)",
 			"",
 			"# sys",
 			"from colorama import init, Fore, Back, Style",
@@ -468,13 +472,13 @@
 			"attrs==26.1.0",
 			"beautifulsoup4==4.12.2",
 			"bottle==0.13.4",
-			"certifi==2026.4.22",
-			"cffi==2.0.0",
-			"charset-normalizer==3.4.7",
+			"certifi==2026.7.22",
+			"cffi==2.1.1",
+			"charset-normalizer==3.5.1",
 			"click==8.3.3",
 			"colorama==0.4.6",
 			"h11==0.16.0",
-			"idna==3.13",
+			"idna==3.19",
 			"lxml==4.9.3",
 			"marshmallow==3.26.2",
 			"outcome==1.3.0.post0",
@@ -486,24 +490,46 @@
 			"pyserial==3.5",
 			"PySocks==1.7.1",
 			"python-dotenv==1.2.2",
-			"requests==2.33.1",
-			"selenium==4.43.0",
+			"requests==2.34.2",
+			"selenium==4.48.0",
 			"semantic-version==2.10.0",
 			"sniffio==1.3.1",
 			"sortedcontainers==2.4.0",
 			"soupsieve==2.9.2",
 			"starlette==0.52.1",
 			"tabulate==0.10.0",
-			"trio==0.33.0",
+			"trio==0.34.0",
 			"trio-websocket==0.12.2",
-			"typing_extensions==4.15.0",
-			"urllib3==2.6.3",
+			"typing_extensions==4.16.0",
+			"urllib3==2.7.0",
 			"uvicorn==0.40.0",
 			"webdriver-manager==4.0.2",
-			"websocket-client==1.9.0",
+			"websocket-client==1.9.2",
 			"wsproto==1.3.2"
 		],
 		"description": "Lista de dependências (requirements.txt)"
+	},
+
+	//venv
+	"venv": {
+		"prefix": "çvenv",
+		"body": [
+			"# python -m venv venv (cria venv)",
+			"# venv\\Scripts\\activate (ativa venv)",
+			"# deactivate (desativa venv)"
+		],
+		"description": "Comandos venv"
+	},
+
+	//requirements
+	"requirements": {
+		"prefix": "çrequir",
+		"body": [
+			"# pip install -r requirements.txt",
+			"# python -m pip install -r requirements.txt (se não der certo o de cima, use este)",
+			"# pip freeze > requirements.txt (atualiza o requirements.txt)"
+		],
+		"description": "Comandos requirements"
 	},
 
 	//listar_modulos
@@ -522,7 +548,7 @@
 	"print": {
 		"prefix": "çprint",
 		"body": [
-			"print(Fore.YELLOW + Style.BRIGHT + '\n Programa iniciado \n')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT"
+			"print(Fore.YELLOW + Style.BRIGHT + ' Programa iniciado ')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT"
 		],
 		"description": "Print colorido usando colorama"
 	},
@@ -689,6 +715,18 @@
 			"        print(f\"  ... e mais {len(portas_ocupadas) - 10} portas\")"
 		],
 		"description": "Leitor de lista de portas com teste porta a porta e relatório final"
+	},
+
+	//colorama_baixar
+	"colorama_baixar": {
+		"prefix": "çcolorama_baixar",
+		"body": [
+			"pip install colorama requests selenium"
+		],
+		"description": "baixar colorama em caso de erro do requirements"
 	}
 
 }
+
+
+
