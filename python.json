@@ -548,7 +548,7 @@
 	"print": {
 		"prefix": "çprint",
 		"body": [
-			"print(Fore.YELLOW + Style.BRIGHT + ' Programa iniciado ')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT"
+			"print(Fore.GREEN + Style.BRIGHT + '\\n ${1:Mensagem} \\n')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT cores: YELLOW, BLACK, RED, GREEN, BLUE, MAGENTA, CYAN, WHITE"
 		],
 		"description": "Print colorido usando colorama"
 	},
@@ -724,6 +724,317 @@
 			"pip install colorama requests selenium"
 		],
 		"description": "baixar colorama em caso de erro do requirements"
+	},
+
+	//pasta_atual
+	"pasta_atual": {
+		"prefix": "çpasta_atual",
+		"body": [
+			"#diretório atual?",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'DIRETÓRIO ATUAL')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n diretório atual do programa: ', os.getcwd() , '\\n')"
+		],
+		"description": "Exibe diretório atual"
+	},
+
+	//pasta_nav
+	"pasta_nav": {
+		"prefix": "çpasta_nav",
+		"body": [
+			"#navegar para um novo diretório",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'NAVEGAR PARA NOVO DIRETÓRIO')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"caminho = os.chdir(r'C:\\Caminho')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n novo diretório do programa: ', os.getcwd() , '\\n')"
+		],
+		"description": "Navega para novo diretório"
+	},
+
+	//lista_simples
+	"lista_simples": {
+		"prefix": "çpasta_lista_simples",
+		"body": [
+			"#Listar arquivos de um diretório",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'LISTAR ARQUIVOS DO DIRETÓRIO')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"caminho = os.chdir(r'C:\\Caminho')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n Lista de arquivos da pasta:', os.path.basename(os.getcwd()) , '\\n')",
+			"objeto_listar = os.listdir(caminho) # os.listdir('.') para listar arquivos do diretório atual",
+			"for item in objeto_listar:  ",
+			"    if os.path.isdir(item):",
+			"        print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Lista arquivos do diretório"
+	},
+
+	//lista_recursiva
+	"lista_recursiva": {
+		"prefix": "çpasta_lista_recursiva",
+		"body": [
+			"#Listar arquivos recursivo",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'LISTAR RECURSIVO')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"caminho = os.chdir(r'C:\\Caminho')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n Lista recursiva da pasta: ', os.path.basename(os.getcwd()) , '\\n')  # Retorna o novo diretório atual",
+			"for raiz, pastas, arquivos in os.walk('.'):  # Percorre tudo",
+			"    print(Fore.YELLOW + Style.BRIGHT + f'PASTA: {raiz}')",
+			"    for arquivo in arquivos:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {arquivo}')",
+			"    for pasta in pastas:",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {pasta}')"
+		],
+		"description": "Lista arquivos recursivo"
+	},
+
+	//criar_pasta
+	"criar_pasta": {
+		"prefix": "çcriar_pasta",
+		"body": [
+			"# Criar uma pasta",
+			"# navegar para um novo diretório atual",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'CRIAÇÃO DE PASTA')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"caminho = os.chdir(r'C:\\Caminho')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n endereço onde será criada a pasta: ', os.getcwd()) ",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n Lista de arquivos antes da criação da pasta: ') ",
+			"# Listar arquivos de um diretório ",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}' ) ",
+			"objeto_listar = os.listdir(caminho) # os.listdir('.') para listar arquivos do diretório atual",
+			"for item in objeto_listar:  ",
+			"    if os.path.isdir(item):",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')",
+			"# Criar uma pasta",
+			"nome_da_pasta = 'nova_pasta'",
+			"# VERIFICA SE JÁ EXISTE",
+			"if os.path.exists(nome_da_pasta):",
+			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: A pasta '{nome_da_pasta}' JÁ EXISTE!\")",
+			"    resposta = input(Fore.CYAN + 'Deseja criar outra com nome diferente? (s/N): ')",
+			"    if resposta.lower() == 's':",
+			"        novo_nome = input(Fore.CYAN + 'Digite o novo nome da pasta: ')",
+			"        if novo_nome:",
+			"            nome_da_pasta = novo_nome",
+			"            os.makedirs(nome_da_pasta, exist_ok=True)",
+			"            print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🆕 Nova pasta '{nome_da_pasta}' CRIADA!\")",
+			"        else:",
+			"            print(Fore.RED + '\\n❌ Nome inválido. Operação cancelada.')",
+			"            exit()",
+			"    else:",
+			"        print(Fore.GREEN + '\\nℹ️ Operação cancelada. A pasta existente foi mantida.')",
+			"else:",
+			"    # Cria a pasta (não existe)",
+			"    os.makedirs(nome_da_pasta, exist_ok=True)",
+			"    print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🆕 '{nome_da_pasta}' CRIADA!\")",
+			"# Listar arquivos de um diretório ",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n Lista de arquivos após a criação da pasta: ') ",
+			"# Listar arquivos de um diretório",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}' ) ",
+			"objeto_listar = os.listdir('.') # Atualiza a lista (importante!)",
+			"for item in objeto_listar: ",
+			"    if os.path.isdir(item):",
+			"        if  item == nome_da_pasta: ",
+			"            print(Fore.MAGENTA + Style.BRIGHT + f'  🆕 {item}  ← NOVA PASTA!') ",
+			"        else:",
+			"            print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Cria pasta com verificação"
+	},
+
+	//remover_pasta
+	"remover_pasta": {
+		"prefix": "çpasta_remover",
+		"body": [
+			"#Remover pasta (com verificação de segurança)",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'REMOVER DIRETÓRIO')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"# Navegar para o diretório onde está a pasta",
+			"os.chdir(r'C:\\Caminho')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📍 DIRETÓRIO ATUAL:', os.getcwd())",
+			"# Listar arquivos ANTES",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS ANTES DA REMOÇÃO:')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
+			"objeto_listar = os.listdir('.')",
+			"for item in objeto_listar:",
+			"    if os.path.isdir(item):",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')",
+			"# Nome da pasta a ser removida",
+			"nome_da_pasta = 'nova_pasta'",
+			"# VERIFICA SE A PASTA EXISTE",
+			"if os.path.exists(nome_da_pasta) and os.path.isdir(nome_da_pasta):",
+			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: A pasta '{nome_da_pasta}' foi encontrada!\")",
+			"    # CONFIRMAÇÃO DE SEGURANÇA (com opções)",
+			"    resposta = input(Fore.CYAN + Style.BRIGHT + 'Deseja remover a pasta e todo seu conteúdo? (s/N): ')",
+			"    if resposta.lower() == 's':",
+			"        # PERGUNTA SE É COM FORÇA BRUTA (remover tudo)",
+			"        forca = input(Fore.CYAN + 'Remover até com subpastas e arquivos? (s/N): ')",
+			"        try:",
+			"            if forca.lower() == 's':",
+			"                # Remove com força bruta (shutil.rmtree)",
+			"                import shutil",
+			"                shutil.rmtree(nome_da_pasta)",
+			"                print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🗑️ Pasta '{nome_da_pasta}' REMOVIDA com todo seu conteúdo!\")",
+			"            else:",
+			"                # Remove pasta vazia (os.rmdir)",
+			"                os.rmdir(nome_da_pasta)",
+			"                print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🗑️ Pasta vazia '{nome_da_pasta}' REMOVIDA!\")",
+			"        except OSError as e:",
+			"            if 'Directory not empty' in str(e) or 'O diretório não está vazio' in str(e):",
+			"                print(Fore.RED + Style.BRIGHT + f\"\\n❌ A pasta '{nome_da_pasta}' NÃO ESTÁ VAZIA!\")",
+			"                print(Fore.YELLOW + 'Use a opção FORÇA BRUTA (s) para remover com subpastas.')",
+			"            else:",
+			"                print(Fore.RED + Style.BRIGHT + f\"\\n❌ ERRO: {e}\")",
+			"            exit()",
+			"        # CONFIRMAÇÃO FINAL",
+			"        if not os.path.exists(nome_da_pasta):",
+			"            print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Pasta '{nome_da_pasta}' removida com sucesso!\")",
+			"        else:",
+			"            print(Fore.RED + Style.BRIGHT + f\"\\n❌ Falha ao remover a pasta '{nome_da_pasta}'.\")",
+			"    else:",
+			"        print(Fore.GREEN + Style.BRIGHT + '\\nℹ️ Operação cancelada. A pasta foi mantida.')",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ A pasta '{nome_da_pasta}' NÃO EXISTE neste diretório!\")",
+			"# Listar arquivos DEPOIS",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS APÓS A REMOÇÃO:')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
+			"objeto_listar = os.listdir('.')",
+			"for item in objeto_listar:",
+			"    if os.path.isdir(item):",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Remove pasta com verificação"
+	},
+
+	//renomear_item
+	"renomear_item": {
+		"prefix": "çpasta_renomear",
+		"body": [
+			"# Renomear arquivo ou pasta",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'RENOMEAR ARQUIVO/PASTA')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"# Navegar para o diretório",
+			"os.chdir(r'C:\\Caminho')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📍 DIRETÓRIO ATUAL:', os.getcwd())",
+			"# Listar arquivos ANTES",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS ANTES DA RENOMEAÇÃO:')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
+			"for item in os.listdir('.'):",
+			"    if os.path.isdir(item):",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')",
+			"# Solicitar nome atual e novo nome",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📝 INFORME OS NOMES:')",
+			"nome_atual = input(Fore.YELLOW + 'Nome atual (arquivo ou pasta): ').strip()",
+			"novo_nome = input(Fore.YELLOW + 'Novo nome: ').strip()",
+			"# VERIFICA SE O NOME ATUAL EXISTE",
+			"if not nome_atual:",
+			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Nome atual inválido! Operação cancelada.')",
+			"    exit()",
+			"if not novo_nome:",
+			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Novo nome inválido! Operação cancelada.')",
+			"    exit()",
+			"if not os.path.exists(nome_atual):",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ O item '{nome_atual}' NÃO EXISTE neste diretório!\")",
+			"    print(Fore.YELLOW + 'Verifique a digitação e tente novamente.')",
+			"    exit()",
+			"# VERIFICA SE O NOVO NOME JÁ EXISTE",
+			"if os.path.exists(novo_nome):",
+			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O nome '{novo_nome}' JÁ EXISTE!\")",
+			"    sobrepor = input(Fore.CYAN + 'Deseja SOBRESCREVER? (s/N): ')",
+			"    if sobrepor.lower() != 's':",
+			"        print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
+			"        exit()",
+			"    else:",
+			"        # Se for pasta, avisa que não pode sobrescrever com rename",
+			"        if os.path.isdir(novo_nome):",
+			"            print(Fore.RED + Style.BRIGHT + '\\n❌ Não é possível sobrescrever uma PASTA com os.rename()!')",
+			"            print(Fore.YELLOW + 'Use shutil.move() ou remova a pasta primeiro.')",
+			"            exit()",
+			"        else:",
+			"            # Remove o arquivo existente antes de renomear",
+			"            os.remove(novo_nome)",
+			"            print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{novo_nome}' removido para sobrescrever.\")",
+			"# CONFIRMAÇÃO DE SEGURANÇA",
+			"print(Fore.CYAN + Style.BRIGHT + f\"\\n📌 Confirmar renomeação:\")",
+			"print(f'   ATUAL: {nome_atual}')",
+			"print(f'   NOVO:  {novo_nome}')",
+			"confirmar = input(Fore.YELLOW + 'Prosseguir com a renomeação? (s/N): ')",
+			"if confirmar.lower() != 's':",
+			"    print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
+			"    exit()",
+			"# REALIZA A RENOMEAÇÃO",
+			"try:",
+			"    os.rename(nome_atual, novo_nome)",
+			"    if os.path.exists(novo_nome) and not os.path.exists(nome_atual):",
+			"        print(Fore.MAGENTA + Style.BRIGHT + f\"\\n✅ RENOMEAÇÃO CONCLUÍDA!\")",
+			"        print(f'   {nome_atual} → {novo_nome}')",
+			"    else:",
+			"        print(Fore.RED + Style.BRIGHT + '\\n❌ Falha ao renomear o item.')",
+			"except PermissionError:",
+			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Permissão negada! O arquivo/pasta pode estar em uso.')",
+			"except FileExistsError:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ O nome '{novo_nome}' já existe e não pôde ser sobrescrito.\")",
+			"except Exception as e:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ ERRO inesperado: {e}\")",
+			"# Listar arquivos DEPOIS",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS APÓS A RENOMEAÇÃO:')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
+			"for item in os.listdir('.'):",
+			"    if os.path.isdir(item):",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Renomeia arquivo ou pasta"
+	},
+
+	//procurar_arquivo
+	"procurar_arquivo": {
+		"prefix": "çpasta_procurar_arquivo",
+		"body": [
+			"#procurar arquivo na pasta",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'PROCURAR ARQUIVO')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"procurar = input(Fore.YELLOW + 'Arquivo a procurar: ')",
+			"print('Existe?', os.path.exists(procurar))"
+		],
+		"description": "Procura arquivo na pasta"
+	},
+
+	//extrator_caminho
+	"extrator_caminho": {
+		"prefix": "çpasta_extrair_trecho_caminho",
+		"body": [
+			"#EXTRAIR TRECHO DE NOME DE CAMINHOS",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + 'EXTRATOR DE TRECHO DE NOME DE CAMINHOS')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"caminho = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n novo diretório do programa: ', os.getcwd() , '\\n') ",
+			"print(Fore.BLUE + Style.BRIGHT + 'Nome do arquivo: ' + os.path.basename(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # 'MODELO.xlsx'",
+			"print(Fore.YELLOW + Style.BRIGHT + 'Nome da pasta:' + os.path.dirname(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # 'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO'",
+			"print(Fore.BLUE + Style.BRIGHT + 'Nome e extensão:', os.path.splitext(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # ('MODELO', '.xlsx')",
+			"print('Caminho absoluto:' + os.path.abspath(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx"
+		],
+		"description": "Extrai trechos de caminhos"
 	}
 
 }
