@@ -1116,3 +1116,5 @@ function code {
 	# C:\Users\marcus.silva05\AppData\Local\Programs\Microsoft VS Code\bin\code.cmd
     & "C:\Users\marcus.silva05\AppData\Local\Programs\Microsoft VS Code\bin\code.cmd" @args
 }
+
+

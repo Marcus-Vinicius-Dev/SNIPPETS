@@ -2,7 +2,7 @@
 
 	//colaprint
 	"colaprint": {
-		"prefix": "pycolaprint",
+		"prefix": "çcolaprint",
 		"body": [
 			"# String      Exibe literalmente                    print(\"Olá\") → Olá",
 			"# Número      Converte para string                  print(42) → 42",
@@ -18,7 +18,7 @@
 
 	//cola_sistema
 	"cola_sistema": {
-		"prefix": "pycolasistema",
+		"prefix": "çcolasistema",
 		"body": [
 			"from datetime import datetime",
 			"import os",
@@ -28,9 +28,9 @@
 			"import subprocess",
 			"import sys",
 			"",
-			"# ============================================",
-			"# COLA SISTEMA - TODOS OS COMANDOS",
-			"# ============================================",
+			"# #============================================",
+			"# #COLA SISTEMA - TODOS OS COMANDOS",
+			"# #============================================",
 			"",
 			"############################## sys ##############################",
 			"#",
@@ -217,7 +217,7 @@
 
 	//colacor
 	"colacor": {
-		"prefix": "pycolacor",
+		"prefix": "çcolacor",
 		"body": [
 			"# pip install colorama # Instalação",
 			"",
@@ -304,7 +304,7 @@
 
 		//cola_portas
 	"cola_portas": {
-		"prefix": "pycolaportas",
+		"prefix": "çcolaportas",
 		"body": [
 			"# Porta   # Categoria",
 			"# ============================================",
@@ -426,13 +426,17 @@
 		"description": "cola portas - lista completa de portas e categorias"
 	},
 
-		//cola_cabecalho
+	//cola_cabecalho
 	"cola_cabecalho": {
-		"prefix": "pycolacabecalho",
+		"prefix": "çcolacabecalho",
 		"body": [
-			"# z py_requirements_instalar",
-			"# python Estudo.py",
-			"# falta estudar objetos da biblioteca requests",
+			"# python -m venv venv (cria venv se necessário)",
+			"# .\\venv\\Scripts\\activate (ativa a venv)",
+			"# deactivate (desativa venv)",
+			"# pip install -r requirements.txt",
+			"# se não der certo, use python -m pip install -r requirements.txt",
+			"# cd (endereço do programa)",
+			"# (comando para ativar python)",
 			"",
 			"# sys",
 			"from colorama import init, Fore, Back, Style",
@@ -447,8 +451,11 @@
 			"import sys",
 			"",
 			"# leitura",
+			"import csv",
+			"import json",
 			"import re",
 			"import unicodedata",
+			"from docx import Document",
 			"",
 			"# debug",
 			"from selenium import webdriver",
@@ -461,20 +468,20 @@
 
 		//cola_requirements
 	"cola_requirements": {
-		"prefix": "pycolarequirements",
+		"prefix": "çcolarequirements",
 		"body": [
 			"ajsonrpc==1.2.0",
 			"anyio==4.13.0",
 			"attrs==26.1.0",
 			"beautifulsoup4==4.12.2",
 			"bottle==0.13.4",
-			"certifi==2026.4.22",
-			"cffi==2.0.0",
-			"charset-normalizer==3.4.7",
+			"certifi==2026.7.22",
+			"cffi==2.1.1",
+			"charset-normalizer==3.5.1",
 			"click==8.3.3",
 			"colorama==0.4.6",
 			"h11==0.16.0",
-			"idna==3.13",
+			"idna==3.19",
 			"lxml==4.9.3",
 			"marshmallow==3.26.2",
 			"outcome==1.3.0.post0",
@@ -485,30 +492,72 @@
 			"pyelftools==0.32",
 			"pyserial==3.5",
 			"PySocks==1.7.1",
+			"python-docx==1.2.0",
 			"python-dotenv==1.2.2",
-			"requests==2.33.1",
-			"selenium==4.43.0",
+			"requests==2.34.2",
+			"selenium==4.48.0",
 			"semantic-version==2.10.0",
 			"sniffio==1.3.1",
 			"sortedcontainers==2.4.0",
 			"soupsieve==2.9.2",
 			"starlette==0.52.1",
 			"tabulate==0.10.0",
-			"trio==0.33.0",
+			"trio==0.34.0",
 			"trio-websocket==0.12.2",
-			"typing_extensions==4.15.0",
-			"urllib3==2.6.3",
+			"typing_extensions==4.16.0",
+			"urllib3==2.7.0",
 			"uvicorn==0.40.0",
 			"webdriver-manager==4.0.2",
-			"websocket-client==1.9.0",
+			"websocket-client==1.9.2",
 			"wsproto==1.3.2"
 		],
 		"description": "Lista de dependências (requirements.txt)"
 	},
 
+	//cola_input
+	"cola_input": {
+		"prefix": "çcola_input",
+		"body": [
+			"# 1. input() básico",
+			"nome = input(Fore.GREEN + '1. Nome (input): ')",
+			"print(f'   Nome: {nome}')",
+			"",
+			"# 2. input() com conversão",
+			"idade = int(input(Fore.GREEN + '2. Idade (int): '))",
+			"print(f'   Idade: {idade}')",
+			"",
+			"# 3. getpass (senha)",
+			"senha = getpass(Fore.GREEN + '3. Senha (getpass): ')",
+			"print(f'   Tamanho da senha: {len(senha)}')"
+		],
+		"description": "Cola de inputs básicos com getpass"
+	},
+
+	//venv
+	"venv": {
+		"prefix": "çvenv",
+		"body": [
+			"# python -m venv venv (cria venv)",
+			"# venv\\Scripts\\activate (ativa venv)",
+			"# deactivate (desativa venv)"
+		],
+		"description": "Comandos venv"
+	},
+
+	//requirements
+	"requirements": {
+		"prefix": "çrequir",
+		"body": [
+			"# pip install -r requirements.txt",
+			"# python -m pip install -r requirements.txt (se não der certo o de cima, use este)",
+			"# pip freeze > requirements.txt (atualiza o requirements.txt)"
+		],
+		"description": "Comandos requirements"
+	},
+
 	//listar_modulos
 	"listar_modulos": {
-		"prefix": "pylistarmodulos",
+		"prefix": "çlistarmodulos",
 		"body": [
 			"import pkgutil",
 			"",
@@ -520,16 +569,16 @@
 
 	//print
 	"print": {
-		"prefix": "pyprint",
+		"prefix": "çprint",
 		"body": [
-			"print(Fore.YELLOW + Style.BRIGHT + '\n Programa iniciado \n')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT"
+			"print(Fore.GREEN + Style.BRIGHT + '\\n ${1:Mensagem} \\n')  # Fore.YELLOW + Back.BLACK + Style.BRIGHT cores: YELLOW, BLACK, RED, GREEN, BLUE, MAGENTA, CYAN, WHITE"
 		],
 		"description": "Print colorido usando colorama"
 	},
 
 	//internet_teste
 	"internet_teste": {
-		"prefix": "pyinternetteste",
+		"prefix": "çinternetteste",
 		"body": [
         "conector = socket.socket(socket.AF_INET, socket.SOCK_STREAM)",
         "print(Fore.BLUE + Style.BRIGHT + '\\n conector', conector)  # Fore.YELLOW + Back.BLACK + Style.BRIGHT",
@@ -551,7 +600,7 @@
 
 	//editar_texto_leitor
 	"editar_texto_leitor": {
-		"prefix": "pyleredicao",
+		"prefix": "çleredicao",
 		"body": [
 			"${1:endereco_arquivo = r'${2:C:\\\\endereco.arq}'}",
 			"",
@@ -580,7 +629,7 @@
 
 	//leitor_lista_portas
 	"leitor_lista_portas": {
-		"prefix": "pyleitorportas",
+		"prefix": "çleitorportas",
 		"body": [
 			"#################### leitor lista_portas.txt ####################",
 			"if os.path.exists(${1:endereco_arquivo}):",
@@ -602,7 +651,7 @@
 
 	//leitor_testar_portas
 	"leitor_testar_portas": {
-		"prefix": "pytestaportascompleto",
+		"prefix": "çtestaportascompleto",
 		"body": [
 			"${1:endereco_arquivo = r'${2:C:\\\\endereco.arq}}'",
 			"",
@@ -689,6 +738,458 @@
 			"        print(f\"  ... e mais {len(portas_ocupadas) - 10} portas\")"
 		],
 		"description": "Leitor de lista de portas com teste porta a porta e relatório final"
+	},
+
+	//colorama_baixar
+	"colorama_baixar": {
+		"prefix": "çcolorama_baixar",
+		"body": [
+			"pip install colorama requests selenium"
+		],
+		"description": "baixar colorama em caso de erro do requirements"
+	},
+
+	//pasta_atual
+	"pasta_atual": {
+		"prefix": "çpasta_atual",
+		"body": [
+			"pasta_atual = os.getcwd()",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n pasta atual: ' + pasta_atual)"
+		],
+		"description": "Exibe diretório atual"
+	},
+
+	//pasta_nav
+	"pasta_nav": {
+		"prefix": "çpasta_nav",
+		"body": [
+			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n novo diretório do programa: ', os.getcwd())"
+		],
+		"description": "Navega para novo diretório"
+	},
+
+	//lista_simples
+	"lista_simples": {
+		"prefix": "çpasta_listar",
+		"body": [
+			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA EXAMINADA: {os.path.basename(os.getcwd())}' , '\\n')",
+			"listar_pasta = os.listdir(pasta_destino) # os.listdir('.') para listar arquivos do diretório atual",
+			"for item in listar_pasta:  ",
+			"    if os.path.isdir(item):",
+			"        print(Fore.WHITE + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Lista arquivos do diretório"
+	},
+
+	//lista_recursiva
+	"lista_recursiva": {
+		"prefix": "çpasta_listar_recursivo",
+		"body": [
+			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
+			"print(Fore.GREEN + Style.BRIGHT + 'Lista recursiva da pasta: ', os.path.basename(os.getcwd()))  # Retorna o novo diretório atual",
+			"for raiz, pastas, arquivos in os.walk('.'):  # Percorre tudo",
+			"    print(Fore.YELLOW + Style.BRIGHT + f'PASTA: {raiz}')",
+			"    for arquivo in arquivos:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {arquivo}')",
+			"    for pasta in pastas:",
+			"        print(Fore.WHITE + Style.BRIGHT + f'  SUBPASTA: {pasta}')"
+		],
+		"description": "Lista arquivos recursivo"
+	},
+
+	//criar_pasta
+	"criar_pasta": {
+		"prefix": "çpasta_criar",
+		"body": [
+			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",  
+			"nome_da_pasta = '${2:nova_pasta}'",
+			"# VERIFICA SE JÁ EXISTE",
+			"if os.path.exists(nome_da_pasta):",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: A pasta '{nome_da_pasta}' JÁ EXISTE! dentro de '{os.path.basename(os.getcwd())}'\")",
+			"else:",
+			"    os.makedirs(nome_da_pasta, exist_ok=True)",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n🆕 '{nome_da_pasta}' CRIADA!\")",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n Lista de arquivos após a criação da pasta: ') ",
+			"# Listar arquivos de um diretório",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}' ) ",
+			"objeto_listar = os.listdir('.') # Atualiza a lista (importante!)",
+			"for item in objeto_listar: ",
+			"    if os.path.isdir(item):",
+			"        if  item == nome_da_pasta: ",
+			"            print(Fore.GREEN + Style.BRIGHT + f'  🆕 {item}  ← OLHA EU AQUI!!!')",
+			"        else:",
+			"            print(Fore.WHITE + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Cria pasta com verificação"
+	},
+
+	//remover_pasta
+	"remover_pasta": {
+		"prefix": "çpasta_remover",
+		"body": [
+			"os.chdir(r'${1:C:\\Caminho}')",
+			"# Nome da pasta a ser removida",
+			"nome_da_pasta = '${2:nova_pasta}'",
+			"# VERIFICA SE A PASTA EXISTE",
+			"if os.path.exists(nome_da_pasta) and os.path.isdir(nome_da_pasta):",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: A pasta '{nome_da_pasta}' foi encontrada!\")",
+			"    # CONFIRMAÇÃO DE SEGURANÇA (com opções)",
+			"    resposta = input(Fore.CYAN + Style.BRIGHT + 'Deseja remover a pasta e todo seu conteúdo? (s/N): ')",
+			"    if resposta.lower() == 's':",
+			"        # PERGUNTA SE É COM FORÇA BRUTA (remover tudo)",
+			"        forca = input(Fore.CYAN + 'Remover até com subpastas e arquivos? (s/N): ')",
+			"        try:",
+			"            if forca.lower() == 's':",
+			"                # Remove com força bruta (shutil.rmtree)",
+			"                import shutil",
+			"                shutil.rmtree(nome_da_pasta)",
+			"                print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🗑️ Pasta '{nome_da_pasta}' REMOVIDA com todo seu conteúdo!\")",
+			"            else:",
+			"                # Remove pasta vazia (os.rmdir)",
+			"                os.rmdir(nome_da_pasta)",
+			"                print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🗑️ Pasta vazia '{nome_da_pasta}' REMOVIDA!\")",
+			"        except OSError as e:",
+			"            if 'Directory not empty' in str(e) or 'O diretório não está vazio' in str(e):",
+			"                print(Fore.RED + Style.BRIGHT + f\"\\n❌ A pasta '{nome_da_pasta}' NÃO ESTÁ VAZIA!\")",
+			"                print(Fore.YELLOW + 'Use a opção FORÇA BRUTA (s) para remover com subpastas.')",
+			"            else:",
+			"                print(Fore.RED + Style.BRIGHT + f\"\\n❌ ERRO: {e}\")",
+			"            exit()",
+			"        # CONFIRMAÇÃO FINAL",
+			"        if not os.path.exists(nome_da_pasta):",
+			"            print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Pasta '{nome_da_pasta}' removida com sucesso!\")",
+			"        else:",
+			"            print(Fore.RED + Style.BRIGHT + f\"\\n❌ Falha ao remover a pasta '{nome_da_pasta}'.\")",
+			"    else:",
+			"        print(Fore.GREEN + Style.BRIGHT + '\\nℹ️ Operação cancelada. A pasta foi mantida.')",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ A pasta '{nome_da_pasta}' NÃO EXISTE neste diretório!\")",
+			"# Listar arquivos DEPOIS",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS APÓS A REMOÇÃO:')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
+			"objeto_listar = os.listdir('.')",
+			"for item in objeto_listar:",
+			"    if os.path.isdir(item):",
+			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Remove pasta com verificação"
+	},
+
+	//renomear_pasta
+	"renomear_pasta": {
+		"prefix": "çpasta_renomear",
+		"body": [
+			"# Navegar para o diretório",
+			"os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"# Listar arquivos ANTES",
+			"nome_atual = 'Nova pasta'",
+			"novo_nome = 'novo nome'",
+			"# VERIFICA SE O NOME ATUAL EXISTE",
+			"if not nome_atual:",
+			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Nome atual inválido! Operação cancelada.')",
+			"    exit()",
+			"if not novo_nome:",
+			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Novo nome inválido! Operação cancelada.')",
+			"    exit()",
+			"if not os.path.exists(nome_atual):",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ O item '{nome_atual}' NÃO EXISTE neste diretório!\")",
+			"    print(Fore.YELLOW + 'Verifique a digitação e tente novamente.')",
+			"    exit()",
+			"# VERIFICA SE O NOVO NOME JÁ EXISTE",
+			"if os.path.exists(novo_nome):",
+			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O nome '{novo_nome}' JÁ EXISTE!\")",
+			"    sobrepor = input(Fore.CYAN + 'Deseja SOBRESCREVER? (s/N): ')",
+			"    if sobrepor.lower() != 's':",
+			"        print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
+			"        exit()",
+			"    else:",
+			"        # Se for pasta, avisa que não pode sobrescrever com rename",
+			"        if os.path.isdir(novo_nome):",
+			"            print(Fore.RED + Style.BRIGHT + '\\n❌ Não é possível sobrescrever uma PASTA com os.rename()!')",
+			"            print(Fore.YELLOW + 'Use shutil.move() ou remova a pasta primeiro.')",
+			"            exit()",
+			"        else:",
+			"            # Remove o arquivo existente antes de renomear",
+			"            os.remove(novo_nome)",
+			"            print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{novo_nome}' removido para sobrescrever.\")",
+			"# CONFIRMAÇÃO DE SEGURANÇA",
+			"print(Fore.CYAN + Style.BRIGHT + f\"\\nFoi encontrada a pasta '{nome_atual}' dentro de '{os.path.basename(os.getcwd())}'\")",
+			"print(Fore.CYAN + Style.BRIGHT + f\"\\n📌 Confirmar renomeação:\")",
+			"print(f'   ATUAL: {nome_atual}')",
+			"print(f'   NOVO:  {novo_nome}')",
+			"confirmar = input(Fore.YELLOW + 'Prosseguir com a renomeação? (s/N): ')",
+			"if confirmar.lower() != 's':",
+			"    print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
+			"    exit()",
+			"# REALIZA A RENOMEAÇÃO",
+			"try:",
+			"    os.rename(nome_atual, novo_nome)",
+			"    if os.path.exists(novo_nome) and not os.path.exists(nome_atual):",
+			"        print(Fore.MAGENTA + Style.BRIGHT + f\"\\n✅ RENOMEAÇÃO CONCLUÍDA!\")",
+			"        print(f'   {nome_atual} → {novo_nome}')",
+			"    else:",
+			"        print(Fore.RED + Style.BRIGHT + '\\n❌ Falha ao renomear o item.')",
+			"except PermissionError:",
+			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Permissão negada! O arquivo/pasta pode estar em uso.')",
+			"except FileExistsError:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ O nome '{novo_nome}' já existe e não pôde ser sobrescrito.\")",
+			"except Exception as e:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ ERRO inesperado: {e}\")",
+			"# Listar arquivos DEPOIS",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS APÓS A RENOMEAÇÃO:')",
+			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
+			"objeto_listar = os.listdir('.') # Atualiza a lista (importante!)",
+			"for item in objeto_listar: ",
+			"    if os.path.isdir(item):",
+			"        if  item == novo_nome: ",
+			"            print(Fore.GREEN + Style.BRIGHT + f'  🆕 {item}  ← OLHA EU AQUI!!!')",
+			"        else:",
+			"            print(Fore.WHITE + Style.BRIGHT + f'  SUBPASTA: {item}')",
+			"    else:",
+			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+		],
+		"description": "Renomeia arquivo ou pasta"
+	},
+
+	//procurar_arquivo
+	"procurar_arquivo": {
+		"prefix": "çpasta_procurar_arquivo",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'panorama.xls'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\nPesquisando arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    print(Fore.GREEN + Style.BRIGHT + f'\\n ✅ arquivo {arquivo} encontrado')",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo} não encontrado')"
+		],
+		"description": "Procura arquivo na pasta"
+	},
+
+	//extrator_trecho_de_endereco
+	"extrator_trecho_de_endereco": {
+		"prefix": "çpasta_extrair_trecho_endereco",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n novo diretório do programa: ', os.getcwd() , '\\n') ",
+			"print(Fore.BLUE + Style.BRIGHT + 'Nome do arquivo: ' + os.path.basename(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # 'MODELO.xlsx'",
+			"print(Fore.YELLOW + Style.BRIGHT + 'Nome da pasta:' + os.path.dirname(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # 'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO'",
+			"print(Fore.BLUE + Style.BRIGHT + 'Nome e extensão:', os.path.splitext(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # ('MODELO', '.xlsx')",
+			"print('Caminho absoluto:' + os.path.abspath(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx'))  # C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\MODELO.xlsx"
+		],
+		"description": "Extrai trechos de caminhos"
+	},
+
+	//input
+	"input": {
+		"prefix": "çinput",
+		"body": [
+			"${1:entrada} = input(Fore.GREEN + '\\n🔍 ${2:Digite aqui} (ou 'x' para cancelar):')",
+			"if arquivo.lower() == 'x':",
+			"   print(Fore.GREEN + 'Operação cancelada pelo usuário.')",
+			"   exit()"
+		],
+		"description": "Input"
+	},
+
+	//titulo
+	"titulo": {
+		"prefix": "çtitulo",
+		"body": [
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
+			"print(Fore.GREEN + Style.BRIGHT + '${1:TÍTULO}')",
+			"print(Fore.GREEN + Style.BRIGHT + '#'*50)"
+		],
+		"description": "Título com separador"
+	},
+
+	//arquivo_deletar
+	"arquivo_deletar": {
+		"prefix": "çarquivo_deletar",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.docx'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\nDeletar arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O arquivo '{arquivo}' existe, deseja excluí-lo?\")",
+			"    sobrepor = input(Fore.CYAN + 'Deseja EXCLUÍ-LO? (s/N): ')",
+			"    if sobrepor.lower() != 's':",
+			"        print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
+			"        exit()",
+			"    else:",
+			"        # Remove o arquivo existente antes de renomear",
+			"        os.remove(arquivo)",
+			"        print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{arquivo}' removido\")      ",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo} não encontrado')"
+		],
+		"description": "Deleta arquivo com verificação"
+	},
+
+	//arquivo_renomear_simples
+	"arquivo_renomear_simples": {
+		"prefix": "çarquivo_renomear_simples",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo_atual = 'teste.docx'",
+			"arquivo_novo_nome = 'testado.docx'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\nRenomeando arquivo '{arquivo_atual}' para {arquivo_novo_nome} no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo_atual):",
+			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O arquivo '{arquivo_atual}' existe, deseja renomeá-lo?\")",
+			"    sobrepor = input(Fore.CYAN + 'Deseja RENOMEÁ-LO? (s/N): ')",
+			"    if sobrepor.lower() != 's':",
+			"        print(Fore.GREEN + '\\nℹ️  Operação cancelada.')",
+			"        exit()",
+			"    else:",
+			"        # Remove o arquivo existente antes de renomear",
+			"        os.replace(arquivo_atual, arquivo_novo_nome)",
+			"        print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{arquivo_atual}' renomeado para '{arquivo_novo_nome}'\")      ",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo_atual} não encontrado')"
+		],
+		"description": "Renomeia arquivo simples"
+	},
+
+	//arquivo_status
+	"arquivo_status": {
+		"prefix": "çarquivo_status",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.docx'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\nStatus do arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    stats = os.stat(arquivo)",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ O arquivo '{arquivo}' existe!!\")",
+			"    print(Fore.GREEN + Style.BRIGHT + f'Tamanho: {stats.st_size} bytes')",
+			"    print(Fore.GREEN + Style.BRIGHT + f'Modificação: {stats.st_mtime}')",
+			"    print(Fore.GREEN + Style.BRIGHT + f'Criação: {stats.st_ctime}')",
+			"    print(Fore.GREEN + Style.BRIGHT + f'Acesso: {stats.st_atime}')",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo} não encontrado')"
+		],
+		"description": "Status detalhado do arquivo"
+	},
+
+	//arquivo_abrir
+	"arquivo_abrir": {
+		"prefix": "çarquivo_abrir",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.docx'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\narquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    fd = os.open(arquivo, os.O_RDONLY)",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\narquivo {arquivo} existe!!\")",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n Descritor = [{fd}]. 'Se 3 então 1º arquivo aberto, se 4 então segundo aberto, etc...'\")",
+			"    os.close(fd)  # Fecha o descritor para evitar vazamento",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo} não encontrado')"
+		],
+		"description": "arquivo_abrir"
+	},
+
+	//arquivo_ler_word
+	"arquivo_ler_word": {
+		"prefix": "çarquivo_ler_word",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.docx'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\narquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    # Lê o documento Word corretamente",
+			"    doc = Document(arquivo)",
+			"    texto_completo = []",
+			"    for paragrafo in doc.paragraphs:",
+			"        texto_completo.append(paragrafo.text)",
+			"    conteudo = '\\n'.join(texto_completo)",
+			"    print(f\"\\n✅ arquivo {arquivo} existe!!\")",
+			"    print(f\"Conteúdo: {conteudo[:500]}...\")  # Mostra os primeiros 500 caracteres",
+			"else:",
+			"    print(f'\\n❌ arquivo {arquivo} não encontrado')"
+		],
+		"description": "Lê arquivo Word (.docx)"
+	},
+
+	//arquivo_ler_txt
+	"arquivo_ler_txt": {
+		"prefix": "çarquivo_ler_txt",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.txt'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\n📂 Arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    with open(arquivo, 'r', encoding='utf-8') as f:",
+			"        conteudo = f.read()    ",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Arquivo '{arquivo}' existe!!\")",
+			"    print(Fore.CYAN + f'📄 CONTEÚDO ({len(conteudo)} caracteres):')",
+			"    print(Fore.WHITE + '-'*50)",
+			"    print(conteudo[:500])  # Mostra os primeiros 500 caracteres",
+			"    if len(conteudo) > 500:",
+			"        print(Fore.YELLOW + f'... (e mais {len(conteudo) - 500} caracteres)')",
+			"    print(Fore.WHITE + '-'*50)",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
+		],
+		"description": "Lê arquivo TXT com encoding"
+	},
+
+	//arquivo_ler_csv
+	"arquivo_ler_csv": {
+		"prefix": "çarquivo_ler_csv",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.csv'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\n📂 Arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    # ===== LÊ O ARQUIVO .CSV =====",
+			"    with open(arquivo, 'r', encoding='utf-8') as f:",
+			"        leitor = csv.reader(f)",
+			"        linhas = list(leitor)",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Arquivo '{arquivo}' existe!!\")",
+			"    print(Fore.CYAN + f'📄 CONTEÚDO ({len(linhas)} linhas):')",
+			"    print(Fore.WHITE + '-'*50)",
+			"    for i, linha in enumerate(linhas[:10], 1):",
+			"        print(Fore.WHITE + f'{i:3}. ' + ' | '.join(linha))",
+			"    if len(linhas) > 10:",
+			"        print(Fore.YELLOW + f'... (e mais {len(linhas) - 10} linhas)')",
+			"    print(Fore.WHITE + '-'*50)",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
+		],
+		"description": "Lê arquivo CSV com csv.reader"
+	},
+	
+	//arquivo_ler_json
+	"arquivo_ler_json": {
+		"prefix": "çarquivo_ler_json",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO')",
+			"arquivo = 'teste.json'",
+			"print(Fore.WHITE + Style.BRIGHT + f\"\\n📂 Arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
+			"if os.path.exists(arquivo):",
+			"    # ===== LÊ O ARQUIVO .JSON =====",
+			"    with open(arquivo, 'r', encoding='utf-8') as f:",
+			"        dados = json.load(f)",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Arquivo '{arquivo}' existe!!\")",
+			"    print(Fore.CYAN + f'📄 CONTEÚDO (tipo: {type(dados).__name__}):')",
+			"    print(Fore.WHITE + '-'*50)",
+			"    # Mostra o JSON formatado (bonito)",
+			"    print(json.dumps(dados, indent=2, ensure_ascii=False)[:500])",
+			"    if len(json.dumps(dados, indent=2)) > 500:",
+			"        print(Fore.YELLOW + f'... (e mais dados)')",
+			"    print(Fore.WHITE + '-'*50)",
+			"else:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
+		],
+		"description": "Lê arquivo JSON com formatação"
 	}
 
 }
