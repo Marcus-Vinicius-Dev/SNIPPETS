@@ -26,6 +26,9 @@ function z {
 
     switch ($comando) {	
 
+		"z" { python TESTES_SCRAPING.py }
+		"zz" { cd C:\Users\vinic\Desktop\Python\WebScraping01 }
+
 # ===========================================================
 # NAVEGAÇÃO POWER SHELL
 # ===========================================================
@@ -1060,6 +1063,7 @@ Register-ArgumentCompleter -CommandName z -ParameterName comando -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete)
 
     $comandos = @(
+		"z","zz",
 		# Navegação
 		"nav_buscar_por_nome","nav_desktop","nav_downloads","nav_home","nav_listar","nav_listar_ocultos","nav_listar_so_pastas","nav_listar_so_arquivos",
 		"nav_listar_recursivo","nav_volta_1_diretorio","nav_volta_2_diretorios","nav_volta_desktop","nav_volta_home","nav_onde_estou?",
