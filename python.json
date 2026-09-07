@@ -441,6 +441,7 @@
 			"# sys",
 			"from colorama import init, Fore, Back, Style",
 			"from datetime import datetime",
+			"import datetime",
 			"import os",
 			"import platform",
 			"import pkgutil",
@@ -453,6 +454,7 @@
 			"",
 			"# leitura",
 			"from docx import Document",
+			"from openpyxl import load_workboo",
 			"import csv",
 			"import json",
 			"import re",
@@ -462,7 +464,11 @@
 			"",
 			"# debug",
 			"from selenium import webdriver",
+			"from selenium.webdriver.common.by import By",
 			"from selenium.webdriver.edge.options import Options",
+			"from selenium.webdriver.support.ui import WebDriverWait",
+			"from selenium.webdriver.support import expected_conditions as EC",
+			"from selenium.webdriver.common.action_chains import ActionChains",
 			"import pyautogui",
 			"import pygetwindow as gw",
 			"import uiautomation as auto",
@@ -1211,63 +1217,64 @@
 			"if os.path.exists(arquivo):",
 			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Arquivo '{arquivo}' existe!!\")",
 			"    ",
-			"    # ===== INFORMAÇÕES BÁSICAS =====",
-			"    stats = os.stat(arquivo)",
-			"    print(Fore.YELLOW + f'📏 Tamanho: {stats.st_size} bytes')",
-			"    print(Fore.YELLOW + f'🕐 Modificado: {stats.st_mtime}')",
+			"    # Carrega em modo read_only (mais rápido)",
+			"    wb = load_workbook(arquivo, data_only=True, read_only=True)",
 			"    ",
-			"    # ===== TENTA LER COM OPENPYXL =====",
-			"    try:",
-			"        from openpyxl import load_workbook",
-			"        print(Fore.CYAN + '\\n📄 Lendo com openpyxl...')",
-			"        ",
-			"        wb = load_workbook(arquivo, data_only=True)",
-			"        print(Fore.GREEN + f'📌 Planilhas: {wb.sheetnames}')",
-			"        ",
-			"        for nome_planilha in wb.sheetnames:",
-			"            sheet = wb[nome_planilha]",
-			"            print(Fore.CYAN + f'\\n📋 Planilha: {nome_planilha}')",
-			"            print(Fore.WHITE + '-'*50)",
-			"            ",
-			"            linhas_mostradas = 0",
-			"            for row in sheet.iter_rows(values_only=True):",
-			"                if linhas_mostradas < 10:",
-			"                    print(Fore.WHITE + ' | '.join([str(cell) if cell is not None else '' for cell in row]))",
-			"                    linhas_mostradas += 1",
-			"                else:",
-			"                    print(Fore.YELLOW + f'... (mais linhas)')",
-			"                    break",
-			"        ",
-			"        print(Fore.WHITE + '-'*50)",
-			"        ",
-			"    except ImportError:",
-			"        print(Fore.RED + '\\n❌ Biblioteca \\'openpyxl\\' NÃO INSTALADA!')",
-			"        print(Fore.YELLOW + '💡 Instale com: pip install openpyxl')",
-			"        print(Fore.CYAN + '\\n📄 Mostrando informações básicas do arquivo:')",
-			"        print(Fore.WHITE + f'  Nome: {arquivo}')",
-			"        print(Fore.WHITE + f'  Tamanho: {stats.st_size} bytes')",
-			"        print(Fore.WHITE + f'  Local: {os.getcwd()}')",
-			"        ",
-			"        # ===== TENTA LER COMO ZIP (XLSX é ZIP) =====",
-			"        try:",
-			"            import zipfile",
-			"            print(Fore.CYAN + '\\n📄 Tentando ler estrutura interna (ZIP)...')",
-			"            with zipfile.ZipFile(arquivo, 'r') as z:",
-			"                arquivos_internos = z.namelist()",
-			"                print(Fore.GREEN + f'📌 Arquivos internos: {len(arquivos_internos)}')",
-			"                for nome in arquivos_internos[:10]:",
-			"                    print(Fore.WHITE + f'  - {nome}')",
-			"                if len(arquivos_internos) > 10:",
-			"                    print(Fore.YELLOW + f'  ... (e mais {len(arquivos_internos) - 10})')",
-			"        except:",
-			"            pass",
-			"            ",
-			"    except Exception as e:",
-			"        print(Fore.RED + f'\\n❌ Erro ao ler: {e}')",
+			"    # Mostra todas as planilhas disponíveis",
+			"    print(Fore.CYAN + f\"\\n📌 Planilhas disponíveis: {wb.sheetnames}\")",
+			"    ",
+			"    # Pega a PRIMEIRA planilha (ou use wb['NomeExato'])",
+			"    sheet = wb[wb.sheetnames[0]]",
+			"    print(Fore.GREEN + f\"📋 Lendo planilha: {wb.sheetnames[0]}\")",
+			"    ",
+			"    print(Fore.WHITE + '-'*50)",
+			"    ",
+			"    # Lê as primeiras 10 linhas",
+			"    for i, row in enumerate(sheet.iter_rows(values_only=True, max_row=10)):",
+			"        print(Fore.WHITE + f\"{i+1:3}. \" + ' | '.join([str(cell) if cell is not None else '' for cell in row]))",
+			"    ",
+			"    print(Fore.WHITE + '-'*50)",
+			"    wb.close()  # Fecha para liberar memória",
 			"else:",
 			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
 		],
-		"description": "Lê arquivo XLSX com openpyxl"
+		"description": "Lê XLSX rápido com read_only"
+	},
+
+	//arquivo_ler_xlsx_colunas
+	"arquivo_ler_xlsx_colunas": {
+		"prefix": "çarquivo_ler_xlsx_colunas",
+		"body": [
+			"pasta_destino = os.chdir(r'C:\\Users\\vinic\\Downloads')",
+			"print(Fore.GREEN + Style.BRIGHT + '\\n novo diretório do programa: ', os.getcwd())",
+			"",
+			"# Lê o Excel",
+			"arquivo = load_workbook('UDEMO_EDITADO.xlsx', data_only=True, read_only=True)",
+			"aba = arquivo['${1:19.06.2024.2}']",
+			"",
+			"# Pega todas as linhas",
+			"linhas = list(aba.iter_rows(values_only=True))",
+			"",
+			"# Pega o cabeçalho (primeira linha)",
+			"cabecalho = linhas[0]",
+			"print(Fore.YELLOW + '📋 CABEÇALHO:')",
+			"for i, col in enumerate(cabecalho):",
+			"    print(Fore.WHITE + f'  {i}. {col}')",
+			"",
+			"# ===== EXTRAI COLUNAS ESPECÍFICAS =====",
+			"# Exemplo: pegar NOME e RG DGERD",
+			"col_nome = ${2:0}  # Posição da coluna \"NOME\"",
+			"col_rg = ${3:1}    # Posição da coluna \"RG DGERD\"",
+			"",
+			"print(Fore.CYAN + '\\n📄 DADOS (NOME | RG DGERD):')",
+			"for row in linhas[1:11]:  # Pula o cabeçalho, pega 10 linhas",
+			"    nome = row[col_nome] if row[col_nome] else ''",
+			"    rg = row[col_rg] if row[col_rg] else ''",
+			"    print(Fore.WHITE + f'  {nome} | {rg}')",
+			"",
+			"arquivo.close()"
+		],
+		"description": "Lê XLSX e extrai colunas específicas"
 	},
 
 	//arquivo_ler_pdf
@@ -2070,32 +2077,207 @@
 		"description": "Diagnóstico completo de rede"
 	},
 
-	//debug_edge
-	"debug_edge": {
-		"prefix": "çdebug_edge",
+	//web_debug_edge_power_shell
+	"web_debug_edge_power_shell": {
+		"prefix": "çweb_debug_edge_power_shell",
 		"body": [
 			"Start-Process \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" -ArgumentList \"--remote-debugging-port=9222\", \"--user-data-dir=C:\\edge-debug\""
 		],
 		"description": "Inicia Edge com debug remoto"
 	},
 
-	//debug_conectar_google
-	"debug_conectar_google": {
-		"prefix": "çdebug_conectar_google",
+	//web_conectar_se_ao_edge
+	"web_conectar_se_ao_edge": {
+		"prefix": "çweb_conectar_se_ao_edge",
 		"body": [
-			"# Configura para conectar ao Edge já aberto",
+			"# ----- CONFIGURAR CONEXÃO -----",
 			"options = Options()",
 			"options.add_experimental_option(\"debuggerAddress\", \"127.0.0.1:9222\")",
 			"",
-			"# Conecta",
-			"driver = webdriver.Edge(options=options)",
-			"print(\"✅ Conectado ao Edge em modo debug!\")",
-			"",
-			"# Agora você pode controlar",
-			"driver.get(\"https://www.google.com\")",
-			"print(Fore.BLUE + Style.BRIGHT + f\"site atual: {driver.title}\")"
+			"# ----- CONECTAR-SE AO EDGE JÁ ABERTO NO MODO DEBUG -----",
+			"try:",
+			"    driver = webdriver.Edge(options=options)",
+			"    print(Fore.GREEN + Style.BRIGHT + \"\\n✅ Conectado ao Edge em modo debug!\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Não conectou\")"
 		],
-		"description": "debug_conectar_google"
+		"description": "Conecta Selenium ao Edge em debug"
+	},
+
+	//web_conectar_site
+	"web_conectar_site": {
+		"prefix": "çweb_conectar_site",
+		"body": [
+			"# ----- CONECTAR-SE A UM SITE ----- ",
+			"url = '${1:https://sed.educacao.sp.gov.br/Funcional/Consulta/Index}'",
+			"esperar = WebDriverWait(driver, 30, poll_frequency=1) #verifica a cada 1s se está \"clicável\" até o máx de 30s",
+			"try: ",
+			"    driver.get(url)",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n🛜  site atual: {driver.current_url}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Não conectou\")"
+		],
+		"description": "debug_conectar_site"
+	},
+
+	//web_titulo
+	"web_titulo": {
+		"prefix": "çweb_titulo",
+		"body": [
+			"# ----- PEGAR TÍTULO ----- ",
+			"titulo = driver.title",
+			"print(Fore.BLUE + Style.BRIGHT + f\"\\n📄 Título: {titulo}\")"
+		],
+		"description": "Exibe título da página"
+	},
+
+	//web_url_atual
+	"web_url_atual": {
+		"prefix": "çweb_url_atual",
+		"body": [
+			"# ----- PEGAR URL ----- ",
+			"url_atual = driver.current_url",
+			"print(Fore.BLUE + Style.BRIGHT + f\"\\n🔗 URL: {url_atual}\")"
+		],
+		"description": "Exibe URL atual da página"
+	},
+
+	//web_id
+	"web_id": {
+		"prefix": "çweb_id",
+		"body": [
+			"# ----- PEGAR POR ID -----",
+			"try:",
+			"    elemento = driver.find_element(By.ID, \"${1:id_do_elemento}\")",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n✅ Elemento por ID: {elemento.text}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Elemento não encontrado\")"
+		],
+		"description": "Busca elemento por ID"
+	},
+
+	//web_class
+	"web_class": {
+		"prefix": "çweb_class",
+		"body": [
+			"# ----- PEGAR POR CLASSE -----",
+			"try:",
+			"    elementos = driver.find_elements(By.CLASS_NAME, \"${1:classe_do_elemento}\")",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n✅ Elementos por classe: {len(elementos)}\")",
+			"    for elem in elementos[:5]:",
+			"        print(Fore.WHITE + f\"  - {elem.text[:50]}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Elementos não encontrados\")"
+		],
+		"description": "Busca elementos por classe"
+	},
+
+	//web_tag
+	"web_tag": {
+		"prefix": "çweb_tag",
+		"body": [
+			"# ----- PEGAR POR TAG -----",
+			"try:",
+			"    elementos = driver.find_elements(By.TAG_NAME, \"${1:h1}\")",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n✅ Títulos {${1:h1}.upper()}: {len(elementos)}\")",
+			"    for elem in elementos:",
+			"        print(Fore.WHITE + f\"  - {elem.text}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Tags não encontradas\")"
+		],
+		"description": "Busca elementos por tag"
+	},
+
+	//web_xpath
+	"web_xpath": {
+		"prefix": "çweb_xpath",
+		"body": [
+			"# ----- PEGAR POR XPath (mais poderoso) -----",
+			"try:",
+			"    elemento = driver.find_element(By.XPATH, \"${1://div[@class='conteudo']/p}\")",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n✅ XPath: {elemento.text[:100]}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ XPath não encontrado\")"
+		],
+		"description": "Busca elemento por XPath"
+	},
+
+	//web_css
+	"web_css": {
+		"prefix": "çweb_css",
+		"body": [
+			"# ----- PEGAR POR CSS SELECTOR -----",
+			"try:",
+			"    elemento = driver.find_element(By.CSS_SELECTOR, \"${1:div.principal > h1}\")",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n✅ CSS: {elemento.text}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ CSS não encontrado\")"
+		],
+		"description": "Busca elemento por CSS Selector"
+	},
+
+	//web_label_pegar
+	"web_label_pegar": {
+		"prefix": "çweb_label_pegar",
+		"body": [
+			"# ----- PEGAR LABEL -----",
+			"try:",
+			"    label = driver.find_element(By.CSS_SELECTOR, \"label[for='${1:txtNrCpf}']\")",
+			"    texto = label.text",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"\\n✅ Texto da Label: {texto}\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Label não encontrada\")"
+		],
+		"description": "Pega texto de label por CSS"
+	},
+
+	//web_click_id
+	"web_click_id": {
+		"prefix": "çweb_click_id",
+		"body": [
+			"# ----- CLICAR POR ID -----",
+			"try:",
+			"    esperar.until(EC.element_to_be_clickable((By.ID, \"${1:btnLimpar}\"))).click()",
+			"    print(Fore.BLUE + Style.BRIGHT + \"\\n✅ Clicou\")",
+			"except:",
+			"    print(Fore.RED + Style.BRIGHT + \"\\n❌ Click falhou\")"
+		],
+		"description": "Clica em elemento por ID com espera"
+	},
+
+	//web_click_popup
+	"web_click_popup": {
+		"prefix": "çweb_click_popup",
+		"body": [
+			"# ----- CLICAR EM POPUP ----- ",
+			"try:",
+			"    # Encontra o item \"${1:Recursos Humanos}\"",
+			"    esperar.until(EC.element_to_be_clickable(",
+			"    (By.XPATH, \"//ul[@id='decorAsidePopup']//a[normalize-space(text())='${1:Funcional}']\")",
+			")).click()",
+			"    print(Fore.BLUE + Style.BRIGHT + f\"  ✅ '${1:Funcional}' expandido!\")",
+			"    time.sleep(0.5)",
+			"    ",
+			"except Exception as e:",
+			"    print(Fore.RED + Style.BRIGHT + f\"  ❌ Erro: {e}\")"
+		],
+		"description": "Clica em item de popup/menu lateral"
+	},
+
+	//web_digitar_campo
+	"web_digitar_campo": {
+		"prefix": "çweb_digitar_campo",
+		"body": [
+			"# ----- DIGITAR EM CAMPO DIGITÁVEL -----",
+			"try:",
+			"    campo_${1:cpf} = driver.find_element(By.ID, \"${2:txtNrCpf}\")",
+			"    campo_${1:cpf}.click()",
+			"    campo_${1:cpf}.send_keys(\"${3:12345678901}\")  # Digita o ${1:cpf}",
+			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ ${1:cpf.upper()} digitado!\")",
+			"except Exception as e:",
+			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Erro: {e}\")"
+		],
+		"description": "Digita em campo com click prévio"
 	}
 
 }
