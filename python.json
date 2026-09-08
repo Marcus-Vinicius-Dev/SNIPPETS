@@ -434,6 +434,7 @@
 			"# .\\venv\\Scripts\\activate (ativa a venv)",
 			"# deactivate (desativa venv)",
 			"# pip install -r requirements.txt",
+			"# python -m pip install --force-reinstall --no-cache-dir -r requirements.txt",
 			"# se não der certo, use python -m pip install -r requirements.txt",
 			"# cd (endereço do programa)",
 			"# (comando para ativar python)",
@@ -457,6 +458,7 @@
 			"from openpyxl import load_workboo",
 			"import csv",
 			"import json",
+			"import pandas as pd",
 			"import re",
 			"import unicodedata",
 			"import tarfile",
@@ -485,44 +487,118 @@
 		"body": [
 			"ajsonrpc==1.2.0",
 			"anyio==4.13.0",
+			"asttokens==3.0.2",
 			"attrs==26.1.0",
 			"beautifulsoup4==4.12.2",
 			"bottle==0.13.4",
-			"certifi==2026.7.22",
-			"cffi==2.1.1",
-			"charset-normalizer==3.5.1",
+			"certifi==2026.4.22",
+			"cffi==2.0.0",
+			"charset-normalizer==3.4.7",
 			"click==8.3.3",
 			"colorama==0.4.6",
+			"comm==0.2.3",
+			"comtypes==1.4.16",
+			"cryptography==48.0.0",
+			"databricks-connect==18.2.1",
+			"databricks-sdk==0.112.0",
+			"databricks-sql-connector==4.4.0",
+			"debugpy==1.8.21",
+			"decorator==5.3.1",
+			"et_xmlfile==2.0.0",
+			"executing==2.2.1",
+			"google-auth==2.53.0",
+			"googleapis-common-protos==1.75.0",
+			"greenlet==3.3.2",
+			"grpcio==1.80.0",
+			"grpcio-status==1.80.0",
 			"h11==0.16.0",
-			"idna==3.19",
+			"idna==3.13",
+			"ipykernel==7.3.0",
+			"ipython==9.15.0",
+			"ipython_pygments_lexers==1.1.1",
+			"jedi==0.20.0",
+			"json5==0.15.0",
+			"jupyter-databricks-kernel==1.4.1",
+			"jupyter_client==8.9.1",
+			"jupyter_core==5.9.1",
 			"lxml==4.9.3",
+			"lz4==4.4.5",
 			"marshmallow==3.26.2",
+			"matplotlib-inline==0.2.2",
+			"MouseInfo==0.1.3",
+			"nest-asyncio2==1.7.2",
+			"numpy==2.4.4",
+			"oauthlib==3.3.1",
+			"openpyxl==3.1.5",
 			"outcome==1.3.0.post0",
 			"packaging==26.2",
+			"pandas==2.3.3",
+			"parso==0.8.7",
+			"pathspec==1.1.1",
+			"pillow==12.3.0",
+			"platformdirs==4.11.0",
 			"platformio==6.1.19",
+			"prompt_toolkit==3.0.53",
+			"protobuf==6.33.6",
 			"psutil==5.9.5",
+			"pure_eval==0.2.3",
+			"py4j==0.10.9.9",
+			"pyarrow==24.0.0",
+			"pyasn1==0.6.3",
+			"pyasn1_modules==0.4.2",
+			"PyAutoGUI==0.9.54",
+			"pybreaker==1.4.1",
 			"pycparser==3.0",
 			"pyelftools==0.32",
+			"PyGetWindow==0.0.9",
+			"Pygments==2.20.0",
+			"PyJWT==2.13.0",
+			"PyMsgBox==2.0.1",
+			"pymssql==2.3.13",
+			"pyodbc==5.3.0",
+			"PyPDF2==3.0.1",
+			"pyperclip==1.11.0",
+			"PyRect==0.2.0",
+			"PyScreeze==1.0.1",
 			"pyserial==3.5",
 			"PySocks==1.7.1",
+			"python-dateutil==2.9.0.post0",
 			"python-docx==1.2.0",
 			"python-dotenv==1.2.2",
-			"requests==2.34.2",
-			"selenium==4.48.0",
+			"python-pptx==1.0.2",
+			"pytweening==1.2.0",
+			"pytz==2026.2",
+			"pywin32==312",
+			"pyzmq==27.1.0",
+			"requests==2.33.1",
+			"selenium==4.43.0",
 			"semantic-version==2.10.0",
+			"setuptools==82.0.1",
+			"six==1.17.0",
 			"sniffio==1.3.1",
 			"sortedcontainers==2.4.0",
 			"soupsieve==2.9.2",
+			"SQLAlchemy==2.0.48",
+			"stack-data==0.6.3",
 			"starlette==0.52.1",
 			"tabulate==0.10.0",
-			"trio==0.34.0",
+			"thrift==0.24.0",
+			"tornado==6.5.7",
+			"traitlets==5.15.1",
+			"trio==0.33.0",
 			"trio-websocket==0.12.2",
-			"typing_extensions==4.16.0",
-			"urllib3==2.7.0",
+			"typing_extensions==4.15.0",
+			"tzdata==2026.2",
+			"uiautomation==2.0.29",
+			"urllib3==2.6.3",
 			"uvicorn==0.40.0",
+			"wcwidth==0.8.2",
 			"webdriver-manager==4.0.2",
-			"websocket-client==1.9.2",
-			"wsproto==1.3.2"
+			"websocket-client==1.9.0",
+			"WMI==1.5.1",
+			"wsproto==1.3.2",
+			"xlsxwriter==3.2.9",
+			"zstandard==0.25.0"
 		],
 		"description": "Lista de dependências (requirements.txt)"
 	},
@@ -574,20 +650,126 @@
 		"description": "Estrutura de funções com chamada condicional"
 	},
 
-	//venv
-	"venv": {
-		"prefix": "çvenv",
+		//cola_pip
+		"cola_pip": {
+			"prefix": "çcola_pip",
+			"body": [
+				"# upgrade",
+				"python -m pip install --upgrade pip",
+				"python -m pip install --upgrade pip --force-reinstall",
+				"",
+				"# BIBLIOTECAS BÁSICAS ",
+				"pip install colorama",
+				"pip install requests",
+				"pip install selenium",
+				"pip install psutil",
+				"pip install wmi",
+				"pip install openpyxl",
+				"pip install pandas",
+				"pip install python-docx",
+				"pip install python-pptx",
+				"pip install PyPDF2",
+				"pip install uiautomation",
+				"pip install pygetwindow",
+				"pip install pyautogui",
+				"pip install webdriver-manager",
+				"",
+				"# BANCO DE DADOS",
+				"pip install pyodbc",
+				"pip install pymssql",
+				"pip install SQLAlchemy",
+				"",
+				"# FERRAMENTAS",
+				"pip install python-dotenv",
+				"pip install tabulate",
+				"pip install click",
+				"pip install tqdm",
+				"",
+				"# JUPYTER / IPYTHON",
+				"pip install ipykernel",
+				"pip install ipython",
+				"pip install jupyter_client",
+				"pip install jupyter_core",
+				"",
+				"# WEB E REDE",
+				"pip install requests",
+				"pip install urllib3",
+				"pip install beautifulsoup4",
+				"pip install lxml",
+				"pip install trio",
+				"pip install websocket-client",
+				"",
+				"# SEGURANÇA",
+				"pip install cryptography",
+				"pip install certifi",
+				"pip install PyJWT",
+				"pip install oauthlib",
+				"pip install google-auth"
+			],
+			"description": "Lista de comandos pip para instalar bibliotecas"
+		},
+
+	//cola_pip_forcado
+	"cola_pip_forcado": {
+		"prefix": "çcola_pip_forcado",
 		"body": [
-			"# python -m venv venv (cria venv)",
-			"# venv\\Scripts\\activate (ativa venv)",
-			"# deactivate (desativa venv)"
+			"# upgrade",
+			"python -m pip install --upgrade pip --force-reinstall",
+			"",
+			"# BIBLIOTECAS BÁSICAS (FORÇADO)",
+			"python -m pip install --force-reinstall colorama",
+			"python -m pip install --force-reinstall requests",
+			"python -m pip install --force-reinstall selenium",
+			"python -m pip install --force-reinstall psutil",
+			"python -m pip install --force-reinstall wmi",
+			"python -m pip install --force-reinstall openpyxl",
+			"python -m pip install --force-reinstall pandas",
+			"python -m pip install --force-reinstall python-docx",
+			"python -m pip install --force-reinstall python-pptx",
+			"python -m pip install --force-reinstall PyPDF2",
+			"python -m pip install --force-reinstall uiautomation",
+			"python -m pip install --force-reinstall pygetwindow",
+			"python -m pip install --force-reinstall pyautogui",
+			"python -m pip install --force-reinstall webdriver-manager",
+			"",
+			"# BANCO DE DADOS (FORÇADO)",
+			"python -m pip install --force-reinstall pyodbc",
+			"python -m pip install --force-reinstall pymssql",
+			"python -m pip install --force-reinstall SQLAlchemy",
+			"",
+			"# FERRAMENTAS (FORÇADO)",
+			"python -m pip install --force-reinstall python-dotenv",
+			"python -m pip install --force-reinstall tabulate",
+			"python -m pip install --force-reinstall click",
+			"python -m pip install --force-reinstall tqdm",
+			"",
+			"# JUPYTER / IPYTHON (FORÇADO)",
+			"python -m pip install --force-reinstall ipykernel",
+			"python -m pip install --force-reinstall ipython",
+			"python -m pip install --force-reinstall jupyter_client",
+			"python -m pip install --force-reinstall jupyter_core",
+			"",
+			"# WEB E REDE (FORÇADO)",
+			"python -m pip install --force-reinstall requests",
+			"python -m pip install --force-reinstall urllib3",
+			"python -m pip install --force-reinstall beautifulsoup4",
+			"python -m pip install --force-reinstall lxml",
+			"python -m pip install --force-reinstall trio",
+			"python -m pip install --force-reinstall websocket-client",
+			"",
+			"# SEGURANÇA (FORÇADO)",
+			"python -m pip install --force-reinstall cryptography",
+			"python -m pip install --force-reinstall certifi",
+			"python -m pip install --force-reinstall PyJWT",
+			"python -m pip install --force-reinstall oauthlib",
+			"python -m pip install --force-reinstall google-auth"
 		],
-		"description": "Comandos venv"
+		"description": "Lista de comandos pip com --force-reinstall"
 	},
 
-	//requirements
-	"requirements": {
-		"prefix": "çrequir",
+	//cola_requirements
+	"colarequirements": {
+		"prefix": "çcolarequir",
 		"body": [
 			"# pip install -r requirements.txt",
 			"# python -m pip install -r requirements.txt (se não der certo o de cima, use este)",
@@ -596,12 +778,21 @@
 		"description": "Comandos requirements"
 	},
 
+	//cola_venv
+	"cola_venv": {
+		"prefix": "çcola_venv",
+		"body": [
+			"# python -m venv venv (cria venv)",
+			"# .\\.venv\\Scripts\\activate (ativa venv)",
+			"# deactivate (desativa venv)"
+		],
+		"description": "Comandos venv"
+	},
+
 	//listar_modulos
 	"listar_modulos": {
 		"prefix": "çlistarmodulos",
 		"body": [
-			"import pkgutil",
-			"",
 			"for modulo in pkgutil.iter_modules():",
 			"    print(modulo.name)"
 		],
@@ -752,21 +943,22 @@
 		"description": "Leitor de lista de portas com teste porta a porta e relatório final"
 	},
 
-	//colorama_baixar
-	"colorama_baixar": {
-		"prefix": "çcolorama_baixar",
-		"body": [
-			"pip install colorama requests selenium"
-		],
-		"description": "baixar colorama em caso de erro do requirements"
-	},
-
 	//pasta_atual
 	"pasta_atual": {
 		"prefix": "çpasta_atual",
 		"body": [
 			"pasta_atual = os.getcwd()",
 			"print(Fore.GREEN + Style.BRIGHT + '\\n pasta atual: ' + pasta_atual)"
+		],
+		"description": "Exibe diretório atual"
+	},
+
+	//pasta_apenas
+	"pasta_apenas": {
+		"prefix": "çpasta_apenas",
+		"body": [
+			"pasta_atual = os.getcwd()",
+			"pprint(Fore.GREEN + Style.BRIGHT + '\\n' + os.path.basename(pasta_atual))"
 		],
 		"description": "Exibe diretório atual"
 	},
@@ -819,24 +1011,7 @@
 		"body": [
 			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",  
 			"nome_da_pasta = '${2:nova_pasta}'",
-			"# VERIFICA SE JÁ EXISTE",
-			"if os.path.exists(nome_da_pasta):",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: A pasta '{nome_da_pasta}' JÁ EXISTE! dentro de '{os.path.basename(os.getcwd())}'\")",
-			"else:",
-			"    os.makedirs(nome_da_pasta, exist_ok=True)",
-			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n🆕 '{nome_da_pasta}' CRIADA!\")",
-			"print(Fore.GREEN + Style.BRIGHT + '\\n Lista de arquivos após a criação da pasta: ') ",
-			"# Listar arquivos de um diretório",
-			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}' ) ",
-			"objeto_listar = os.listdir('.') # Atualiza a lista (importante!)",
-			"for item in objeto_listar: ",
-			"    if os.path.isdir(item):",
-			"        if  item == nome_da_pasta: ",
-			"            print(Fore.GREEN + Style.BRIGHT + f'  🆕 {item}  ← OLHA EU AQUI!!!')",
-			"        else:",
-			"            print(Fore.WHITE + Style.BRIGHT + f'  SUBPASTA: {item}')",
-			"    else:",
-			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+			"os.makedirs(nome_da_pasta, exist_ok=True)"
 		],
 		"description": "Cria pasta com verificação"
 	},
@@ -845,52 +1020,9 @@
 	"remover_pasta": {
 		"prefix": "çpasta_remover",
 		"body": [
-			"os.chdir(r'${1:C:\\Caminho}')",
-			"# Nome da pasta a ser removida",
+			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
 			"nome_da_pasta = '${2:nova_pasta}'",
-			"# VERIFICA SE A PASTA EXISTE",
-			"if os.path.exists(nome_da_pasta) and os.path.isdir(nome_da_pasta):",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: A pasta '{nome_da_pasta}' foi encontrada!\")",
-			"    # CONFIRMAÇÃO DE SEGURANÇA (com opções)",
-			"    resposta = input(Fore.CYAN + Style.BRIGHT + 'Deseja remover a pasta e todo seu conteúdo? (s/N): ')",
-			"    if resposta.lower() == 's':",
-			"        # PERGUNTA SE É COM FORÇA BRUTA (remover tudo)",
-			"        forca = input(Fore.CYAN + 'Remover até com subpastas e arquivos? (s/N): ')",
-			"        try:",
-			"            if forca.lower() == 's':",
-			"                # Remove com força bruta (shutil.rmtree)",
-			"                import shutil",
-			"                shutil.rmtree(nome_da_pasta)",
-			"                print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🗑️ Pasta '{nome_da_pasta}' REMOVIDA com todo seu conteúdo!\")",
-			"            else:",
-			"                # Remove pasta vazia (os.rmdir)",
-			"                os.rmdir(nome_da_pasta)",
-			"                print(Fore.MAGENTA + Style.BRIGHT + f\"\\n🗑️ Pasta vazia '{nome_da_pasta}' REMOVIDA!\")",
-			"        except OSError as e:",
-			"            if 'Directory not empty' in str(e) or 'O diretório não está vazio' in str(e):",
-			"                print(Fore.RED + Style.BRIGHT + f\"\\n❌ A pasta '{nome_da_pasta}' NÃO ESTÁ VAZIA!\")",
-			"                print(Fore.YELLOW + 'Use a opção FORÇA BRUTA (s) para remover com subpastas.')",
-			"            else:",
-			"                print(Fore.RED + Style.BRIGHT + f\"\\n❌ ERRO: {e}\")",
-			"            exit()",
-			"        # CONFIRMAÇÃO FINAL",
-			"        if not os.path.exists(nome_da_pasta):",
-			"            print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Pasta '{nome_da_pasta}' removida com sucesso!\")",
-			"        else:",
-			"            print(Fore.RED + Style.BRIGHT + f\"\\n❌ Falha ao remover a pasta '{nome_da_pasta}'.\")",
-			"    else:",
-			"        print(Fore.GREEN + Style.BRIGHT + '\\nℹ️ Operação cancelada. A pasta foi mantida.')",
-			"else:",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ A pasta '{nome_da_pasta}' NÃO EXISTE neste diretório!\")",
-			"# Listar arquivos DEPOIS",
-			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS APÓS A REMOÇÃO:')",
-			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
-			"objeto_listar = os.listdir('.')",
-			"for item in objeto_listar:",
-			"    if os.path.isdir(item):",
-			"        print(Fore.RED + Style.BRIGHT + f'  SUBPASTA: {item}')",
-			"    else:",
-			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+			"shutil.rmtree(nome_da_pasta)"
 		],
 		"description": "Remove pasta com verificação"
 	},
@@ -899,74 +1031,9 @@
 	"renomear_pasta": {
 		"prefix": "çpasta_renomear",
 		"body": [
-			"# Navegar para o diretório",
-			"os.chdir(r'${1:C:\\Caminho}')",  
-			"# Listar arquivos ANTES",
+			"os.chdir(r'${1:C:\\Caminho}')", 
 			"nome_atual = 'Nova pasta'",
-			"novo_nome = 'novo nome'",
-			"# VERIFICA SE O NOME ATUAL EXISTE",
-			"if not nome_atual:",
-			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Nome atual inválido! Operação cancelada.')",
-			"    exit()",
-			"if not novo_nome:",
-			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Novo nome inválido! Operação cancelada.')",
-			"    exit()",
-			"if not os.path.exists(nome_atual):",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ O item '{nome_atual}' NÃO EXISTE neste diretório!\")",
-			"    print(Fore.YELLOW + 'Verifique a digitação e tente novamente.')",
-			"    exit()",
-			"# VERIFICA SE O NOVO NOME JÁ EXISTE",
-			"if os.path.exists(novo_nome):",
-			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O nome '{novo_nome}' JÁ EXISTE!\")",
-			"    sobrepor = input(Fore.CYAN + 'Deseja SOBRESCREVER? (s/N): ')",
-			"    if sobrepor.lower() != 's':",
-			"        print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
-			"        exit()",
-			"    else:",
-			"        # Se for pasta, avisa que não pode sobrescrever com rename",
-			"        if os.path.isdir(novo_nome):",
-			"            print(Fore.RED + Style.BRIGHT + '\\n❌ Não é possível sobrescrever uma PASTA com os.rename()!')",
-			"            print(Fore.YELLOW + 'Use shutil.move() ou remova a pasta primeiro.')",
-			"            exit()",
-			"        else:",
-			"            # Remove o arquivo existente antes de renomear",
-			"            os.remove(novo_nome)",
-			"            print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{novo_nome}' removido para sobrescrever.\")",
-			"# CONFIRMAÇÃO DE SEGURANÇA",
-			"print(Fore.CYAN + Style.BRIGHT + f\"\\nFoi encontrada a pasta '{nome_atual}' dentro de '{os.path.basename(os.getcwd())}'\")",
-			"print(Fore.CYAN + Style.BRIGHT + f\"\\n📌 Confirmar renomeação:\")",
-			"print(f'   ATUAL: {nome_atual}')",
-			"print(f'   NOVO:  {novo_nome}')",
-			"confirmar = input(Fore.YELLOW + 'Prosseguir com a renomeação? (s/N): ')",
-			"if confirmar.lower() != 's':",
-			"    print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
-			"    exit()",
-			"# REALIZA A RENOMEAÇÃO",
-			"try:",
-			"    os.rename(nome_atual, novo_nome)",
-			"    if os.path.exists(novo_nome) and not os.path.exists(nome_atual):",
-			"        print(Fore.MAGENTA + Style.BRIGHT + f\"\\n✅ RENOMEAÇÃO CONCLUÍDA!\")",
-			"        print(f'   {nome_atual} → {novo_nome}')",
-			"    else:",
-			"        print(Fore.RED + Style.BRIGHT + '\\n❌ Falha ao renomear o item.')",
-			"except PermissionError:",
-			"    print(Fore.RED + Style.BRIGHT + '\\n❌ Permissão negada! O arquivo/pasta pode estar em uso.')",
-			"except FileExistsError:",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ O nome '{novo_nome}' já existe e não pôde ser sobrescrito.\")",
-			"except Exception as e:",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ ERRO inesperado: {e}\")",
-			"# Listar arquivos DEPOIS",
-			"print(Fore.GREEN + Style.BRIGHT + '\\n📂 LISTA DE ARQUIVOS APÓS A RENOMEAÇÃO:')",
-			"print(Fore.YELLOW + Style.BRIGHT + f'  PASTA: {os.path.basename(os.getcwd())}')",
-			"objeto_listar = os.listdir('.') # Atualiza a lista (importante!)",
-			"for item in objeto_listar: ",
-			"    if os.path.isdir(item):",
-			"        if  item == novo_nome: ",
-			"            print(Fore.GREEN + Style.BRIGHT + f'  🆕 {item}  ← OLHA EU AQUI!!!')",
-			"        else:",
-			"            print(Fore.WHITE + Style.BRIGHT + f'  SUBPASTA: {item}')",
-			"    else:",
-			"        print(Fore.BLUE + Style.BRIGHT + f'  ARQUIVO: {item}')"
+			"novo_nome = 'novo nome'"
 		],
 		"description": "Renomeia arquivo ou pasta"
 	},
@@ -1012,36 +1079,13 @@
 		"description": "Input"
 	},
 
-	//titulo
-	"titulo": {
-		"prefix": "çtitulo",
-		"body": [
-			"print(Fore.GREEN + Style.BRIGHT + '#'*50)",
-			"print(Fore.GREEN + Style.BRIGHT + '${1:TÍTULO}')",
-			"print(Fore.GREEN + Style.BRIGHT + '#'*50)"
-		],
-		"description": "Título com separador"
-	},
-
 	//arquivo_deletar
 	"arquivo_deletar": {
 		"prefix": "çarquivo_deletar",
 		"body": [
 			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
 			"arquivo = 'teste.docx'",
-			"print(Fore.WHITE + Style.BRIGHT + f\"\\nDeletar arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
-			"if os.path.exists(arquivo):",
-			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O arquivo '{arquivo}' existe, deseja excluí-lo?\")",
-			"    sobrepor = input(Fore.CYAN + 'Deseja EXCLUÍ-LO? (s/N): ')",
-			"    if sobrepor.lower() != 's':",
-			"        print(Fore.GREEN + '\\nℹ️ Operação cancelada.')",
-			"        exit()",
-			"    else:",
-			"        # Remove o arquivo existente antes de renomear",
-			"        os.remove(arquivo)",
-			"        print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{arquivo}' removido\")      ",
-			"else:",
-			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo} não encontrado')"
+			"os.remove(arquivo)"
 		],
 		"description": "Deleta arquivo com verificação"
 	},
@@ -1053,19 +1097,7 @@
 			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
 			"arquivo_atual = 'teste.docx'",
 			"arquivo_novo_nome = 'testado.docx'",
-			"print(Fore.WHITE + Style.BRIGHT + f\"\\nRenomeando arquivo '{arquivo_atual}' para {arquivo_novo_nome} no endereço: '{os.getcwd()}'\")",
-			"if os.path.exists(arquivo_atual):",
-			"    print(Fore.YELLOW + Style.BRIGHT + f\"\\n⚠️ ATENÇÃO: O arquivo '{arquivo_atual}' existe, deseja renomeá-lo?\")",
-			"    sobrepor = input(Fore.CYAN + 'Deseja RENOMEÁ-LO? (s/N): ')",
-			"    if sobrepor.lower() != 's':",
-			"        print(Fore.GREEN + '\\nℹ️  Operação cancelada.')",
-			"        exit()",
-			"    else:",
-			"        # Remove o arquivo existente antes de renomear",
-			"        os.replace(arquivo_atual, arquivo_novo_nome)",
-			"        print(Fore.YELLOW + f\"\\n🗑️ Arquivo '{arquivo_atual}' renomeado para '{arquivo_novo_nome}'\")      ",
-			"else:",
-			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo_atual} não encontrado')"
+			"os.replace(arquivo_atual, arquivo_novo_nome)"
 		],
 		"description": "Renomeia arquivo simples"
 	},
@@ -1096,14 +1128,7 @@
 		"body": [
 			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
 			"arquivo = 'teste.docx'",
-			"print(Fore.WHITE + Style.BRIGHT + f\"\\narquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
-			"if os.path.exists(arquivo):",
-			"    fd = os.open(arquivo, os.O_RDONLY)",
-			"    print(Fore.GREEN + Style.BRIGHT + f\"\\narquivo {arquivo} existe!!\")",
-			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n Descritor = [{fd}]. 'Se 3 então 1º arquivo aberto, se 4 então segundo aberto, etc...'\")",
-			"    os.close(fd)  # Fecha o descritor para evitar vazamento",
-			"else:",
-			"    print(Fore.RED + Style.BRIGHT + f'\\n ❌ arquivo {arquivo} não encontrado')"
+			"os.open(arquivo, os.O_RDONLY)"
 		],
 		"description": "arquivo_abrir"
 	},
@@ -1115,17 +1140,13 @@
 			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
 			"arquivo = 'teste.docx'",
 			"print(Fore.WHITE + Style.BRIGHT + f\"\\narquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
-			"if os.path.exists(arquivo):",
-			"    # Lê o documento Word corretamente",
-			"    doc = Document(arquivo)",
-			"    texto_completo = []",
-			"    for paragrafo in doc.paragraphs:",
-			"        texto_completo.append(paragrafo.text)",
-			"    conteudo = '\\n'.join(texto_completo)",
-			"    print(f\"\\n✅ arquivo {arquivo} existe!!\")",
-			"    print(f\"Conteúdo: {conteudo[:500]}...\")  # Mostra os primeiros 500 caracteres",
-			"else:",
-			"    print(f'\\n❌ arquivo {arquivo} não encontrado')"
+			"doc = Document(arquivo)",
+			"texto_completo = []",
+			"for paragrafo in doc.paragraphs:",
+			"    texto_completo.append(paragrafo.text)",
+			"conteudo = '\\n'.join(texto_completo)",
+			"print(f\"\\n✅ arquivo {arquivo} existe!!\")",
+			"print(f\"Conteúdo: {conteudo[:500]}...\")  # Mostra os primeiros 500 caracteres"
 		],
 		"description": "Lê arquivo Word (.docx)"
 	},
@@ -1137,18 +1158,14 @@
 			"pasta_destino = os.chdir(r'${1:C:\\Caminho}')",
 			"arquivo = 'teste.txt'",
 			"print(Fore.WHITE + Style.BRIGHT + f\"\\n📂 Arquivo '{arquivo}' no endereço: '{os.getcwd()}'\")",
-			"if os.path.exists(arquivo):",
-			"    with open(arquivo, 'r', encoding='utf-8') as f:",
-			"        conteudo = f.read()    ",
-			"    print(Fore.GREEN + Style.BRIGHT + f\"\\n✅ Arquivo '{arquivo}' existe!!\")",
-			"    print(Fore.CYAN + f'📄 CONTEÚDO ({len(conteudo)} caracteres):')",
-			"    print(Fore.WHITE + '-'*50)",
-			"    print(conteudo[:500])  # Mostra os primeiros 500 caracteres",
-			"    if len(conteudo) > 500:",
-			"        print(Fore.YELLOW + f'... (e mais {len(conteudo) - 500} caracteres)')",
-			"    print(Fore.WHITE + '-'*50)",
-			"else:",
-			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
+			"with open(arquivo, 'r', encoding='utf-8') as f:",
+			"    conteudo = f.read()    ",
+			"print(Fore.CYAN + f'📄 CONTEÚDO ({len(conteudo)} caracteres):')",
+			"print(Fore.WHITE + '-'*50)",
+			"print(conteudo[:500])  # Mostra os primeiros 500 caracteres",
+			"if len(conteudo) > 500:",
+			"    print(Fore.YELLOW + f'... (e mais {len(conteudo) - 500} caracteres)')",
+			"print(Fore.WHITE + '-'*50)"
 		],
 		"description": "Lê arquivo TXT com encoding"
 	},
@@ -1516,6 +1533,239 @@
 			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
 		],
 		"description": "Lê arquivo PPTX com python-pptx"
+	},
+
+	//excel_carregar
+	"excel_carregar": {
+		"prefix": "çexcel_carregar",
+		"body": [
+			"pasta_destino = os.chdir(r'${1:C:\\Endereço}')",
+			"arquivo_excel = '${2:arquivo.xlsx}'",
+			"df = pd.read_excel(arquivo_excel, sheet_name=${3:0})  # 0 = primeira aba"
+		],
+		"description": "Carrega Excel com Pandas"
+	},
+
+	//excel_linhas_qtd
+	"excel_linhas_qtd": {
+		"prefix": "çexcel_linhas_qtd",
+		"body": [
+			"print(f\"   Linhas: {len(df)}\")"
+		],
+		"description": "excel_linhas_qtd"
+	},
+
+	//excel_colunas_qtd
+	"excel_colunas_qtd": {
+		"prefix": "çexcel_colunas_qtd",
+		"body": [
+			"print(f\"   Colunas: {len(df.columns)}\")"
+		],
+		"description": "excel_colunas_qtd"
+	},
+
+	//excel_top5
+	"excel_top5": {
+		"prefix": "çexcel_top5",
+		"body": [
+			"print(df.head())"
+		],
+		"description": "excel_top5"
+	},
+
+	//excel_top5_ultimas_linhas
+	"excel_top5_ultimas_linhas": {
+		"prefix": "çexcel_top5_ultimas_linhas",
+		"body": [
+			"print(df.tail())"
+		],
+		"description": "excel_top5 das últimas linhas de baixo pra cima"
+	},
+
+	//excel_info
+	"excel_info": {
+		"prefix": "çexcel_info",
+		"body": [
+			"print(df.info())"
+		],
+		"description": "excel_info"
+	},
+
+	//excel_nulos_qtd
+	"excel_nulos_qtd": {
+		"prefix": "çexcel_nulos_qtd",
+		"body": [
+			"print(df.isnull().sum())"
+		],
+		"description": "excel_nulos_qtd"
+	},
+
+	//excel_distinct_total
+	"excel_distinct_total": {
+		"prefix": "çexcel_distinct_total",
+		"body": [
+			"print(df.nunique())"
+		],
+		"description": "quantidade de dados distintos no total"
+	},
+
+	//excel_tipos_de_dados
+	"excel_tipos_de_dados": {
+		"prefix": "çexcel_tipos_de_dados",
+		"body": [
+			"print(df.dtypes)"
+		],
+		"description": "excel_tipos_de_dados"
+	},
+
+	//excel_filtrar_dados_numericos
+	"excel_filtrar_dados_numericos": {
+		"prefix": "çexcel_filtrar_dados_numericos",
+		"body": [
+			"dado_procurado = df[df['${1:NOME_COLUNA_EXCEL}'] == ${2:valor_do_dado}]",
+			"print(f\"🔍 Total de vezes que ${2:'valor_do_dado'} aparece = {len(dado_procurado)}\")"
+		],
+		"description": "Filtra quantidade de vezes que um dado numérico se repete"
+	},
+
+	//excel_filtrar_dados_string
+	"excel_filtrar_dados_string": {
+		"prefix": "çexcel_filtrar_dados_numericos",
+		"body": [
+			"dado_procurado = df[df['${1:NOME_COLUNA_EXCEL}'].str.contains('${2:valor_do_dado}', na=False)]",
+			"print(f\"🔍 Total de vezes que ${2:'valor_do_dado'} aparece = {len(dado_procurado)}\")"
+		],
+		"description": "Filtra quantidade de vezes que um dado string se repete"
+	},
+
+	//excel_between
+	"excel_between": {
+		"prefix": "çexcel_between",
+		"body": [
+			"dado_procurado = df[(df['${1:NOME_COLUNA_EXCEL}'] > ${2:valor_do_dado}) & (df['${1:NOME_COLUNA_EXCEL}'] < ${3:valor_do_dado})]",
+			"print(f\"🔍 Quantidade entre ${2:'valor_do_dado'} e ${3:valor_do_dado} = {len(dado_procurado)}\")"
+		],
+		"description": "excel_between"
+	},
+
+	//excel_filtrar_vazios
+	"excel_filtrar_vazios": {
+		"prefix": "çexcel_filtrar_vazios",
+		"body": [
+			"dado_procurado = df[(df['${1:NOME_COLUNA_EXCEL}'].isna()]",
+			"print(f\"🔍 Quantidade de vazios = {len(dado_procurado)}\")"
+		],
+		"description": "excel_filtrar_vazios"
+	},
+
+	//excel_filtrar_começa_com
+	"excel_filtrar_começa_com": {
+		"prefix": "çexcel_filtrar_começa_com",
+		"body": [
+			"dado_procurado = df[df['${1:NOME_COLUNA_EXCEL}'].str.startswith('${2:A}', na=False)]",
+			"print(f\"🔍 Nomes começando com ${2:A} = {len(df_busca)}\")"
+		],
+		"description": "Filtra quantidade de vezes que um dado string se repete"
+	},
+
+	//excel_orderby_numerico
+	"excel_orderby_numerico": {
+		"prefix": "çexcel_orderby_numerico",
+		"body": [
+			"dado_procurado = df.sort_values('${1:COLUNA}', ascending=True)]",
+			"print(\"📋 ${1:COLUNA} ordenados:\")",
+			"print(dado_procurado[['${1:COLUNA}', '${2:COLUNA2}']].head())"
+		],
+		"description": "order by numerico"
+	},
+
+	//excel_orderby_nomes
+	"excel_orderby_nomes": {
+		"prefix": "çexcel_orderby_nomes",
+		"body": [
+			"dado_procurado = df.sort_values('${1:COLUNA_COM_NOMES}')]",
+			"print(\"📋 ${1:COLUNA} ordenados:\")",
+			"print(dado_procurado[['${1:COLUNA_COM_NOMES}', '${2:COLUNA2}']].head())"
+		],
+		"description": "order by NOMES"
+	},
+
+	//excel_groupby
+	"excel_groupby": {
+		"prefix": "çexcel_groupby",
+		"body": [
+			"dado_procurado = df.groupby('${1:COLUNA_COM_NOMES}').size()]",
+			"print(\"📋 ${1:COLUNA_COM_NOMES} ordenados:\")",
+			"print(dado_procurado)"
+		],
+		"description": "Group By"
+	},
+
+	//excel_total_de_dados_qtd
+	"excel_total_de_dados_qtd": {
+		"prefix": "çexcel_total_de_dados_qtd",
+		"body": [
+			"total = len(df)",
+			"print(f\"📊 Total de dados: {total}\")"
+		],
+		"description": "Contagem total de dados"
+	},
+
+	//excel_distinct_coluna
+	"excel_distinct_coluna": {
+		"prefix": "çexcel_distinct_coluna",
+		"body": [
+			"dado_procurado = df['${1:COLUNA}'].unique()",
+			"print(f\"📊 ${1:COLUNA} únicos: {len(dado_procurado)}\")",
+			"print(f\"📊 Total de dados: {dado_procurado}\")"
+		],
+		"description": "Select Distinct de uma coluna"
+	},
+
+	//excel_moda
+	"excel_moda": {
+		"prefix": "çexcel_moda",
+		"body": [
+			"dado_procurado =  df['${1:COLUNA}'].mode()",
+			"print(f\"📊 ${1:COLUNA} mais frequente: {moda[0]}\")"
+		],
+		"description": "Moda (valor mais frequente)"
+	},
+
+	//excel_salvar_em_csv
+	"excel_salvar_em_csv": {
+		"prefix": "çexcel_salvar_em_csv",
+		"body": [
+			"df.to_csv('${1:NOME}.csv', index=False, sep=';', encoding='utf-8-sig')"
+		],
+		"description": "Salvar excel em csv"
+	},
+
+	//excel_salvar_em_excel
+	"excel_salvar_em_excel": {
+		"prefix": "çexcel_salvar_em_excel",
+		"body": [
+			"df.to_excel('${1:NOME}.xlsx', index=False)"
+		],
+		"description": "Salvar excel em excel"
+	},
+
+	//excel_salvar_colunas_especificas
+	"excel_salvar_colunas_especificas": {
+		"prefix": "çexcel_salvar_colunas_especificas",
+		"body": [
+			"df[['${1:COLUNA1}', '${2:COLUNA2}', '${3:COLUNA3}']].to_${4:csv}('${5:NOME_ARQUIVO_SAIDA}.${4:csv}', index=False) # .to_csv ou .to_excel"
+		],
+		"description": "Salvar colunas especificas"
+	},
+
+	//excel_mostrar_coluna
+	"excel_mostrar_coluna": {
+		"prefix": "çexcel_mostrar_coluna",
+		"body": [
+			"print(df['${1:COLUNA1}'].head(10))"
+		],
+		"description": "Mostra coluna top 10"
 	},
 
 	//sys_software_info
