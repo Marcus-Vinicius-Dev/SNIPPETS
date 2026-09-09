@@ -803,7 +803,7 @@
 	"print": {
 		"prefix": "çprint",
 		"body": [
-			"print(Fore.GREEN + Style.BRIGHT + f\"\\n ${1:Mensagem} \\n\")  # função{}, YELLOW, BLACK, RED, GREEN, BLUE, MAGENTA, CYAN, WHITE"
+			"print(Fore.GREEN + Style.BRIGHT + f\"\\n ${1:Mensagem}\")  # função{}, YELLOW, BLACK, RED, GREEN, BLUE, MAGENTA, CYAN, WHITE"
 		],
 		"description": "Print colorido usando colorama"
 	},
@@ -1533,239 +1533,6 @@
 			"    print(Fore.RED + Style.BRIGHT + f\"\\n❌ Arquivo '{arquivo}' NÃO ENCONTRADO!\")"
 		],
 		"description": "Lê arquivo PPTX com python-pptx"
-	},
-
-	//excel_carregar
-	"excel_carregar": {
-		"prefix": "çexcel_carregar",
-		"body": [
-			"pasta_destino = os.chdir(r'${1:C:\\Endereço}')",
-			"arquivo_excel = '${2:arquivo.xlsx}'",
-			"df = pd.read_excel(arquivo_excel, sheet_name=${3:0})  # 0 = primeira aba"
-		],
-		"description": "Carrega Excel com Pandas"
-	},
-
-	//excel_linhas_qtd
-	"excel_linhas_qtd": {
-		"prefix": "çexcel_linhas_qtd",
-		"body": [
-			"print(f\"   Linhas: {len(df)}\")"
-		],
-		"description": "excel_linhas_qtd"
-	},
-
-	//excel_colunas_qtd
-	"excel_colunas_qtd": {
-		"prefix": "çexcel_colunas_qtd",
-		"body": [
-			"print(f\"   Colunas: {len(df.columns)}\")"
-		],
-		"description": "excel_colunas_qtd"
-	},
-
-	//excel_top5
-	"excel_top5": {
-		"prefix": "çexcel_top5",
-		"body": [
-			"print(df.head())"
-		],
-		"description": "excel_top5"
-	},
-
-	//excel_top5_ultimas_linhas
-	"excel_top5_ultimas_linhas": {
-		"prefix": "çexcel_top5_ultimas_linhas",
-		"body": [
-			"print(df.tail())"
-		],
-		"description": "excel_top5 das últimas linhas de baixo pra cima"
-	},
-
-	//excel_info
-	"excel_info": {
-		"prefix": "çexcel_info",
-		"body": [
-			"print(df.info())"
-		],
-		"description": "excel_info"
-	},
-
-	//excel_nulos_qtd
-	"excel_nulos_qtd": {
-		"prefix": "çexcel_nulos_qtd",
-		"body": [
-			"print(df.isnull().sum())"
-		],
-		"description": "excel_nulos_qtd"
-	},
-
-	//excel_distinct_total
-	"excel_distinct_total": {
-		"prefix": "çexcel_distinct_total",
-		"body": [
-			"print(df.nunique())"
-		],
-		"description": "quantidade de dados distintos no total"
-	},
-
-	//excel_tipos_de_dados
-	"excel_tipos_de_dados": {
-		"prefix": "çexcel_tipos_de_dados",
-		"body": [
-			"print(df.dtypes)"
-		],
-		"description": "excel_tipos_de_dados"
-	},
-
-	//excel_filtrar_dados_numericos
-	"excel_filtrar_dados_numericos": {
-		"prefix": "çexcel_filtrar_dados_numericos",
-		"body": [
-			"dado_procurado = df[df['${1:NOME_COLUNA_EXCEL}'] == ${2:valor_do_dado}]",
-			"print(f\"🔍 Total de vezes que ${2:'valor_do_dado'} aparece = {len(dado_procurado)}\")"
-		],
-		"description": "Filtra quantidade de vezes que um dado numérico se repete"
-	},
-
-	//excel_filtrar_dados_string
-	"excel_filtrar_dados_string": {
-		"prefix": "çexcel_filtrar_dados_numericos",
-		"body": [
-			"dado_procurado = df[df['${1:NOME_COLUNA_EXCEL}'].str.contains('${2:valor_do_dado}', na=False)]",
-			"print(f\"🔍 Total de vezes que ${2:'valor_do_dado'} aparece = {len(dado_procurado)}\")"
-		],
-		"description": "Filtra quantidade de vezes que um dado string se repete"
-	},
-
-	//excel_between
-	"excel_between": {
-		"prefix": "çexcel_between",
-		"body": [
-			"dado_procurado = df[(df['${1:NOME_COLUNA_EXCEL}'] > ${2:valor_do_dado}) & (df['${1:NOME_COLUNA_EXCEL}'] < ${3:valor_do_dado})]",
-			"print(f\"🔍 Quantidade entre ${2:'valor_do_dado'} e ${3:valor_do_dado} = {len(dado_procurado)}\")"
-		],
-		"description": "excel_between"
-	},
-
-	//excel_filtrar_vazios
-	"excel_filtrar_vazios": {
-		"prefix": "çexcel_filtrar_vazios",
-		"body": [
-			"dado_procurado = df[(df['${1:NOME_COLUNA_EXCEL}'].isna()]",
-			"print(f\"🔍 Quantidade de vazios = {len(dado_procurado)}\")"
-		],
-		"description": "excel_filtrar_vazios"
-	},
-
-	//excel_filtrar_começa_com
-	"excel_filtrar_começa_com": {
-		"prefix": "çexcel_filtrar_começa_com",
-		"body": [
-			"dado_procurado = df[df['${1:NOME_COLUNA_EXCEL}'].str.startswith('${2:A}', na=False)]",
-			"print(f\"🔍 Nomes começando com ${2:A} = {len(df_busca)}\")"
-		],
-		"description": "Filtra quantidade de vezes que um dado string se repete"
-	},
-
-	//excel_orderby_numerico
-	"excel_orderby_numerico": {
-		"prefix": "çexcel_orderby_numerico",
-		"body": [
-			"dado_procurado = df.sort_values('${1:COLUNA}', ascending=True)]",
-			"print(\"📋 ${1:COLUNA} ordenados:\")",
-			"print(dado_procurado[['${1:COLUNA}', '${2:COLUNA2}']].head())"
-		],
-		"description": "order by numerico"
-	},
-
-	//excel_orderby_nomes
-	"excel_orderby_nomes": {
-		"prefix": "çexcel_orderby_nomes",
-		"body": [
-			"dado_procurado = df.sort_values('${1:COLUNA_COM_NOMES}')]",
-			"print(\"📋 ${1:COLUNA} ordenados:\")",
-			"print(dado_procurado[['${1:COLUNA_COM_NOMES}', '${2:COLUNA2}']].head())"
-		],
-		"description": "order by NOMES"
-	},
-
-	//excel_groupby
-	"excel_groupby": {
-		"prefix": "çexcel_groupby",
-		"body": [
-			"dado_procurado = df.groupby('${1:COLUNA_COM_NOMES}').size()]",
-			"print(\"📋 ${1:COLUNA_COM_NOMES} ordenados:\")",
-			"print(dado_procurado)"
-		],
-		"description": "Group By"
-	},
-
-	//excel_total_de_dados_qtd
-	"excel_total_de_dados_qtd": {
-		"prefix": "çexcel_total_de_dados_qtd",
-		"body": [
-			"total = len(df)",
-			"print(f\"📊 Total de dados: {total}\")"
-		],
-		"description": "Contagem total de dados"
-	},
-
-	//excel_distinct_coluna
-	"excel_distinct_coluna": {
-		"prefix": "çexcel_distinct_coluna",
-		"body": [
-			"dado_procurado = df['${1:COLUNA}'].unique()",
-			"print(f\"📊 ${1:COLUNA} únicos: {len(dado_procurado)}\")",
-			"print(f\"📊 Total de dados: {dado_procurado}\")"
-		],
-		"description": "Select Distinct de uma coluna"
-	},
-
-	//excel_moda
-	"excel_moda": {
-		"prefix": "çexcel_moda",
-		"body": [
-			"dado_procurado =  df['${1:COLUNA}'].mode()",
-			"print(f\"📊 ${1:COLUNA} mais frequente: {moda[0]}\")"
-		],
-		"description": "Moda (valor mais frequente)"
-	},
-
-	//excel_salvar_em_csv
-	"excel_salvar_em_csv": {
-		"prefix": "çexcel_salvar_em_csv",
-		"body": [
-			"df.to_csv('${1:NOME}.csv', index=False, sep=';', encoding='utf-8-sig')"
-		],
-		"description": "Salvar excel em csv"
-	},
-
-	//excel_salvar_em_excel
-	"excel_salvar_em_excel": {
-		"prefix": "çexcel_salvar_em_excel",
-		"body": [
-			"df.to_excel('${1:NOME}.xlsx', index=False)"
-		],
-		"description": "Salvar excel em excel"
-	},
-
-	//excel_salvar_colunas_especificas
-	"excel_salvar_colunas_especificas": {
-		"prefix": "çexcel_salvar_colunas_especificas",
-		"body": [
-			"df[['${1:COLUNA1}', '${2:COLUNA2}', '${3:COLUNA3}']].to_${4:csv}('${5:NOME_ARQUIVO_SAIDA}.${4:csv}', index=False) # .to_csv ou .to_excel"
-		],
-		"description": "Salvar colunas especificas"
-	},
-
-	//excel_mostrar_coluna
-	"excel_mostrar_coluna": {
-		"prefix": "çexcel_mostrar_coluna",
-		"body": [
-			"print(df['${1:COLUNA1}'].head(10))"
-		],
-		"description": "Mostra coluna top 10"
 	},
 
 	//sys_software_info
@@ -2577,7 +2344,7 @@
 		"description": "Pega texto do pop-up do SED"
 	},
 
-		//funcao_edge_debug
+	//funcao_edge_debug
 	"funcao_edge_debug": {
 		"prefix": "çfuncao_edge_debug",
 		"body": [
@@ -2794,6 +2561,427 @@
 			"    print(Fore.RED + \"\\n❌ Driver não disponível para testar RG\")"
 		],
 		"description": "Função para testar RG com dados do Excel"
-	}
+	},
+
+	//USE_EXCEL
+	"USE_EXCEL": {
+		"prefix": "çuse_excel",
+		"body": [
+			"pasta_arquivo = os.chdir(r'${1:C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\SED_PREENCHER}')",
+			"pasta_trecho = os.path.basename(r'${1:C:\\Users\\marcus.silva05\\Desktop\\PRODUÇÃO\\SED_PREENCHER}')",
+			"arquivo_excel = '${2:UDEMO_TESTES.xlsx}'",
+			"abas = pd.read_excel(arquivo_excel, sheet_name=None)",
+			"print(Fore.GREEN + f\"\\nUSANDO ARQUIVO '{arquivo_excel}' DA PASTA '{pasta_trecho}'\")",
+			"print(Fore.RED + f\"\\nO ARQUIVO POSSUI {len(abas)} ABAS\")",
+			"for i, (nome, df) in enumerate(abas.items(), 1):",
+			"    print(Fore.WHITE + f\"  {i}. {nome}\")",
+			"    print(Fore.WHITE + f\"     Linhas: {len(df)}\")",
+			"    print(Fore.WHITE + f\"     Colunas: {len(df.columns)}\")",
+			"    print(Fore.WHITE + f\"     Colunas: {list(df.columns)[:3]}...\")",
+			"    print()"
+		],
+		"description": "Lista abas do Excel com Pandas estilo USE"
+	},
+
+	//USE_ABA
+	"USE_ABA": {
+		"prefix": "çuse_aba",
+		"body": [
+			"aba_selecionada = '${1:19.06.2024}'  # Nome da aba que deseja selecionar",
+			"df = pd.read_excel(arquivo_excel, sheet_name=aba_selecionada)  # Carrega apenas a aba escolhida",
+			"print(Fore.GREEN + f\"\\n✅ ABA SELECIONADA: '{aba_selecionada}'\")",
+			"print(Fore.WHITE + f\"   Linhas: {len(df)}\")",
+			"print(Fore.WHITE + f\"   Total de Colunas: {len(df.columns)}\")",
+			"print(Fore.WHITE + f\"   Colunas: {list(df.columns)}\")"
+		],
+		"description": "Seleciona aba específica do Excel"
+	},
+
+	//SELECT_TOP10_EXCEL
+	"SELECT_TOP10_EXCEL": {
+		"prefix": "çtop10",
+		"body": [
+			"# SELECT TOP 10 DA ABA SELECIONADA",
+			"print(Fore.GREEN + f\"\\n📊 TOP 10 REGISTROS:\")",
+			"print(df.head(10))"
+		],
+		"description": "Mostra os 10 primeiros registros da aba selecionada"
+	},
+
+	//SELECT_DISTINCT_EXCEL
+	"SELECT_DISTINCT_EXCEL": {
+		"prefix": "çdistinct",
+		"body": [
+			"# SELECT DISTINCT DE UMA COLUNA",
+			"coluna = '${1:CARGO}'  # Nome da coluna para distinct",
+			"print(Fore.GREEN + f\"\\n📊 SELECT DISTINCT {coluna}:\")",
+			"print(Fore.WHITE + f\"   Total: {df[coluna].nunique()} valores únicos\")",
+			"print(Fore.CYAN + f\"{df[coluna].unique()}\")"
+		],
+		"description": "Mostra valores distintos de uma coluna"
+	},
+
+	//WHERE_LIKE_EXCEL
+	"WHERE_LIKE_EXCEL": {
+		"prefix": "çwhere_like",
+		"body": [
+			"# WHERE COM LIKE (ignora nulos)",
+			"coluna_filtro = '${1:NOME}'  # Coluna para filtrar",
+			"valor_busca = '${2:MARIA}'   # Valor para busca parcial",
+			"print(Fore.GREEN + f\"\\n📊 WHERE {coluna_filtro} LIKE '%{valor_busca}%':\")",
+			"df_filtrado = df[df[coluna_filtro].str.contains(valor_busca, case=False, na=False)]  # na=False ignora nulos",
+			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} registros encontrados\")",
+			"print(Fore.CYAN + f\"{df_filtrado}\")"
+		],
+		"description": "Filtra registros com LIKE (ignora nulos)"
+	},
+
+	//WHERE_LIKE_MULTIPLO_EXCEL
+	"WHERE_LIKE_MULTIPLO_EXCEL": {
+		"prefix": "çwhere_in",
+		"body": [
+			"# WHERE COM MULTIPLOS LIKE (OR)",
+			"coluna_filtro = '${1:NOME}'",
+			"padroes_busca = [${2:'MARIA', 'SILVA', 'SANTOS'}]",
+			"print(Fore.GREEN + f\"\\n📊 WHERE {coluna_filtro} LIKE '%{padroes_busca[0]}%' OR LIKE '%{padroes_busca[1]}%' OR LIKE '%{padroes_busca[2]}%':\")",
+			"df_filtrado = df[df[coluna_filtro].str.contains('|'.join(padroes_busca), case=False, na=False)]  # | = OR no regex",
+			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} registros encontrados\")",
+			"print(Fore.CYAN + f\"{df_filtrado}\")"
+		],
+		"description": "Filtra registros com múltiplos LIKE (OR)"
+	},
+
+	//WHERE_CONVERT_DATE_BR_EXCEL
+	"WHERE_CONVERT_DATE_BR_EXCEL": {
+		"prefix": "çwhere_between",
+		"body": [
+			"# WHERE COM DATAS NO FORMATO BRASILEIRO",
+			"coluna_data = '${1:DATA_NASC}'",
+			"data_inicio = '${2:01/01/2025}'  # Data início dd/mm/yyyy",
+			"data_fim = '${3:31/12/2026}'     # Data fim dd/mm/yyyy",
+			"print(Fore.GREEN + f\"\\n📊 WHERE CONVERT(DATE, {coluna_data}, 103) BETWEEN '{data_inicio}' AND '{data_fim}':\")",
+			"df[coluna_data] = pd.to_datetime(df[coluna_data], format='%d/%m/%Y', errors='coerce')",
+			"df_filtrado = df[(df[coluna_data] >= pd.to_datetime(data_inicio, format='%d/%m/%Y')) & (df[coluna_data] <= pd.to_datetime(data_fim, format='%d/%m/%Y'))]",
+			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} registros encontrados\")",
+			"print(Fore.CYAN + f\"{df_filtrado}\")"
+		],
+		"description": "Filtra registros com CONVERT DATE BETWEEN (formato BR)"
+	},
+
+//ROWNUMBERMULTIPLO_CHOR
+"ROWNUMBERMULTIPLO_CHOR": {
+	"prefix": "çrow_multiplo",
+	"body": [
+		"# ROWNUMBER MULTIPLO - EXEMPLO COM CHOR_MATTATHIAS",
+		"# OBJETIVO: Para cada CPF e ESCOLA, pegar a primeira ocorrência",
+		"coluna1 = '${1:CPF}'    # Primeira partição",
+		"coluna2 = '${2:ESCOLA}' # Segunda partição",
+		"print(Fore.GREEN + f\"\\n📊 ROW_NUMBER() OVER (PARTITION BY {coluna1}, {coluna2}):\")",
+		"",
+		"# Cria uma cópia para não alterar o df original",
+		"df_rank = df.copy()",
+		"",
+		"# Adiciona colunas de rank para cada partition",
+		"df_rank[f'RANK_{coluna1}'] = df_rank.groupby(coluna1).cumcount() + 1  # ROW_NUMBER por CPF",
+		"df_rank[f'RANK_{coluna2}'] = df_rank.groupby(coluna2).cumcount() + 1  # ROW_NUMBER por ESCOLA",
+		"",
+		"# Filtra onde rank = 1 para qualquer uma das colunas",
+		"df_filtrado = df_rank[(df_rank[f'RANK_{coluna1}'] == 1) | (df_rank[f'RANK_{coluna2}'] == 1)]",
+		"",
+		"print(Fore.WHITE + f\"   Total original: {len(df)} registros\")",
+		"print(Fore.WHITE + f\"   Total filtrado: {len(df_filtrado)} registros\")",
+		"print(Fore.CYAN + f\"\\n{df_filtrado[['NOME', 'CPF', 'ESCOLA', f'RANK_{coluna1}', f'RANK_{coluna2}']].head(10)}\")"
+	],
+	"description": "ROW_NUMBER múltiplo para CHOR_MATTATHIAS"
+},
+
+//EXTRAITEMPO_SIMPLES
+"EXTRAITEMPO_SIMPLES": {
+	"prefix": "çddtemp",
+	"body": [
+		"# EXTRAI COMPONENTES DE DATA - VERSÃO SIMPLES",
+		"df_temp = df.copy()",
+		"df_temp['DT_NASC'] = pd.to_datetime(df_temp['DT_NASC'], format='%d/%m/%Y', errors='coerce')",
+		"df_temp['ANO'] = df_temp['DT_NASC'].dt.year",
+		"df_temp['MES'] = df_temp['DT_NASC'].dt.month",
+		"df_temp['DIA'] = df_temp['DT_NASC'].dt.day",
+		"print(Fore.GREEN + f\"\\n📊 EXTRAINDO COMPONENTES DE DATA:\")",
+		"print(Fore.CYAN + f\"{df_temp[['NOME', 'DT_NASC', 'ANO', 'MES', 'DIA']].head(10)}\")"
+	],
+	"description": "EXTRAI DATA (versão simples)"
+},
+
+//CRIARCOLUNA_TODAS_PANDAS
+"CRIARCOLUNA_TODAS_PANDAS": {
+	"prefix": "çcol_criar",
+	"body": [
+		"df['COLUNA_VAZIA'] = ''  # Coluna vazia (equivalente a NULL)",
+		"df['STATUS'] = 'ATIVO'  # Coluna com valor padrão",
+		"df['OBSERVACAO'] = None  # Coluna com None (equivalente a NULL)",
+		"df['CODIGO'] = df.index + 1  # Coluna com sequência numérica (1, 2, 3...)",
+		"df['SOMA_AULAS'] = df['TT_AULAS_LIVRES'] + df['TT_AULAS_SUBST']  # Soma de colunas",
+		"df['IDADE_MAIS_10'] = df['IDADE'] + 10  # Adição com constante",
+		"df['NOME_COMPLETO'] = df['NOME'] + ' - ' + df['CARGO_C']  # Concatena texto",
+		"df['NOME_MAIUSCULO'] = df['NOME'].str.upper()  # Tudo maiúsculo",
+		"df['NOME_MINUSCULO'] = df['NOME'].str.lower()  # Tudo minúsculo",
+		"df['NOME_TITULO'] = df['NOME'].str.title()  # Primeira letra maiúscula",
+		"df['NOME_REMOVER_ESPACOS'] = df['NOME'].str.strip()  # Remove espaços extras",
+		"df['PRIMEIRO_NOME'] = df['NOME'].str.split().str[0]  # Primeiro nome",
+		"df['ULTIMO_NOME'] = df['NOME'].str.split().str[-1]  # Último nome",
+		"",
+		"# Extrair componentes de data",
+		"df['ANO_NASC'] = pd.to_datetime(df['DT_NASC'], format='%d/%m/%Y', errors='coerce').dt.year  # Extrai ano",
+		"df['MES_NASC'] = pd.to_datetime(df['DT_NASC'], format='%d/%m/%Y', errors='coerce').dt.month  # Extrai mês",
+		"df['DIA_NASC'] = pd.to_datetime(df['DT_NASC'], format='%d/%m/%Y', errors='coerce').dt.day  # Extrai dia",
+		"df['NOME_MES'] = pd.to_datetime(df['DT_NASC'], format='%d/%m/%Y', errors='coerce').dt.month_name(locale='pt_BR')  # Nome do mês",
+		"df['DIA_SEMANA'] = pd.to_datetime(df['DT_NASC'], format='%d/%m/%Y', errors='coerce').dt.day_name(locale='pt_BR')  # Nome do dia",
+		"",
+		"# Cálculos com datas",
+		"df['IDADE_CALCULADA'] = (pd.Timestamp.now() - pd.to_datetime(df['DT_NASC'], format='%d/%m/%Y', errors='coerce')).dt.days // 365  # Idade em anos",
+		"df['DIAS_DE_ESCOLA'] = (pd.Timestamp.now() - pd.to_datetime(df['DTIEXER_C'], format='%d/%m/%Y', errors='coerce')).dt.days  # Dias desde ingresso",
+		"",
+		"# Substituir valores específicos",
+		"df['SEXO_CORRIGIDO'] = df['SEXO'].replace({'M': 'MASCULINO', 'F': 'FEMININO'})  # Substitui valores",
+		"df['COR_CORRIGIDA'] = df['COR'].replace({'B - BRANCA': 'BRANCA', 'P - PARDA': 'PARDA', 'N - NEGRA': 'NEGRA'})  # Substitui valores",
+		"",
+		"# Substituir nulos",
+		"df['TIPODEF_DESC_PREENCHIDO'] = df['TIPODEF_DESC'].fillna('SEM_DEFICIENCIA')  # Preenche nulos com valor padrão",
+		"",
+		"print(Fore.GREEN + \"\\n📊 COLUNAS CRIADAS:\")",
+		"print(Fore.WHITE + f\"   Total de colunas: {len(df.columns)}\")",
+		"print(Fore.WHITE + f\"   Colunas: {list(df.columns)}\")",
+		"print(Fore.CYAN + f\"\\n{df.head()}\")"
+	],
+	"description": "CRIA TODAS AS COLUNAS (completo)"
+},
+
+//SELECT_ALL_PANDAS
+"SELECT_ALL_PANDAS": {
+	"prefix": "çselect*",
+	"body": [
+		"# SELECT * FROM df",
+		"print(Fore.GREEN + \"\\n📊 SELECT *:\")",
+		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de colunas: {len(df.columns)}\")",
+		"print(Fore.CYAN + f\"\\n{df}\")"
+	],
+	"description": "SELECT * (mostra todos os dados)"
+},
+
+//SELECT_TOP_ALL_PANDAS
+"SELECT_TOP_ALL_PANDAS": {
+	"prefix": "çselect_top_all",
+	"body": [
+		"# SELECT TOP ${1:10} * FROM df",
+		"print(Fore.GREEN + f\"\\n📊 SELECT TOP ${1:10} *:\")",
+		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de colunas: {len(df.columns)}\")",
+		"print(Fore.CYAN + f\"\\n{df.head(${1:10})}\")"
+	],
+	"description": "SELECT TOP n * (mostra primeiros n registros)"
+},
+
+//SELECT_COLUNAS_PANDAS
+"SELECT_COLUNAS_PANDAS": {
+	"prefix": "çselect_col",
+	"body": [
+		"# SELECT ${1:NOME, CPF, ESCOLA} FROM df",
+		"colunas_selecionadas = ['${1:NOME}', '${2:CPF}', '${3:ESCOLA}']  # Lista de colunas desejadas",
+		"print(Fore.GREEN + f\"\\n📊 SELECT {', '.join(colunas_selecionadas)}:\")",
+		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Colunas: {colunas_selecionadas}\")",
+		"print(Fore.CYAN + f\"\\n{df[colunas_selecionadas]}\")"
+	],
+	"description": "SELECT colunas específicas"
+},
+
+//SELECT_TOP_COLUNAS_PANDAS
+"SELECT_TOP_COLUNAS_PANDAS": {
+	"prefix": "çselect_top_col",
+	"body": [
+		"# SELECT TOP ${1:10} ${2:NOME, CPF, ESCOLA} FROM df",
+		"colunas_selecionadas = ['${2:NOME}', '${3:CPF}', '${4:ESCOLA}']  # Lista de colunas desejadas",
+		"print(Fore.GREEN + f\"\\n📊 SELECT TOP ${1:10} {', '.join(colunas_selecionadas)}:\")",
+		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Colunas: {colunas_selecionadas}\")",
+		"print(Fore.CYAN + f\"\\n{df[colunas_selecionadas].head(${1:10})}\")"
+	],
+	"description": "SELECT TOP n colunas específicas"
+},
+
+//SELECT_SEM_CABECALHO_PANDAS
+"SELECT_SEM_CABECALHO_PANDAS": {
+	"prefix": "çselect_sem_header",
+	"body": [
+		"# SELECT * FROM df (sem cabeçalho)",
+		"print(Fore.GREEN + \"\\n📊 SELECT * (sem cabeçalho):\")",
+		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.CYAN + f\"\\n{df.to_string(index=False, header=False)}\")"
+	],
+	"description": "SELECT * sem cabeçalho (apenas dados)"
+},
+
+//CRIAR_TEMPORARIA
+"CRIAR_TEMPORARIA": {
+	"prefix": "çtemp_criar",
+	"body": [
+		"temp1 = df.copy()",
+		"print(Fore.CYAN + f\"\\n{temp2}\")"
+	],
+	"description": "Criar temporária"
+},
+
+//COUNT_ALL_PANDAS
+"COUNT_ALL_PANDAS": {
+	"prefix": "çcount_all",
+	"body": [
+		"# COUNT(*) - total de registros",
+		"print(Fore.GREEN + \"\\n📊 COUNT(*):\")",
+		"print(Fore.WHITE + f\"   Total: {len(df)} registros\")"
+	],
+	"description": "COUNT(*) total de registros"
+},
+//COUNT_COLUNA
+"COUNT_COLUNA": {
+	"prefix": "çcount_col",
+	"body": [
+		"# COUNT(coluna) - contagem de uma coluna",
+		"coluna = '${1:NOME}'",
+		"print(Fore.GREEN + f\"\\n📊 COUNT({coluna}):\")",
+		"print(Fore.WHITE + f\"   Total: {len(df[coluna])} registros\")",
+		"print(Fore.WHITE + f\"   Não-nulos: {df[coluna].count()} registros\")",
+		"print(Fore.WHITE + f\"   Nulos: {len(df[coluna]) - df[coluna].count()} registros\")"
+	],
+	"description": "COUNT(coluna) contagem específica"
+},
+
+//COUNT_FILTRADO
+"COUNT_FILTRADO": {
+	"prefix": "çcount_filtrado",
+	"body": [
+		"# COUNT com filtro (WHERE)",
+		"print(Fore.GREEN + \"\\n📊 COUNT(*) COM FILTRO:\")",
+		"print(Fore.WHITE + f\"   Total geral: {len(df)} registros\")",
+		"print(Fore.WHITE + f\"   Filtro aplicado: ${1:IDADE} > ${2:50}\")",
+		"print(Fore.WHITE + f\"   Total filtrado: {len(df[df['${1:IDADE}'] > ${2:50}])} registros\")"
+	],
+	"description": "COUNT com filtro WHERE"
+},
+
+//GROUPBY_COUNT_SIMPLES_PANDAS
+"GROUPBY_COUNT_SIMPLES_PANDAS": {
+	"prefix": "çgroupby",
+	"body": [
+		"# GROUP BY COUNT - distribuição por categoria",
+		"coluna = '${1:CARGO_C}'",
+		"print(Fore.GREEN + f\"\\n📊 GROUP BY {coluna} - COUNT:\")",
+		"print(Fore.CYAN + f\"{df.groupby(coluna).size()}\")"
+	],
+	"description": "GROUP BY COUNT (uma coluna)"
+},
+
+//GROUPBY_MULTICOLUNA_PANDAS
+"GROUPBY_MULTICOLUNA_PANDAS": {
+	"prefix": "çgroupby_mult",
+	"body": [
+		"# GROUP BY com múltiplas colunas",
+		"colunas = ['${1:CARGO_C}', '${2:SEXO}']",
+		"coluna_agregacao = '${3:QTDE_AULAS_ATRIB_QA}'",
+		"agregacao = '${4:max}'  # max, min, mean, sum, count",
+		"print(Fore.GREEN + f\"\\n📊 GROUP BY {', '.join(colunas)} - {agregacao.upper()} DE {coluna_agregacao}:\")",
+		"print(Fore.CYAN + f\"{df.groupby(colunas)[coluna_agregacao].agg(agregacao)}\")"
+	],
+	"description": "GROUP BY com múltiplas colunas"
+},
+
+//GROUPBY_AGREGACOES_PANDAS
+"GROUPBY_AGREGACOES_PANDAS": {
+	"prefix": "çgroupby_agg",
+	"body": [
+		"# GROUP BY com múltiplas agregações",
+		"coluna_grupo = '${1:CARGO_C}'",
+		"coluna_analise = '${2:IDADE}'",
+		"print(Fore.GREEN + f\"\\n📊 GROUP BY {coluna_grupo} - MÚLTIPLAS AGREGAÇÕES:\")",
+		"print(Fore.WHITE + \"   count = quantidade de registros\")",
+		"print(Fore.WHITE + \"   mean = média\")",
+		"print(Fore.WHITE + \"   min = valor mínimo\")",
+		"print(Fore.WHITE + \"   max = valor máximo\")",
+		"print(Fore.WHITE + \"   std = desvio padrão (dispersão dos dados)\")",
+		"print(Fore.CYAN + f\"{df.groupby(coluna_grupo)[coluna_analise].agg(['count', 'mean', 'std', 'min', 'max', 'median'])}\")"
+	],
+	"description": "GROUP BY com múltiplas agregações (TODAS POSSÍVEIS)"
+},
+
+//CONCAT_SIMPLES_PANDAS
+"CONCAT_SIMPLES_PANDAS": {
+	"prefix": "çconcat",
+	"body": [
+		"# CONCATENAÇÃO SIMPLES (2 colunas)",
+		"# SQL: CONCAT(${1:col1}, ' - ', ${2:col2}) AS ${3:NOVA_COLUNA}",
+		"df['${3:NOVA_COLUNA}'] = df['${1:col1}'] + ' - ' + df['${2:col2}']",
+		"print(Fore.GREEN + f\"\\n📊 CONCAT(${1:col1}, ' - ', ${2:col2}):\")",
+		"print(Fore.CYAN + f\"{df[['${1:col1}', '${2:col2}', '${3:NOVA_COLUNA}']].head()}\")"
+	],
+	"description": "CONCAT de 2 colunas"
+},
+
+//ESTRUTURA_COMPLETA_PANDAS
+"ESTRUTURA_COMPLETA_PANDAS": {
+	"prefix": "çddtipo",
+	"body": [
+		"# ============================================================================",
+		"# ESTRUTURA COMPLETA DA TABELA (equivalente a EXEC sp_help)",
+		"# ============================================================================",
+		"print(Fore.GREEN + \"\\n📊 ESTRUTURA DA TABELA (df.info()):\")",
+		"df.info()",
+		"",
+		"print(Fore.GREEN + \"\\n📊 TIPOS DAS COLUNAS (df.dtypes):\")",
+		"print(Fore.CYAN + f\"{df.dtypes}\")",
+		"",
+		"print(Fore.GREEN + \"\\n📊 NOMES DAS COLUNAS:\")",
+		"print(Fore.CYAN + f\"{list(df.columns)}\")",
+		"print(Fore.WHITE + f\"   Total: {len(df.columns)} colunas\")"
+	],
+	"description": "ESTRUTURA COMPLETA (equivalente a sp_help)"
+},
+
+//ALTERAR_SEGURO_PANDAS
+"ALTERAR_SEGURO_PANDAS": {
+	"prefix": "çddaterartipo",
+	"body": [
+		"# ============================================================================",
+		"# ALTERAR TIPO COM VERIFICAÇÃO (seguro)",
+		"# ============================================================================",
+		"# SQL: ALTER TABLE ${1:tabela} ALTER COLUMN ${2:coluna} ${3:TIPO} NULL",
+		"",
+		"print(Fore.GREEN + f\"\\n📊 ALTERANDO COLUNA '${2:coluna}' PARA '${3:string}':\")",
+		"print(Fore.WHITE + f\"   Tipo atual: {df['${2:coluna}'].dtype}\")",
+		"print(Fore.WHITE + f\"   Valores nulos: {df['${2:coluna}'].isna().sum()}\")",
+		"",
+		"# Tenta converter",
+		"try:",
+		"    df['${2:coluna}'] = df['${2:coluna}'].astype('${3:string}')",
+		"    print(Fore.GREEN + f\"   ✅ Conversão realizada com sucesso!\")",
+		"    print(Fore.WHITE + f\"   Novo tipo: {df['${2:coluna}'].dtype}\")",
+		"except Exception as e:",
+		"    print(Fore.RED + f\"   ❌ Erro na conversão: {e}\")"
+	],
+	"description": "ALTERAR TIPO DE DADOS COM VERIFICAÇÃO"
+},
+
+//EXTRAIR_SUBSTRING_PANDAS
+"EXTRAIR_SUBSTRING_PANDAS": {
+	"prefix": "çsubstring",
+	"body": [
+		"# ============================================================================",
+		"# EXTRAIR POSIÇÃO ESPECÍFICA (equivalente a SUBSTRING)",
+		"# ============================================================================",
+		"# SQL: SUBSTRING(${1:coluna}, ${2:3}, ${3:5})",
+		"df['${4:NOVA_COLUNA}'] = df['${1:coluna}'].str[${2:2}:${3:7}]  # índice inicial (0-based), final",
+		"print(Fore.GREEN + f\"\\n📊 SUBSTRING(${1:coluna}, {2}, {3}) - Posição {2} a {3}:\")",
+		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${4:NOVA_COLUNA}']].head()}\")"
+	],
+	"description": "EXTRAIR SUBSTRING (posição específica)"
+}
 
 }
