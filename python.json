@@ -2929,9 +2929,6 @@
 "ESTRUTURA_COMPLETA_PANDAS": {
 	"prefix": "çddtipo",
 	"body": [
-		"# ============================================================================",
-		"# ESTRUTURA COMPLETA DA TABELA (equivalente a EXEC sp_help)",
-		"# ============================================================================",
 		"print(Fore.GREEN + \"\\n📊 ESTRUTURA DA TABELA (df.info()):\")",
 		"df.info()",
 		"",
@@ -2947,11 +2944,8 @@
 
 //ALTERAR_SEGURO_PANDAS
 "ALTERAR_SEGURO_PANDAS": {
-	"prefix": "çddaterartipo",
+	"prefix": "çddalterartipo",
 	"body": [
-		"# ============================================================================",
-		"# ALTERAR TIPO COM VERIFICAÇÃO (seguro)",
-		"# ============================================================================",
 		"# SQL: ALTER TABLE ${1:tabela} ALTER COLUMN ${2:coluna} ${3:TIPO} NULL",
 		"",
 		"print(Fore.GREEN + f\"\\n📊 ALTERANDO COLUNA '${2:coluna}' PARA '${3:string}':\")",
@@ -2971,17 +2965,79 @@
 
 //EXTRAIR_SUBSTRING_PANDAS
 "EXTRAIR_SUBSTRING_PANDAS": {
-	"prefix": "çsubstring",
+	"prefix": "çddextr",
 	"body": [
-		"# ============================================================================",
-		"# EXTRAIR POSIÇÃO ESPECÍFICA (equivalente a SUBSTRING)",
-		"# ============================================================================",
 		"# SQL: SUBSTRING(${1:coluna}, ${2:3}, ${3:5})",
-		"df['${4:NOVA_COLUNA}'] = df['${1:coluna}'].str[${2:2}:${3:7}]  # índice inicial (0-based), final",
+		"df['${4:NOVA_COLUNA}'] = df['${1:coluna}'].str[${2:2}:${3:7}]  # .str[0] = caracter inicial",
 		"print(Fore.GREEN + f\"\\n📊 SUBSTRING(${1:coluna}, {2}, {3}) - Posição {2} a {3}:\")",
-		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${4:NOVA_COLUNA}']].head()}\")"
+		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${4:NOVA_COLUNA}']].head()}\")",
+		"# EXTRAIR             FORMULA",
+		"# Primeiro nomE       df['col'].str.split().str[0]	",
+		"# Último nome	       df['col'].str.split().str[-1]"
 	],
 	"description": "EXTRAIR SUBSTRING (posição específica)"
+},
+
+//EXTRAIR_ANTES_PANDAS
+"EXTRAIR_ANTES_PANDAS": {
+	"prefix": "çddextr_separador",
+	"body": [
+		"# SQL: SUBSTRING(${1:coluna}, 1, SEPARADOR('${2: - }', ${1:coluna}))",
+		"df['${3:NOVA_COLUNA}'] = df['${1:coluna}'].str.split('${2: - }').str[0] # .str[0] = RETIRA ANTES DO SEPARADOR, .str[1] = RETIRA DEPOIS DO SEPARADOR",
+		"print(Fore.GREEN + f\"\\n📊 EXTRAIR ANTES DE '${2: - }':\")",
+		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${3:NOVA_COLUNA}']].head()}\")"
+	],
+	"description": "EXTRAIR ANTES OU DEPOIS DO SEPARADOR"
+},
+
+//EXTRAIR_REGEX_PANDAS
+"EXTRAIR_REGEX_PANDAS": {
+	"prefix": "çregex",
+	"body": [
+		"# Extrai números: r'(\\d+)', letras: r'([A-Z]+)', etc.",
+		"df['${2:NOVA_COLUNA}'] = df['${1:coluna}'].str.extract(r'${3:(\\d+)}')",
+		"print(Fore.GREEN + f\"\\n📊 EXTRAINDO COM REGEX:\")",
+		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${2:NOVA_COLUNA}']].head()}\")"
+	],
+	"description": "EXTRAIR COM EXPRESSÃO REGULAR"
+},
+
+//LIMPAR_MULTIPLAS_PANDAS
+"LIMPAR_MULTIPLAS_PANDAS": {
+	"prefix": "çlimpa_vazio",
+	"body": [
+		"colunas_limpar = ['${1:NM_CARGOC}', '${2:NOMEESC}', '${3:JORNADA}']",
+		"for col in colunas_limpar:",
+		"    df[col] = df[col].str.strip()  # <- Edite a limpeza aqui!",
+		"print(Fore.GREEN + f\"\\n📊 COLUNAS LIMPAS:\")",
+		"print(Fore.WHITE + f\"   Colunas: {colunas_limpar}\")",
+		"print(Fore.CYAN + f\"{df[colunas_limpar].head()}\")",
+		"# Função\t                                     O que faz\t                       ",
+		"# .str.strip()\t                               Remove espaços das duas pontas\t",
+		"# .str.lstrip()\t                            Remove espaços da esquerda\t",
+		"# .str.rstrip()\t                            Remove espaços da direita\t",
+		"# .str.replace(' ', '')\t                      Remove todos os espaços\t",
+		"# .str.replace(r'\\s+', ' ', regex=True)\t    Múltiplos espaços ",
+		"# .str.replace(r'[^\\w\\s]', '', regex=True)\t Remove caracteres especiais\t",
+		"# .str.upper()\t                               Tudo maiúsculo\t",
+		"# .str.lower()\t                               Tudo minúsculo\t",
+		"# .str.title()\t                               Primeira letra ",
+		"# .str.capitalize()\t                         Primeira letra da frase maiúscula"
+	],
+	"description": "LIMPAR ESPAÇOS EM MÚLTIPLAS COLUNAS"
+},
+
+//MUDAR_CARACTER_DICIONARIO_PANDAS
+"MUDAR_CARACTER_DICIONARIO_PANDAS": {
+	"prefix": "çddmudar",
+	"body": [
+		"substituicoes = {'${2:T}': '${3:M}', '${4:t}': '${5:m}', '${6:Ã}': '${7:A}'}  # Dicionário de substituições",
+		"df['${8:NOVA_COLUNA}'] = df['${1:NM_CARGOC}'].replace(substituicoes, regex=True)  # Substitui todos de uma vez",
+		"print(Fore.GREEN + f\"\\n📊 SUBSTITUIÇÕES MÚLTIPLAS:\")",
+		"print(Fore.WHITE + f\"   Dicionário: {substituicoes}\")",
+		"print(Fore.CYAN + f\"{df[['${1:NM_CARGOC}', '${8:NOVA_COLUNA}']].head()}\")"
+	],
+	"description": "SUBSTITUIR VÁRIOS CARACTERES DE UMA VEZ (dicionário)"
 }
 
 }
