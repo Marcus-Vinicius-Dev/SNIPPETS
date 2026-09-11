@@ -2972,8 +2972,8 @@
 		"print(Fore.GREEN + f\"\\n📊 SUBSTRING(${1:coluna}, {2}, {3}) - Posição {2} a {3}:\")",
 		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${4:NOVA_COLUNA}']].head()}\")",
 		"# EXTRAIR             FORMULA",
-		"# Primeiro nomE       df['col'].str.split().str[0]	",
-		"# Último nome	       df['col'].str.split().str[-1]"
+		"# Primeiro nomE       df['col'].str.split().str[0]",
+		"# Último nome         df['col'].str.split().str[-1]"
 	],
 	"description": "EXTRAIR SUBSTRING (posição específica)"
 },
@@ -3038,6 +3038,154 @@
 		"print(Fore.CYAN + f\"{df[['${1:NM_CARGOC}', '${8:NOVA_COLUNA}']].head()}\")"
 	],
 	"description": "SUBSTITUIR VÁRIOS CARACTERES DE UMA VEZ (dicionário)"
+},
+
+//NUMERO_PARA_STRING_PANDAS
+"NUMERO_PARA_STRING_PANDAS": {
+	"prefix": "çddconvert",
+	"body": [
+		"df['${1:NOVA_COLUNA}'] = df['${2:CPF}'].astype(str)  # < - MUDAR AQUI ",
+		"print(Fore.GREEN + f\"\\n📊 NÚMERO → STRING:\")",
+		"print(Fore.WHITE + f\"   Tipo original: {df['${2:CPF}'].dtype}\")",
+		"print(Fore.WHITE + f\"   Tipo novo:     {df['${1:NOVA_COLUNA}'].dtype}\")",
+		"print(Fore.CYAN + f\"{df[['${2:CPF}', '${1:NOVA_COLUNA}']].head()}\")",
+		"",
+		"# Conversão\t    Pandas\t",
+		"# ",
+		"# String      \t.astype(str)\tSTR() ",
+		"# String        .apply(lambda x: f\"{x:.2f}\")\t",
+		"# Número      \tpd.to_numeric(s, errors='coerce')\t",
+		"# Número        .astype(int)\t",
+		"# Número        .astype(float)\t",
+		"# String      \t.dt.strftime('%d/%m/%Y')\t",
+		"# Data      \t   pd.to_datetime(s, format='%d/%m/%Y')\t",
+		"# String      \t.map({True:'SIM', False:'NAO'})\t",
+		"# Número      \t.astype(int)\t",
+		"# Booleano      .astype(bool)"
+	],
+	"description": "TRANSFORMAR NÚMERO EM STRING (nova coluna)"
+},
+
+//DATA_ATUAL_PANDAS
+"DATA_ATUAL_PANDAS": {
+	"prefix": "çdataatual",
+	"body": [
+		"# ============================================================================",
+		"# EXTRAIR COMPONENTES DA DATA ATUAL",
+		"# ============================================================================",
+		"# SQL: YEAR(GETDATE()), MONTH(GETDATE()), DAY(GETDATE())",
+		"",
+		"agora = pd.Timestamp.now()  # Data/hora atual",
+		"print(Fore.GREEN + f\"\\n📊 COMPONENTES DA DATA ATUAL:\")",
+		"print(Fore.WHITE + f\"   Ano:      {agora.year}\")  # YEAR",
+		"print(Fore.WHITE + f\"   Mês:      {agora.month}\")  # MONTH",
+		"print(Fore.WHITE + f\"   Dia:      {agora.day}\")  # DAY",
+		"print(Fore.WHITE + f\"   Hora:     {agora.hour}\")  # HOUR",
+		"print(Fore.WHITE + f\"   Minuto:   {agora.minute}\")  # MINUTE",
+		"print(Fore.WHITE + f\"   Segundo:  {agora.second}\")  # SECOND",
+		"print(Fore.WHITE + f\"   Dia sem.: {agora.day_name()}\")  # Nome do dia",
+		"print(Fore.WHITE + f\"   Completa: {agora.day}/{agora.month}/{agora.year}\")",
+		"print(Fore.WHITE + f\"   Completa: {agora.strftime('%d/%m/%Y')}\")"
+	],
+	"description": "DATA ATUAL COMPLETA (data + hora)"
+},
+
+//DATEDIFF_DIAS_PANDAS
+"DATEDIFF_DIAS_PANDAS": {
+	"prefix": "çdatas_diferenca",
+	"body": [
+		"# SQL: DATEDIFF(DAY, TRY_CAST(${2:DATA_INICIO} AS DATE), TRY_CAST(${3:DATA_FIM} AS DATE)) AS ${4:NOVA_COLUNA}",
+		"",
+		"data1 = pd.to_datetime(df['${2:DATA_INICIO}'], errors='coerce')  # Converte data1",
+		"data2 = pd.to_datetime(df['${3:DATA_FIM}'], errors='coerce')  # Converte data2",
+		"df['${4:DIAS_DIFERENCA}'] = (data2 - data1).dt.days   # Diferença em dias",
+		"df['${4:ANOS_DIFERENCA}'] = ((data2 - data1).dt.days / 365.25).astype('Int64')  # Anos (365.25 = ano bissexto)",
+		"df['${4:MESES_DIFERENCA}'] = ((data2.dt.year - data1.dt.year) * 12 + (data2.dt.month - data1.dt.month))  # Meses exatos",
+		"df['${4:HORAS_DIFERENCA}'] = ((data2 - data1).dt.total_seconds() / 3600).round(2)  # Horas com 2 casas",
+		"df['${4:MINUTOS_DIFERENCA}'] = ((data2 - data1).dt.total_seconds() / 60).round(0)  # Minutos",
+		"df['${4:SEGUNDOS_DIFERENCA}'] = (data2 - data1).dt.total_seconds().round(0)  # Segundos",
+		"print(Fore.GREEN + f\"\\n📊 DIFERENÇA DE DIAS ENTRE '${2:DATA_INICIO}' E '${3:DATA_FIM}':\")",
+		"print(Fore.CYAN + f\"{df[['${2:DATA_INICIO}', '${3:DATA_FIM}', '${4:DIAS_DIFERENCA}']].head()}\")"
+	],
+	"description": "DATEDIFF EM DIAS"
+},
+
+//DATEDIFF_DATA_ATUAL_PANDAS
+"DATEDIFF_DATA_ATUAL_PANDAS": {
+	"prefix": "çdata_idade_calculo",
+	"body": [
+		"# SQL: DATEDIFF(YEAR, TRY_CAST(${2:COLUNA} AS DATE), GETDATE()) AS ${3:IDADE}",
+		"",
+		"data_nasc = pd.to_datetime(df['${2:DATA_NASC}'], errors='coerce')  # Data de nascimento",
+		"hoje = pd.Timestamp.now()  # Data atual",
+		"",
+		"# Anos completos (idade exata)",
+		"df['${3:IDADE}'] = ((hoje - data_nasc).dt.days / 365.25).astype('Int64')  # Idade em anos",
+		"print(Fore.GREEN + f\"\\n📊 IDADE A PARTIR DE '${2:DATA_NASC}':\")",
+		"print(Fore.CYAN + f\"{df[['${2:DATA_NASC}', '${3:IDADE}']].head()}\")"
+	],
+	"description": "DATEDIFF COM DATA ATUAL (idade)"
+},
+
+//LEFT_JOIN_PANDAS
+"LEFT_JOIN_PANDAS": {
+	"prefix": "çjoin_left",
+	"body": [
+		"df_join = pd.merge(",
+		"    df,                    ",
+		"    df_2,                  ",
+		"    on=['${1:ID_INTERNO}', '${2:CARGO_C}'],  # PODE ACRESCENTAR UMA TERCEIRA OU TIRAR UMA COLUNA",
+		"    how='left',            # left ou inner ou ",
+		"    suffixes=('_A', '_B')  # Sufixo para colunas duplicadas",
+		")",
+		"print(Fore.GREEN + f\"\\n📊 LEFT JOIN:\")",
+		"print(Fore.WHITE + f\"   Tabela A: {len(df)} registros\")",
+		"print(Fore.WHITE + f\"   Tabela B: {len(df_2)} registros\")",
+		"print(Fore.WHITE + f\"   Resultado: {len(df_join)} registros\")",
+		"print(Fore.CYAN + f\"\\n{df_join.head()}\")"
+	],
+	"description": "LEFT JOIN entre dois DataFrames"
+},
+
+//VERIFICAR_JOIN_PANDAS
+"VERIFICAR_JOIN_PANDAS": {
+	"prefix": "çjoin_verificar",
+	"body": [
+		"print(Fore.GREEN + f\"\\n📊 VERIFICAÇÃO DO JOIN:\")",
+		"print(Fore.WHITE + f\"   Tabela A (df):   {len(df)} registros\")",
+		"print(Fore.WHITE + f\"   Tabela B (df_2): {len(df_2)} registros\")",
+		"print(Fore.WHITE + f\"   Resultado:       {len(df_join)} registros\")",
+		"print(Fore.CYAN + f\"\\n   Colunas A: {list(df.columns)[:5]}...\")",
+		"print(Fore.CYAN + f\"   Colunas B: {list(df_2.columns)[:5]}...\")",
+		"print(Fore.CYAN + f\"   Colunas J: {list(df_join.columns)[:5]}...\")",
+		"print(Fore.WHITE + f\"\\n   Registros sem match: {df_join[df_join.columns[-1]].isna().sum()}\")"
+	],
+	"description": "Verificar resultado do JOIN"
+},
+
+//JOIN_COM_INDICADOR_PANDAS
+"JOIN_COM_INDICADOR_PANDAS": {
+	"prefix": "çjoin_ind",
+	"body": [
+		"# ============================================================================",
+		"# JOIN COM INDICADOR (mostra origem de cada registro)",
+		"# ============================================================================",
+		"",
+		"df_join = pd.merge(",
+		"    df,                    # Tabela A",
+		"    df_2,                  # Tabela B",
+		"    on='${1:ID_INTERNO}',  # Coluna em comum",
+		"    how='${2:outer}',      # Tipo de JOIN",
+		"    suffixes=('_A', '_B'),",
+		"    indicator='${3:ORIGEM}'  # Coluna indicando origem",
+		")",
+		"print(Fore.GREEN + f\"\\n📊 JOIN COM INDICADOR:\")",
+		"print(Fore.CYAN + f\"\\n{df_join['${3:ORIGEM}'].value_counts()}\")",
+		"print(Fore.WHITE + f\"\\n   both    = existe nas duas tabelas\")",
+		"print(Fore.WHITE + f\"   left_only = só na tabela A\")",
+		"print(Fore.WHITE + f\"   right_only = só na tabela B\")"
+	],
+	"description": "JOIN com indicador de origem"
 }
 
 }
