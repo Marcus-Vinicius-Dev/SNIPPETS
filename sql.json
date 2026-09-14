@@ -236,7 +236,7 @@
 	  "prefix": "ZSEL",
 	  "body": [
 		"SELECT *          ",
-		"FROM ${1:CTG0526}"
+		"FROM ${1:CTG0826}"
 	  ],
 	  "description": "SELECT SIMPLES"
 	},
@@ -3700,7 +3700,7 @@
 		  "FROM CONTAGEH.dbo.TB_ATRIB_EVENTO A",
 		  "LEFT JOIN CONTAGEH.dbo.TB_TIPO_EVENTO B ON A.CD_TIP_EVE = B.CD_TIP_EVE",
 		  "LEFT JOIN CONTAGEH.dbo.TB_EVENTO C ON A.CD_EVE = C.CD_EVE AND A.CD_TIP_EVE = C.CD_TIP_EVE",
-		  "LEFT JOIN CONTAGEH.[dbo].[TB_FUNCIONAL] D ON A.NR_CPF = D.NR_CPF",
+		  "LEFT JOIN CONTAGEH.[dbo].[TB_FUNCIONAL] D ON A.NR_CPF = D.NR_CPF AND A.NR_DI = D.NR_DI",
 		  "${1:-- }WHERE D.CD_SIT_REG = 'A' -- A = ATIVO, E = EXCLUÍDO , F = falecido, 0 = erro, P CATEGORIA P, I = INATIVO, B = BLOQUEADO"
 		],
 		"description": "CONTAGEH_ATRIB_EVENTO COM JOINS BIZURADOS" 
