@@ -2713,7 +2713,7 @@
 
 //CRIARCOLUNA_TODAS_PANDAS
 "CRIARCOLUNA_TODAS_PANDAS": {
-	"prefix": "çcol_criar",
+	"prefix": "çcoluna_criar",
 	"body": [
 		"df['COLUNA_VAZIA'] = ''  # Coluna vazia (equivalente a NULL)",
 		"df['STATUS'] = 'ATIVO'  # Coluna com valor padrão",
@@ -3127,35 +3127,33 @@
 	"description": "DATEDIFF COM DATA ATUAL (idade)"
 },
 
-//JOIN_PANDAS
-"JOIN_PANDAS": {
+//JOIN
+"JOIN": {
 	"prefix": "çjoin",
 	"body": [
-		"df_join = pd.merge(",
-		"    df,                    ",
-		"    df_2,                  ",
-		"    on=['${1:ID_INTERNO}', '${2:CARGO_C}'],  # PODE ACRESCENTAR UMA TERCEIRA OU TIRAR UMA COLUNA",
-		"    how='left',            # left ou right ou inner ou outer = (full) ou cross",
-		"    suffixes=('_A', '_B')  # Sufixo para colunas duplicadas",
-		")"
+		"df_final = pd.merge(df, df_2, on='${1:ID_INTERNO}', how='${2:left}', suffixes=('_A', '_B')) \\",
+		"    .assign( # how='left'ou 'right' ou 'inner' ou 'outter' (outer = full)",
+		"        ${3:CARGO}=lambda x: x['${4:CARGO_C_A}'].astype(str) + ' - ' + x['${5:NOMECAR_C}'] # CONCATENAÇÃO",
+		"    ) \\",
+		"    .rename(columns={",
+		"        '${6:REGIAO_C}': '${7:REGIAO}',           # sem sufixo (só no df_2)",
+		"        '${8:NOMEDE_C}': '${9:URE}',              # sem sufixo (só no df_2)",
+		"        '${10:NOMEESC}': '${11:ESCOLA}',            # sem sufixo (só no df)",
+		"        '${12:ID_INTERNO}': '${13:ID}',           # ← sufixo (existe nos dois A e B)",
+		"        '${14:CATEG_C}': '${15:CATEGORIA}',         # sem sufixo (só no df_2)",
+		"        '${16:DISC_CONCURSO}': '${17:DISCIPLINA}',  # sem sufixo (só no df_2)",
+		"        '${18:DEN_MATERIA}': '${19:MATERIA}',       # sem sufixo (só no df)",
+		"        '${20:JORNADA_A}': '${21:JORNADA}',         # ← sufixo _A (existe nos dois)",
+		"        '${22:TOT_GERAL_AULA}': '${23:TOTAL_AULAS}' # sem sufixo (só no df)",
+		"    }) \\",
+		"    [['${7:REGIAO}', '${9:URE}', '${11:ESCOLA}', '${13:ID}', '${3:CARGO}', '${15:CATEGORIA}',",
+		"      '${17:DISCIPLINA}', '${19:MATERIA}', '${21:JORNADA}', '${23:TOTAL_AULAS}']] # SEQUÊNCIA ",
+		"",
+		"print(Fore.GREEN + f\"\\n📊 DATAFRAME FINAL:\")",
+		"print(Fore.WHITE + f\"   Registros: {len(df_final)}\")",
+		"print(Fore.CYAN + f\"\\n{df_final.head(10)}\")"
 	],
-	"description": "LEFT JOIN entre dois DataFrames"
-},
-
-//VERIFICAR_JOIN_PANDAS
-"VERIFICAR_JOIN_PANDAS": {
-	"prefix": "çjoin_verificar",
-	"body": [
-		"print(Fore.GREEN + f\"\\n📊 VERIFICAÇÃO DO JOIN:\")",
-		"print(Fore.WHITE + f\"   Tabela A (df):   {len(df)} registros\")",
-		"print(Fore.WHITE + f\"   Tabela B (df_2): {len(df_2)} registros\")",
-		"print(Fore.WHITE + f\"   Resultado:       {len(df_join)} registros\")",
-		"print(Fore.CYAN + f\"\\n   Colunas A: {list(df.columns)[:5]}...\")",
-		"print(Fore.CYAN + f\"   Colunas B: {list(df_2.columns)[:5]}...\")",
-		"print(Fore.CYAN + f\"   Colunas J: {list(df_join.columns)[:5]}...\")",
-		"print(Fore.WHITE + f\"\\n   Registros sem match: {df_join[df_join.columns[-1]].isna().sum()}\")"
-	],
-	"description": "Verificar resultado do JOIN"
+	"description": "'left'ou 'right' ou 'inner' ou 'outter' (outer = full)"
 },
 
 //LISTAR_COLUNAS_PANDAS
