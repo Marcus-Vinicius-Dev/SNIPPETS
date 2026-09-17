@@ -1654,6 +1654,28 @@
 	],
 	"description": "COLA_WHERE"
   },
+
+  // COLASITUACAO
+  "COLASITUACAO": {
+	"scope": "sql",
+	"prefix": "ZCOLASITUACAO",
+	"body": [
+	  "COALESCE(",
+	  "   CASE",
+	  "      WHEN ${1:COLUNA} = 'A' THEN 'A - ATIVO'",
+	  "      WHEN ${1:COLUNA} = 'B' THEN 'B - BLOQUEADO'",
+	  "      WHEN ${1:COLUNA} = 'E' THEN 'E - EXCLUÍDO'",
+	  "      WHEN ${1:COLUNA} = '0' THEN '0 - ERRO'",
+	  "      WHEN ${1:COLUNA} = 'F' THEN 'F - FALECIDO'",
+	  "      WHEN ${1:COLUNA} = 'I' THEN 'I - INATIVO'",
+	  "      WHEN ${1:COLUNA} = 'P' THEN 'P - CATEGORIA P'",
+	  "      ELSE ${1:COLUNA}",
+	  "      END,",
+	  "      ''",
+	  "       ) AS ${2:NOME_COLUNA} ,"
+	],
+	"description": "SITUACA_DO_REGISTRO"
+  },
   
   // SELECIONARMENORMAIORDADODACOLUNA
   "SELECIONARMENORMAIORDADODACOLUNA": {
