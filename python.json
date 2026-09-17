@@ -2697,7 +2697,7 @@
 
 //EXTRAITEMPO_SIMPLES
 "EXTRAITEMPO_SIMPLES": {
-	"prefix": "çddtemp",
+	"prefix": "çddextrai_tempo",
 	"body": [
 		"# EXTRAI COMPONENTES DE DATA - VERSÃO SIMPLES",
 		"df_temp = df.copy()",
@@ -2972,7 +2972,7 @@
 		"print(Fore.GREEN + f\"\\n📊 SUBSTRING(${1:coluna}, {2}, {3}) - Posição {2} a {3}:\")",
 		"print(Fore.CYAN + f\"{df[['${1:coluna}', '${4:NOVA_COLUNA}']].head()}\")",
 		"# EXTRAIR             FORMULA",
-		"# Primeiro nomE       df['col'].str.split().str[0]",
+		"# Primeiro nome       df['col'].str.split().str[0]",
 		"# Último nome         df['col'].str.split().str[-1]"
 	],
 	"description": "EXTRAIR SUBSTRING (posição específica)"
@@ -3321,6 +3321,100 @@
 		"print(Fore.CYAN + f\"\\n{df_union.head(10)}\")"
 	],
 	"description": "UNION apenas em colunas específicas"
+},
+
+//ORDER_BY_MISTO_PANDAS
+"ORDER_BY_MISTO_PANDAS": {
+	"prefix": "çorder_by",
+	"body": [
+		"# ============================================================================",
+		"# ORDER BY - MÚLTIPLAS COLUNAS (ASC e DESC misturados)",
+		"# ============================================================================",
+		"# SQL: ORDER BY ${1:REGIAO} ASC, ${2:TOT_GERAL_AULA} DESC",
+		"",
+		"df_ordenado = ${3:df}.sort_values(",
+		"    ['${1:REGIAO}', '${2:TOT_GERAL_AULA}'],",
+		"    ascending=[True, False]  # True=ASC, False=DESC",
+		")",
+		"print(Fore.GREEN + f\"\\n📊 ORDER BY ${1:REGIAO} ASC, ${2:TOT_GERAL_AULA} DESC:\")",
+		"print(Fore.CYAN + f\"\\n{df_ordenado.head(10)}\")"
+	],
+	"description": "ORDER BY múltiplas colunas (ASC e DESC misturados)"
+},
+
+//TIRAR_ZEROS_CPF_PANDAS
+"TIRAR_ZEROS_CPF_PANDAS": {
+	"prefix": "çcpf_tirar_zeros",
+	"body": [
+		"# ============================================================================",
+		"# TIRAR ZEROS À ESQUERDA DO CPF",
+		"# ============================================================================",
+		"# SQL: CAST(CPF AS BIGINT) AS CPF",
+		"",
+		"df['${1:CPF}_SEM_ZERO'] = pd.to_numeric(df['${1:CPF}'], errors='coerce').astype('Int64')  # Remove zeros à esquerda",
+		"print(Fore.GREEN + f\"\\n📊 CPF SEM ZEROS À ESQUERDA:\")",
+		"print(Fore.WHITE + f\"   Antes:  {df['${1:CPF}'].head(3).tolist()}\")",
+		"print(Fore.CYAN + f\"   Depois: {df['${1:CPF}_SEM_ZERO'].head(3).tolist()}\")"
+	],
+	"description": "TIRAR ZEROS À ESQUERDA DO CPF"
+},
+
+//LIMPAR_CPF_PANDAS
+"LIMPAR_CPF_PANDAS": {
+	"prefix": "çcpf_limpar",
+	"body": [
+		"# ============================================================================",
+		"# TIRAR TRAÇOS E PONTOS DO CPF",
+		"# ============================================================================",
+		"# SQL: REPLACE(REPLACE(CPF, '.', ''), '-', '') AS CPF_LIMPO",
+		"",
+		"df['${1:CPF}_LIMPO'] = df['${1:CPF}'].astype(str).str.replace(r'\\D', '', regex=True)  # Remove tudo que não é dígito",
+		"print(Fore.GREEN + f\"\\n📊 CPF LIMPO (sem pontos e traços):\")",
+		"print(Fore.WHITE + f\"   Antes:  {df['${1:CPF}'].head(3).tolist()}\")",
+		"print(Fore.CYAN + f\"   Depois: {df['${1:CPF}_LIMPO'].head(3).tolist()}\")"
+	],
+	"description": "TIRAR TRAÇOS E PONTOS DO CPF"
+},
+
+//ACRESCENTAR_ZEROS_CPF_PANDAS
+"ACRESCENTAR_ZEROS_CPF_PANDAS": {
+	"prefix": "çcpf_acrescentar_zero_esquerda",
+	"body": [
+		"# ============================================================================",
+		"# ACRESCENTAR ZEROS À ESQUERDA DO CPF (11 dígitos)",
+		"# ============================================================================",
+		"# SQL: RIGHT('00000000000' + CAST(COLUNA AS VARCHAR(11)), 11) AS COLUNA",
+		"",
+		"df['${1:CPF}_11D'] = df['${1:CPF}'].astype(str).str.replace(r'\\D', '', regex=True).str.zfill(11)  # 11 dígitos",
+		"print(Fore.GREEN + f\"\\n📊 CPF COM 11 DÍGITOS (zeros à esquerda):\")",
+		"print(Fore.WHITE + f\"   Antes:  {df['${1:CPF}'].head(3).tolist()}\")",
+		"print(Fore.CYAN + f\"   Depois: {df['${1:CPF}_11D'].head(3).tolist()}\")"
+	],
+	"description": "ACRESCENTAR ZEROS À ESQUERDA DO CPF"
+},
+
+//SALVAR_EXCEL_TIMESTAMP
+"SALVAR_EXCEL_TIMESTAMP": {
+	"prefix": "çsalvar_em_excel",
+	"body": [
+		"timestamp = pd.Timestamp.now().strftime('%Y%m%d_%H%M%S')",
+		"# 1. Define a pasta",
+		"pasta_saida = r'C:\\Users\\vinic\\Desktop\\GIT\\PYTHON_TESTE\\resultados_excel'",
+		"",
+		"# 2. Cria a pasta se não existir",
+		"os.makedirs(pasta_saida, exist_ok=True)",
+		"",
+		"# 3. MUDA o diretório de trabalho",
+		"os.chdir(pasta_saida)",
+		"",
+		"# 4. Agora TODOS os to_excel salvam aqui automaticamente",
+		"df_final.to_excel(f'${1:CHOR_FILTRADO}_{timestamp}.xlsx', index=False)  ",
+		"# df_agrupado.to_excel('CHOR_AGRUPADO.xlsx', index=False) # se quiser salvar outro arquivo",
+		"",
+		"print(Fore.GREEN + f\"\\n✅ ARQUIVOS SALVOS EM:\")",
+		"print(Fore.CYAN + f\"   {os.getcwd()}\")"
+	],
+	"description": "Salva Excel com timestamp automático"
 }
 
 }
