@@ -2602,10 +2602,10 @@
 		"prefix": "çtop10",
 		"body": [
 			"# SELECT TOP 10 DA ABA SELECIONADA",
-			"print(Fore.GREEN + f\"\\n📊 TOP 10 REGISTROS:\")",
+			"print(Fore.GREEN + f\"\\n📊 TOP 10 LINHAS:\")",
 			"print(df.head(10))"
 		],
-		"description": "Mostra os 10 primeiros registros da aba selecionada"
+		"description": "Mostra os 10 primeiros linhas da aba selecionada"
 	},
 
 	//SELECT_DISTINCT_EXCEL
@@ -2630,10 +2630,10 @@
 			"valor_busca = '${2:MARIA}'   # Valor para busca parcial",
 			"print(Fore.GREEN + f\"\\n📊 WHERE {coluna_filtro} LIKE '%{valor_busca}%':\")",
 			"df_filtrado = df[df[coluna_filtro].str.contains(valor_busca, case=False, na=False)]  # na=False ignora nulos",
-			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} registros encontrados\")",
+			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} linhas encontrados\")",
 			"print(Fore.CYAN + f\"{df_filtrado}\")"
 		],
-		"description": "Filtra registros com LIKE (ignora nulos)"
+		"description": "Filtra linhas com LIKE (ignora nulos)"
 	},
 
 	//WHERE_LIKE_MULTIPLO_EXCEL
@@ -2645,10 +2645,10 @@
 			"padroes_busca = [${2:'MARIA', 'SILVA', 'SANTOS'}]",
 			"print(Fore.GREEN + f\"\\n📊 WHERE {coluna_filtro} LIKE '%{padroes_busca[0]}%' OR LIKE '%{padroes_busca[1]}%' OR LIKE '%{padroes_busca[2]}%':\")",
 			"df_filtrado = df[df[coluna_filtro].str.contains('|'.join(padroes_busca), case=False, na=False)]  # | = OR no regex",
-			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} registros encontrados\")",
+			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} linhas encontrados\")",
 			"print(Fore.CYAN + f\"{df_filtrado}\")"
 		],
-		"description": "Filtra registros com múltiplos LIKE (OR)"
+		"description": "Filtra linhas com múltiplos LIKE (OR)"
 	},
 
 	//WHERE_CONVERT_DATE_BR_EXCEL
@@ -2662,10 +2662,10 @@
 			"print(Fore.GREEN + f\"\\n📊 WHERE CONVERT(DATE, {coluna_data}, 103) BETWEEN '{data_inicio}' AND '{data_fim}':\")",
 			"df[coluna_data] = pd.to_datetime(df[coluna_data], format='%d/%m/%Y', errors='coerce')",
 			"df_filtrado = df[(df[coluna_data] >= pd.to_datetime(data_inicio, format='%d/%m/%Y')) & (df[coluna_data] <= pd.to_datetime(data_fim, format='%d/%m/%Y'))]",
-			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} registros encontrados\")",
+			"print(Fore.WHITE + f\"   Total: {len(df_filtrado)} linhas encontrados\")",
 			"print(Fore.CYAN + f\"{df_filtrado}\")"
 		],
-		"description": "Filtra registros com CONVERT DATE BETWEEN (formato BR)"
+		"description": "Filtra linhas com CONVERT DATE BETWEEN (formato BR)"
 	},
 
 //ROWNUMBERMULTIPLO_CHOR
@@ -2688,8 +2688,8 @@
 		"# Filtra onde rank = 1 para qualquer uma das colunas",
 		"df_filtrado = df_rank[(df_rank[f'RANK_{coluna1}'] == 1) | (df_rank[f'RANK_{coluna2}'] == 1)]",
 		"",
-		"print(Fore.WHITE + f\"   Total original: {len(df)} registros\")",
-		"print(Fore.WHITE + f\"   Total filtrado: {len(df_filtrado)} registros\")",
+		"print(Fore.WHITE + f\"   Total original: {len(df)} linhas\")",
+		"print(Fore.WHITE + f\"   Total filtrado: {len(df_filtrado)} linhas\")",
 		"print(Fore.CYAN + f\"\\n{df_filtrado[['NOME', 'CPF', 'ESCOLA', f'RANK_{coluna1}', f'RANK_{coluna2}']].head(10)}\")"
 	],
 	"description": "ROW_NUMBER múltiplo para CHOR_MATTATHIAS"
@@ -2761,7 +2761,7 @@
 	"body": [
 		"# SELECT * FROM df",
 		"print(Fore.GREEN + \"\\n📊 SELECT *:\")",
-		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de linhas: {len(df)}\")",
 		"print(Fore.WHITE + f\"   Total de colunas: {len(df.columns)}\")",
 		"print(Fore.CYAN + f\"\\n{df}\")"
 	],
@@ -2774,11 +2774,11 @@
 	"body": [
 		"# SELECT TOP ${1:10} * FROM df",
 		"print(Fore.GREEN + f\"\\n📊 SELECT TOP ${1:10} *:\")",
-		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de linhas: {len(df)}\")",
 		"print(Fore.WHITE + f\"   Total de colunas: {len(df.columns)}\")",
 		"print(Fore.CYAN + f\"\\n{df.head(${1:10})}\")"
 	],
-	"description": "SELECT TOP n * (mostra primeiros n registros)"
+	"description": "SELECT TOP n * (mostra primeiros n linhas)"
 },
 
 //SELECT_COLUNAS_PANDAS
@@ -2788,7 +2788,7 @@
 		"# SELECT ${1:NOME, CPF, ESCOLA} FROM df",
 		"colunas_selecionadas = ['${1:NOME}', '${2:CPF}', '${3:ESCOLA}']  # Lista de colunas desejadas",
 		"print(Fore.GREEN + f\"\\n📊 SELECT {', '.join(colunas_selecionadas)}:\")",
-		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de linhas: {len(df)}\")",
 		"print(Fore.WHITE + f\"   Colunas: {colunas_selecionadas}\")",
 		"print(Fore.CYAN + f\"\\n{df[colunas_selecionadas]}\")"
 	],
@@ -2802,7 +2802,7 @@
 		"# SELECT TOP ${1:10} ${2:NOME, CPF, ESCOLA} FROM df",
 		"colunas_selecionadas = ['${2:NOME}', '${3:CPF}', '${4:ESCOLA}']  # Lista de colunas desejadas",
 		"print(Fore.GREEN + f\"\\n📊 SELECT TOP ${1:10} {', '.join(colunas_selecionadas)}:\")",
-		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de linhas: {len(df)}\")",
 		"print(Fore.WHITE + f\"   Colunas: {colunas_selecionadas}\")",
 		"print(Fore.CYAN + f\"\\n{df[colunas_selecionadas].head(${1:10})}\")"
 	],
@@ -2815,7 +2815,7 @@
 	"body": [
 		"# SELECT * FROM df (sem cabeçalho)",
 		"print(Fore.GREEN + \"\\n📊 SELECT * (sem cabeçalho):\")",
-		"print(Fore.WHITE + f\"   Total de registros: {len(df)}\")",
+		"print(Fore.WHITE + f\"   Total de linhas: {len(df)}\")",
 		"print(Fore.CYAN + f\"\\n{df.to_string(index=False, header=False)}\")"
 	],
 	"description": "SELECT * sem cabeçalho (apenas dados)"
@@ -2835,11 +2835,11 @@
 "COUNT_ALL_PANDAS": {
 	"prefix": "çcount_all",
 	"body": [
-		"# COUNT(*) - total de registros",
+		"# COUNT(*) - total de linhas",
 		"print(Fore.GREEN + \"\\n📊 COUNT(*):\")",
-		"print(Fore.WHITE + f\"   Total: {len(df)} registros\")"
+		"print(Fore.WHITE + f\"   Total: {len(df)} linhas\")"
 	],
-	"description": "COUNT(*) total de registros"
+	"description": "COUNT(*) total de linhas"
 },
 //COUNT_COLUNA
 "COUNT_COLUNA": {
@@ -2848,9 +2848,9 @@
 		"# COUNT(coluna) - contagem de uma coluna",
 		"coluna = '${1:NOME}'",
 		"print(Fore.GREEN + f\"\\n📊 COUNT({coluna}):\")",
-		"print(Fore.WHITE + f\"   Total: {len(df[coluna])} registros\")",
-		"print(Fore.WHITE + f\"   Não-nulos: {df[coluna].count()} registros\")",
-		"print(Fore.WHITE + f\"   Nulos: {len(df[coluna]) - df[coluna].count()} registros\")"
+		"print(Fore.WHITE + f\"   Total: {len(df[coluna])} linhas\")",
+		"print(Fore.WHITE + f\"   Não-nulos: {df[coluna].count()} linhas\")",
+		"print(Fore.WHITE + f\"   Nulos: {len(df[coluna]) - df[coluna].count()} linhas\")"
 	],
 	"description": "COUNT(coluna) contagem específica"
 },
@@ -2861,9 +2861,9 @@
 	"body": [
 		"# COUNT com filtro (WHERE)",
 		"print(Fore.GREEN + \"\\n📊 COUNT(*) COM FILTRO:\")",
-		"print(Fore.WHITE + f\"   Total geral: {len(df)} registros\")",
+		"print(Fore.WHITE + f\"   Total geral: {len(df)} linhas\")",
 		"print(Fore.WHITE + f\"   Filtro aplicado: ${1:IDADE} > ${2:50}\")",
-		"print(Fore.WHITE + f\"   Total filtrado: {len(df[df['${1:IDADE}'] > ${2:50}])} registros\")"
+		"print(Fore.WHITE + f\"   Total filtrado: {len(df[df['${1:IDADE}'] > ${2:50}])} linhas\")"
 	],
 	"description": "COUNT com filtro WHERE"
 },
@@ -2902,7 +2902,7 @@
 		"coluna_grupo = '${1:CARGO_C}'",
 		"coluna_analise = '${2:IDADE}'",
 		"print(Fore.GREEN + f\"\\n📊 GROUP BY {coluna_grupo} - MÚLTIPLAS AGREGAÇÕES:\")",
-		"print(Fore.WHITE + \"   count = quantidade de registros\")",
+		"print(Fore.WHITE + \"   count = quantidade de linhas\")",
 		"print(Fore.WHITE + \"   mean = média\")",
 		"print(Fore.WHITE + \"   min = valor mínimo\")",
 		"print(Fore.WHITE + \"   max = valor máximo\")",
@@ -3150,7 +3150,7 @@
 		"      '${17:DISCIPLINA}', '${19:MATERIA}', '${21:JORNADA}', '${23:TOTAL_AULAS}']] # SEQUÊNCIA ",
 		"",
 		"print(Fore.GREEN + f\"\\n📊 DATAFRAME FINAL:\")",
-		"print(Fore.WHITE + f\"   Registros: {len(df_final)}\")",
+		"print(Fore.WHITE + f\"   linhas: {len(df_final)}\")",
 		"print(Fore.CYAN + f\"\\n{df_final.head(10)}\")"
 	],
 	"description": "'left'ou 'right' ou 'inner' ou 'outter' (outer = full)"
@@ -3166,6 +3166,161 @@
 		"print(Fore.WHITE + f\"   Total: {len(${1:df}.columns)} colunas\")"
 	],
 	"description": "LISTAR COLUNAS DO DATAFRAME"
+},
+
+//VERIFICAR_JOIN_TAMANHOS_PANDAS
+"VERIFICAR_JOIN_TAMANHOS_PANDAS": {
+	"prefix": "çjoin_verificar_antes_e_deppois",
+	"body": [
+		"print(Fore.GREEN + \"\\n\" + \"=\"*70)",
+		"print(Fore.GREEN + \"📊 VERIFICAÇÃO DO JOIN (ANTES vs DEPOIS)\")",
+		"print(Fore.GREEN + \"=\"*70)",
+		"",
+		"# ANTES",
+		"print(Fore.YELLOW + \"\\n🔹 ANTES DO JOIN:\")",
+		"print(Fore.WHITE + f\"   ${1:df}      : {len(${1:df}):>5} registros × {len(${1:df}.columns):>3} colunas\")",
+		"print(Fore.WHITE + f\"   ${2:df_2}    : {len(${2:df_2}):>5} registros × {len(${2:df_2}.columns):>3} colunas\")",
+		"",
+		"# DEPOIS",
+		"print(Fore.YELLOW + \"\\n🔹 DEPOIS DO JOIN:\")",
+		"print(Fore.WHITE + f\"   ${3:df_final}: {len(${3:df_final}):>5} registros × {len(${3:df_final}.columns):>3} colunas\")",
+		"",
+		"# COMPARATIVO",
+		"print(Fore.YELLOW + \"\\n🔹 COMPARATIVO:\")",
+		"print(Fore.WHITE + f\"   Linhas:  {len(${1:df})} → {len(${3:df_final})}  ({len(${3:df_final}) - len(${1:df}):+d})\")",
+		"print(Fore.WHITE + f\"   Colunas: {len(${1:df}.columns)} → {len(${3:df_final}.columns)}  ({len(${3:df_final}.columns) - len(${1:df}.columns):+d})\")",
+		"",
+		"# ALERTA",
+		"print(Fore.YELLOW + \"\\n🔹 ALERTA DE DUPLICAÇÃO:\")",
+		"if len(${3:df_final}) > len(${1:df}):",
+		"    print(Fore.RED + f\"   ⚠️  {len(${3:df_final}) - len(${1:df})} linhas a mais! Pode haver duplicação.\")",
+		"elif len(${3:df_final}) == len(${1:df}):",
+		"    print(Fore.GREEN + \"   ✅ Sem duplicação! Mesmo número de linhas.\")",
+		"else:",
+		"    print(Fore.YELLOW + f\"   ⚠️  {len(${1:df}) - len(${3:df_final})} linhas a menos!\")"
+	],
+	"description": "VERIFICAR ANTES E DEPOIS DO JOIN"
+},
+
+//COMPARAR_IDS
+"COMPARAR_IDS": {
+	"prefix": "çjoin_comparar_os_3",
+	"body": [
+		"print(Fore.GREEN + \"\\n\" + \"=\"*60)",
+		"print(Fore.GREEN + \"📊 COMPARAÇÃO CHOR vs CTG vs JOIN\")",
+		"print(Fore.GREEN + \"=\"*60)",
+		"",
+		"# 1. IDs únicos em cada tabela",
+		"ids_chor = set(df['${1:ID_INTERNO}'])         # IDs do CHOR",
+		"ids_ctg = set(df_2['${1:ID_INTERNO}'])        # IDs do CTG",
+		"ids_final = set(df_final['${2:ID}'])          # ← IDs do JOIN (coluna renomeada para 'ID')",
+		"",
+		"# 2. Comparar",
+		"comuns = ids_chor & ids_ctg              # Existem nos dois",
+		"so_chor = ids_chor - ids_ctg             # Só no CHOR",
+		"so_ctg = ids_ctg - ids_chor              # Só no CTG",
+		"",
+		"print(Fore.YELLOW + \"\\n🔹 COMPARAÇÃO DE IDs:\")",
+		"print(Fore.WHITE + f\"   CHOR:        {len(ids_chor)} IDs únicos\")",
+		"print(Fore.WHITE + f\"   CTG:         {len(ids_ctg)} IDs únicos\")",
+		"print(Fore.WHITE + f\"   JOIN:        {len(ids_final)} IDs únicos\")",
+		"print(Fore.GREEN + f\"   Comuns:      {len(comuns)} IDs\")",
+		"print(Fore.YELLOW + f\"   Só no CHOR:  {len(so_chor)} IDs\")",
+		"print(Fore.YELLOW + f\"   Só no CTG:   {len(so_ctg)} IDs\")",
+		"",
+		"# 3. Ver os IDs que só existem no CHOR (não têm match no CTG)",
+		"if len(so_chor) > 0:",
+		"    print(Fore.CYAN + f\"\\n   IDs só no CHOR: {list(so_chor)[:10]}\")",
+		"    df_sem_match = df[df['${1:ID_INTERNO}'].isin(so_chor)]",
+		"    print(Fore.WHITE + f\"   Linhas do CHOR sem match: {len(df_sem_match)}\")"
+	],
+	"description": "Compara IDs únicos entre DataFrames"
+},
+
+//UNION_ALL_PANDAS
+"UNION_ALL_PANDAS": {
+	"prefix": "çunion_all",
+	"body": [
+		"# ============================================================================",
+		"# UNION ALL - junta tudo, mantém duplicatas",
+		"# ============================================================================",
+		"# SQL: SELECT * FROM ${1:df} UNION ALL SELECT * FROM ${2:df_2}",
+		"",
+		"df_union = pd.concat([${1:df}, ${2:df_2}], ignore_index=True)  # Junta tudo",
+		"",
+		"print(Fore.GREEN + f\"\\n📊 UNION ALL:\")",
+		"print(Fore.WHITE + f\"   Tabela A: {len(${1:df})} linhas\")",
+		"print(Fore.WHITE + f\"   Tabela B: {len(${2:df_2})} linhas\")",
+		"print(Fore.WHITE + f\"   Resultado: {len(df_union)} linhas\")",
+		"print(Fore.CYAN + f\"\\n{df_union.head(10)}\")"
+	],
+	"description": "UNION ALL (mantém duplicatas)"
+},
+
+//UNION_PANDAS
+"UNION_PANDAS": {
+	"prefix": "çunion",
+	"body": [
+		"# ============================================================================",
+		"# UNION - junta e remove duplicatas",
+		"# ============================================================================",
+		"# SQL: SELECT * FROM ${1:df} UNION SELECT * FROM ${2:df_2}",
+		"",
+		"df_union = pd.concat([${1:df}, ${2:df_2}], ignore_index=True).drop_duplicates()  # Remove duplicatas",
+		"",
+		"print(Fore.GREEN + f\"\\n📊 UNION:\")",
+		"print(Fore.WHITE + f\"   Tabela A: {len(${1:df})} linhas\")",
+		"print(Fore.WHITE + f\"   Tabela B: {len(${2:df_2})} linhas\")",
+		"print(Fore.WHITE + f\"   Total bruto: {len(${1:df}) + len(${2:df_2})} linhas\")",
+		"print(Fore.WHITE + f\"   Resultado (sem duplicatas): {len(df_union)} linhas\")",
+		"print(Fore.WHITE + f\"   Duplicatas removidas: {len(${1:df}) + len(${2:df_2}) - len(df_union)}\")",
+		"print(Fore.CYAN + f\"\\n{df_union.head(10)}\")"
+	],
+	"description": "UNION (remove duplicatas)"
+},
+
+//UNION_COLUNAS_DIFERENTES_PANDAS
+"UNION_COLUNAS_DIFERENTES_PANDAS": {
+	"prefix": "çunion_col_diferentes",
+	"body": [
+		"# ============================================================================",
+		"# UNION COM COLUNAS DIFERENTES (alinha por nome, preenche NaN)",
+		"# ============================================================================",
+		"# SQL: SELECT col1, col2 FROM A UNION SELECT col1, col2 FROM B",
+		"",
+		"df_union = pd.concat([${1:df}, ${2:df_2}], ignore_index=True, sort=False)  # Alinha por nome",
+		"",
+		"print(Fore.GREEN + f\"\\n📊 UNION COM COLUNAS DIFERENTES:\")",
+		"print(Fore.WHITE + f\"   Tabela A: {len(${1:df})} linhas × {len(${1:df}.columns)} colunas\")",
+		"print(Fore.WHITE + f\"   Tabela B: {len(${2:df_2})} linhas × {len(${2:df_2}.columns)} colunas\")",
+		"print(Fore.WHITE + f\"   Resultado: {len(df_union)} linhas × {len(df_union.columns)} colunas\")",
+		"print(Fore.CYAN + f\"\\n   Colunas: {list(df_union.columns)}\")",
+		"print(Fore.CYAN + f\"\\n{df_union.head(10)}\")"
+	],
+	"description": "UNION com colunas diferentes"
+},
+
+//UNION_COLUNAS_ESPECIFICAS_PANDAS
+"UNION_COLUNAS_ESPECIFICAS_PANDAS": {
+	"prefix": "çunion_escolher_col",
+	"body": [
+		"# ============================================================================",
+		"# UNION APENAS EM COLUNAS ESPECÍFICAS",
+		"# ============================================================================",
+		"# SQL: SELECT col1, col2 FROM A UNION SELECT col1, col2 FROM B",
+		"",
+		"colunas = ['${3:col1}', '${4:col2}']  # Colunas para o UNION",
+		"df_union = pd.concat([",
+		"    ${1:df}[colunas],",
+		"    ${2:df_2}[colunas]",
+		"], ignore_index=True).drop_duplicates()  # Junta e remove duplicatas",
+		"",
+		"print(Fore.GREEN + f\"\\n📊 UNION EM COLUNAS ESPECÍFICAS:\")",
+		"print(Fore.WHITE + f\"   Colunas: {colunas}\")",
+		"print(Fore.WHITE + f\"   Resultado: {len(df_union)} linhas\")",
+		"print(Fore.CYAN + f\"\\n{df_union.head(10)}\")"
+	],
+	"description": "UNION apenas em colunas específicas"
 }
 
 }
