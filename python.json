@@ -3415,6 +3415,105 @@
 		"print(Fore.CYAN + f\"   {os.getcwd()}\")"
 	],
 	"description": "Salva Excel com timestamp automático"
+},
+
+//USE_CSV
+"USE_CSV": {
+	"prefix": "çuse_csv",
+	"body": [
+		"pasta_arquivo = os.chdir(r'${1:C:\\Users\\vinic\\Desktop\\GIT\\PYTHON_TESTE}')  # Muda para a pasta",
+		"pasta_trecho = os.path.basename(r'${1:C:\\Users\\vinic\\Desktop\\GIT\\PYTHON_TESTE}')  # Nome da pasta",
+		"arquivo_csv = '${2:CHOR_MATTATHIAS.csv}'  # Nome do arquivo CSV",
+		"",
+		"# Lê o CSV (sep=';' e utf-8-sig para Excel BR)",
+		"df = pd.read_csv(arquivo_csv, sep='${3:;}', encoding='${4:utf-8-sig}')  # Carrega CSV",
+		"",
+		"print(Fore.GREEN + f\"\\nUSANDO ARQUIVO '{arquivo_csv}' DA PASTA '{pasta_trecho}'\")  # Info",
+		"print(Fore.WHITE + f\"   Linhas: {len(df)}\")  # Total linhas",
+		"print(Fore.WHITE + f\"   Colunas: {len(df.columns)}\")  # Total colunas",
+		"print(Fore.WHITE + f\"   Colunas: {list(df.columns)[:3]}...\")  # 3 primeiras colunas"
+	],
+	"description": "Lista informações do CSV com Pandas estilo USE"
+},
+
+//EXCEL_PARA_CSV_TODAS_PANDAS
+"EXCEL_PARA_CSV_TODAS_PANDAS": {
+	"prefix": "çexcel_csv_todas_abas",
+	"body": [
+		"# ============================================================================",
+		"# EXCEL → CSV (TODAS as abas em CSVs separados)",
+		"# ============================================================================",
+		"",
+		"# 1. Pasta de saída",
+		"pasta_script = os.path.dirname(os.path.abspath(__file__))  # Pasta do script",
+		"pasta_resultados = os.path.join(pasta_script, '${1:resultados_csv}')  # Subpasta",
+		"os.makedirs(pasta_resultados, exist_ok=True)  # Cria se não existir",
+		"",
+		"# 2. Ler TODAS as abas",
+		"arquivo_excel = '${2:CHOR_MATTATHIAS.xlsx}'",
+		"abas = pd.read_excel(arquivo_excel, sheet_name=None)  # Lê tudo",
+		"",
+		"print(Fore.GREEN + f\"\\n📖 LENDO: {arquivo_excel}\")",
+		"print(Fore.WHITE + f\"   Abas: {len(abas)}\")",
+		"",
+		"# 3. Converter cada aba",
+		"for nome_aba, df in abas.items():",
+		"    nome_csv = f'{nome_aba}.csv'  # Nome do CSV",
+		"    caminho = os.path.join(pasta_resultados, nome_csv)  # Caminho completo",
+		"    df.to_csv(caminho, sep='${3:;}', index=False, encoding='${4:utf-8-sig}')  # Salva",
+		"    print(Fore.GREEN + f\"   ✅ {nome_aba} → {nome_csv} ({len(df)} linhas)\")",
+		"",
+		"print(Fore.GREEN + f\"\\n📁 Pasta: {pasta_resultados}\")"
+	],
+	"description": "EXCEL → CSV (todas as abas)"
+},
+
+//EXCEL_PARA_CSV_UMA_ABA_PANDAS
+"EXCEL_PARA_CSV_UMA_ABA_PANDAS": {
+	"prefix": "çexcel_csv_uma",
+	"body": [
+		"# ============================================================================",
+		"# EXCEL → CSV (UMA ABA)",
+		"# ============================================================================",
+		"",
+		"# ---------------------------------------------------------------------------",
+		"# 1. PASTAS (origem e destino)",
+		"# ---------------------------------------------------------------------------",
+		"pasta_script = os.path.dirname(os.path.abspath(__file__))  # Pasta do script (origem)",
+		"pasta_resultados = os.path.join(pasta_script, '${1:resultados_csv}')  # Subpasta de saída",
+		"os.makedirs(pasta_resultados, exist_ok=True)  # Cria se não existir",
+		"",
+		"# ---------------------------------------------------------------------------",
+		"# 2. ARQUIVO DE ORIGEM",
+		"# ---------------------------------------------------------------------------",
+		"arquivo_excel = '${2:CHOR_MATTATHIAS.xlsx}'  # Nome do arquivo Excel",
+		"aba_selecionada = '${3:CHOR_2026}'            # Nome da aba a converter",
+		"",
+		"# ---------------------------------------------------------------------------",
+		"# 3. LER A ABA DO EXCEL",
+		"# ---------------------------------------------------------------------------",
+		"df = pd.read_excel(arquivo_excel, sheet_name=aba_selecionada)  # Lê a aba",
+		"",
+		"# ---------------------------------------------------------------------------",
+		"# 4. SALVAR COMO CSV NA PASTA DE RESULTADOS",
+		"# ---------------------------------------------------------------------------",
+		"nome_csv = f'{aba_selecionada}.csv'                              # Nome do CSV",
+		"caminho_saida = os.path.join(pasta_resultados, nome_csv)         # Caminho completo",
+		"df.to_csv(caminho_saida, sep='${4:;}', index=False, encoding='${5:utf-8-sig}')  # Salva CSV",
+		"",
+		"# ---------------------------------------------------------------------------",
+		"# 5. RESUMO FINAL",
+		"# ---------------------------------------------------------------------------",
+		"print(Fore.GREEN + f\"\\n✅ CONVERTIDO:\")",
+		"print(Fore.WHITE + f\"   Pasta origem:  {pasta_script}\")",
+		"print(Fore.WHITE + f\"   Arquivo:       {arquivo_excel}\")",
+		"print(Fore.WHITE + f\"   Aba:           {aba_selecionada}\")",
+		"print(Fore.WHITE + f\"   Pasta destino: {pasta_resultados}\")",
+		"print(Fore.WHITE + f\"   Arquivo CSV:   {nome_csv}\")",
+		"print(Fore.WHITE + f\"   Linhas:        {len(df)}\")",
+		"print(Fore.WHITE + f\"   Colunas:       {len(df.columns)}\")"
+	],
+	"description": "EXCEL → CSV (uma aba, com pastas de origem e destino)"
 }
 
 }
