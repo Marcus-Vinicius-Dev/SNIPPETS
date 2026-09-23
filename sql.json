@@ -593,14 +593,14 @@
 		"),",
 		"RANK${3:1} AS (",
 		"   SELECT *,",
-		"      ROW_NUMBER() OVER (PARTITION BY ${4:CPF_DI} ORDER BY (SELECT NULL)) AS ROW${5:1} -- OU ORDER BY coluna1 DESC",
+		"      ROW_NUMBER() OVER (PARTITION BY CPF${4:, DI} ORDER BY (SELECT NULL)) AS ROW${5:1} -- OU ORDER BY coluna1 DESC",
 		"   FROM BASE_RANK${2:1}",
 		")",
 		"SELECT *",
 		"INTO #${1:ROW_SIMPLES}",
 		"FROM RANK${3:1}",
 		"WHERE ROW${5:1} = 1 --PRIMEIRA LINHA DA DUPLICATA",
-		"ORDER BY ${4:CPF_DI}"
+		"ORDER BY ${4:CPF}"
 	  ],
 	  "description": "ROW_NUMBER"
 	},
@@ -617,8 +617,8 @@
 		"),",
 		"RANK${3:1} AS (",
 		"   SELECT *,",
-		"      ROW_NUMBER() OVER (PARTITION BY ${4:coluna1} ORDER BY (SELECT NULL)) AS RANK_${4:coluna1}, -- OU ORDER BY ${4:coluna1} DESC",
-		"      ROW_NUMBER() OVER (PARTITION BY ${5:coluna2} ORDER BY (SELECT NULL)) AS RANK_${5:coluna2} -- OU ORDER BY ${5:coluna2} DESC",
+		"      ROW_NUMBER() OVER (PARTITION BY CPF${4:, DI} ORDER BY (SELECT NULL)) AS RANK_${4:coluna1}, -- OU ORDER BY COLUNA DESC",
+		"      ROW_NUMBER() OVER (PARTITION BY ${5:coluna2} ORDER BY (SELECT NULL)) AS RANK_${5:coluna2} -- OU ORDER BY COLUNA DESC",
 		"   FROM BASE_RANK${2:1}",
 		")",
 		"SELECT *",
@@ -626,7 +626,7 @@
 		"FROM RANK${3:1}",
 		"WHERE RANK_${4:coluna1} = 1   -- Primeira linha de cada DADO DA COLUNA ${4:coluna1}",
 		"   OR RANK_${5:coluna2} = 1   -- Primeira linha de cada DADO DA COLUNA ${5:coluna2}",
-		"ORDER BY ${4:CPF_DI}"
+		"ORDER BY ${4:CPF}"
 	  ],
 	  "description": "FILTRO DUPLO EM LISTA ÚNICA"
 	},
@@ -28407,7 +28407,7 @@
 	  "),",
 	  "RANK${2:1} AS (",
 	  "   SELECT *,",
-	  "      ROW_NUMBER() OVER (PARTITION BY ${3:CPF_DI} ORDER BY (SELECT NULL)) AS ROW${4:1} -- ROW_NUMBER FUNCIONA IGUAL NO MYSQL 8.0+",
+	  "      ROW_NUMBER() OVER (PARTITION BY CPF ${3:, DI} ORDER BY (SELECT NULL)) AS ROW${4:1} -- ROW_NUMBER FUNCIONA IGUAL NO MYSQL 8.0+",
 	  "   FROM BASE_RANK${1:1}",
 	  ")",
 	  "SELECT *",
@@ -28430,7 +28430,7 @@
 	  "),",
 	  "RANK${2:1} AS (",
 	  "   SELECT *,",
-	  "      ROW_NUMBER() OVER (PARTITION BY ${3:coluna1} ORDER BY (SELECT NULL)) AS RANK_${3:coluna1}, -- ROW_NUMBER FUNCIONA NO MYSQL 8.0+",
+	  "      ROW_NUMBER() OVER (PARTITION BY CPF ${3:, DI} ORDER BY (SELECT NULL)) AS RANK_${3:coluna1}, -- ROW_NUMBER FUNCIONA NO MYSQL 8.0+",
 	  "      ROW_NUMBER() OVER (PARTITION BY ${4:coluna2} ORDER BY (SELECT NULL)) AS RANK_${4:coluna2}",
 	  "   FROM BASE_RANK${1:1}",
 	  ")",
