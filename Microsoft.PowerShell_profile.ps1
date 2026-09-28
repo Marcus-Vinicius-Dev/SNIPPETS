@@ -26,8 +26,9 @@ function z {
 
     switch ($comando) {	
 
-		"z" { python TESTES_SCRAPING.py }
-		"zz" { cd C:\Users\vinic\Desktop\Python\WebScraping01 }
+		"z" { python central.py }
+		"zz" { cd 'C:\Users\marcus.silva05\Desktop\Central_de_Trabalho' }
+                "sic" { cd 'C:\Users\marcus.silva05\Desktop\DADOS\sic\SIC_2026091117121611' }
 
 # ===========================================================
 # NAVEGAÇÃO POWER SHELL
@@ -851,13 +852,28 @@ function z {
 		}
 
 		"py_venv_ativar" { 
-			if (Test-Path ".\.venv\Scripts\Activate") {
-				.\.venv\Scripts\Activate
+			# Tenta ativar a .venv primeiro
+			if (Test-Path ".\.venv\Scripts\Activate.ps1") {
+				.\.venv\Scripts\Activate.ps1
 				Write-Host "Ambiente .venv ATIVADO!" -ForegroundColor Green
 				Write-Host "Para desativar: deactivate" -ForegroundColor Yellow
-			} else {
-				Write-Host "Pasta .venv NAO encontrada! Crie com: z py_venv_criar" -ForegroundColor Red
 			}
+			# Se não existir .venv, tenta ativar a venv
+			elseif (Test-Path ".\venv\Scripts\Activate.ps1") {
+				.\venv\Scripts\Activate.ps1
+				Write-Host "Ambiente venv ATIVADO!" -ForegroundColor Green
+				Write-Host "Para desativar: deactivate" -ForegroundColor Yellow
+			}
+			# Se nenhuma das duas existir, mostra mensagem de erro
+			else {
+				Write-Host "Nem .venv nem venv encontradas nesta pasta!" -ForegroundColor Red
+				Write-Host "Crie com: z py_venv_criar" -ForegroundColor Yellow
+			}
+		}
+
+		"py_venv_desativar" { 
+			deactivate
+			Write-Host "Ambiente desativado!" -ForegroundColor Red
 		}
 
 		"py_requirements_instalar" { 
@@ -1084,7 +1100,8 @@ Register-ArgumentCompleter -CommandName z -ParameterName comando -ScriptBlock {
 		"git_tag","git_tag_v","git_tag_push","git_checkout_tag","git_switch_c","git_checkout_detached_fix","git_checkout_head","git_checkout_head_arquivo",
 		"git_config_user","git_config_global","git_credential_store","git_credential_unset","git_credential_unset_global","git_ignore_criar","git_status_ignore","git_mv","git_rm",
 		# Python
-		"py_verificar_python","py_instalar_python","py_venv_criar","py_venv_ativar","py_requirements_instalar","py_requirements_congelar","py_requirements_baixar",
+		"py_verificar_python","py_instalar_python","py_venv_criar","py_venv_ativar","py_venv_desativar","py_requirements_instalar","py_requirements_congelar",
+                "py_requirements_baixar",
 		# Rust
 		"rs_instalar_completo","rs_novo_projeto","rs_abrir_cargo_toml","rs_abrir_main","rs_instal","rs_path","rs_principal","rs_verifica_install","rs_criar_gitignore",
 		"rs_executar","rs_construir","rs_construir_release","rs_testar","rs_documentar","rs_limpar","rs_atualizar_deps","rs_adicionar_dependencia","rs_verificar",
@@ -1120,5 +1137,9 @@ function code {
 	# C:\Users\marcus.silva05\AppData\Local\Programs\Microsoft VS Code\bin\code.cmd
     & "C:\Users\marcus.silva05\AppData\Local\Programs\Microsoft VS Code\bin\code.cmd" @args
 }
-
-
+# Added by dbt Fusion extension (ensure dbt binary dir on PATH)
+if (-not (($env:Path -split ';') -contains "C:\Users\marcus.silva05\.local\bin")) {
+  $env:Path = "C:\Users\marcus.silva05\.local\bin" + ';' + $env:Path
+}
+# Added by dbt Fusion extension
+Set-Alias -Name dbtf -Value "C:\Users\marcus.silva05\.local\bin\dbt.exe"
