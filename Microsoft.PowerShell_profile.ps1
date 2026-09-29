@@ -1143,3 +1143,8 @@ if (-not (($env:Path -split ';') -contains "C:\Users\marcus.silva05\.local\bin")
 }
 # Added by dbt Fusion extension
 Set-Alias -Name dbtf -Value "C:\Users\marcus.silva05\.local\bin\dbt.exe"
+
+# UTF-8 no PowerShell
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+chcp 65001 | Out-Null
