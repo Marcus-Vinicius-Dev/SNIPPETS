@@ -263,6 +263,7 @@
 	"# ============================================================================",
 	"python -m pip install --force-reinstall python-dotenv        # ← Variáveis de ambiente (.env)",
 	"python -m pip install --force-reinstall tabulate             # ← Tabelas no terminal",
+	"python -m pip install --force-reinstall rich                 # ← Tabelas coloridas, progresso, logs",
 	"python -m pip install --force-reinstall click                # ← CLI (linha de comando)",
 	"python -m pip install --force-reinstall tqdm                 # ← Barra de progresso",
 	"",
