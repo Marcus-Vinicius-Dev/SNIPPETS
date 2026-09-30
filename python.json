@@ -678,8 +678,589 @@
 		"    print(Fore.RED + Style.BRIGHT + f\"conv_para_parquet não chamada\")             # aviso",
 	],
 	"description": "Converte CSV/XLSX para Parquet com streaming e lista pasta saída"
+},
+
+//HEADER_CHOR_SALA_AULA
+"HEADER_CHOR_SALA_AULA": {
+	"prefix": "çctg_cab",
+	"body": [
+		"REGIAO_C,NOMEDE_C,CODUA_C,CIE_C,NOMEUA_C,CARGO_C,CATEG_C,NOMECAR_C,CATEG_C_DESC,DTPOSSE_C,DTIEXER_C,QUADRO_C,POLO_C,DELEG_C,ANOSTRAB_C,TPESC_C,CATESC_C,COD_INEP,MUN_C,MUNICIPIO_C,FAIXA_C,NIVEL_C,FAIXA_NIVEL_C,",
+		"REGIAO_E,NOMEDE_E,CODUA_E,CIE_E,NOMEUA_E,CARGO_E,NOMECAR_E,CATEG_E,CATEG_E_DESC,DTPOSSE_E,DTIEXER_E,QUADRO_E,POLO_E,DELEG_E,ANOSTRAB_E,OBS_E,COD_INEP_E,MUN_E,MUNICIPIO_E,LOCAL_UA,FAIXA_E,NIVEL_E,FAIXA_NIVEL_E,",
+		"SITESP,MOTIAFAS,MOTIVO,MOTLICE,DT_SITREG,DTISESP,DTIINTE,DTFINTE,DTIAFAS,DTFAFAS,DTILICE,DTFLICE,DESCR_AFAST,DESCR_LICE,",
+		"NOME,CPF,RG,RG12,DI,RS,PV,CARFUNCO,DTIEXCO,DTIDESIG,SITREG,QTQUINQ,DTQUINQ,QUALIF,CLDISC,SITVINC,SITVINCO,SITVINDE,COD_BANCO,COD_AGENCIA,TP_CONTA,NUM_CONTA,CD_VERIF,TIPO_DESIG,JORNADA,EMAIL,EMAIL_INST1,EMAIL_INST2,SEXO,DTNASC,IDADE,GRAUESCO,SITESCO,ESTCIVIL,UFRG,TIPODEF,ALDEADO,ANOPRIEM,DTINICSP,IDENTCOR,TOTBRU,TOTMES,TOTLIQ,OPVCTOEX,TIPOEX,TIPOPROV,ID_COR_DESC,TIPODEF_DESC,"
+	],
+	"description": "Header do ctg"
+},
+
+//ajuda
+"ajuda": {
+	"prefix": "ç*ajuda",
+	"body": [
+		"ajuda                          - mostra esta ajuda"
+	],
+	"description": "Mostra a linha de ajuda"
+},
+
+//notas
+"notas": {
+	"prefix": "ç*notas",
+	"body": [
+		"notas                          - mostra anotações"
+	],
+	"description": "Mostra a linha de ajuda de anotações"
+},
+
+//ajuda
+"ç*ajuda": {
+	"prefix": "ç*ajuda",
+	"body": [
+		"ajuda                          - mostra esta ajuda"
+	],
+	"description": "Mostra a linha de ajuda"
+},
+
+//reiniciar
+"reiniciar": {
+	"prefix": "ç*reiniciar",
+	"body": [
+		"reiniciar                      - volta ao DataFrame original"
+	],
+	"description": "Mostra a linha de ajuda de reiniciar"
+},
+
+//modo
+"modo": {
+	"prefix": "ç*modo",
+	"body": [
+		"   modo                           - mostra o modo atual"
+	],
+	"description": "Mostra a linha de ajuda de modo"
+},
+
+//modo_alterar
+"modo_alterar": {
+	"prefix": "ç*modo_alterar",
+	"body": [
+		"   modo terminal|html|csv|excel   - altera o modo"
+	],
+	"description": "Mostra a linha de ajuda de alterar modo"
+},
+
+//modo_auto
+"modo_auto": {
+	"prefix": "ç*modo_auto",
+	"body": [
+		"   modo auto                      - escolhe sozinho (≤50k HTML, ≤1M XLSX, resto CSV)"
+	],
+	"description": "Mostra a linha de ajuda do modo auto"
+},
+
+//top
+"top": {
+	"prefix": "ç*top",
+	"body": [
+		"   top [n]                        - primeiras N linhas (padrão 10)"
+	],
+	"description": "Mostra a linha de ajuda de top"
+},
+
+//rodape
+"rodape": {
+	"prefix": "ç*rodape",
+	"body": [
+		"   rodape [n]                     - últimas N linhas (padrão 10)"
+	],
+	"description": "Mostra a linha de ajuda de rodape"
+},
+
+//cabecalho
+"cabecalho": {
+	"prefix": "ç*cabecalho",
+	"body": [
+		"   cabecalho                      - lista colunas"
+	],
+	"description": "Mostra a linha de ajuda de cabecalho"
+},
+
+//ddtipo
+"ddtipo": {
+	"prefix": "ç*ddtipo",
+	"body": [
+		"   ddtipo                         - tipos por coluna"
+	],
+	"description": "Mostra a linha de ajuda de ddtipo"
+},
+
+//dimensao
+"dimensao": {
+	"prefix": "ç*dimensao",
+	"body": [
+		"   dimensao                       - dimensões (linhas x colunas)"
+	],
+	"description": "Mostra a linha de ajuda de dimensao"
+},
+
+//nulos
+"nulos": {
+	"prefix": "ç*nulos",
+	"body": [
+		"   nulos                          - nulos por coluna"
+	],
+	"description": "Mostra a linha de ajuda de nulos"
+},
+
+//descrever
+"descrever": {
+	"prefix": "ç*descrever",
+	"body": [
+		"   descrever                      - estatísticas descritivas"
+	],
+	"description": "Mostra a linha de ajuda de descrever"
+},
+
+//select
+"select": {
+	"prefix": "ç*select",
+	"body": [
+		"select <col1,col2,...> [n]     - ex: select REGIAO,NOMEUA",
+		"     select *                  - seleciona todas as colunas"
+	],
+	"description": "Mostra a linha de ajuda de select"
+},
+
+//where
+"where": {
+	"prefix": "ç*where",
+	"body": [
+		"where <col> <op> <valor>       - ex: where UA == '43131'",
+		"     operadores: > < >= <= == !="
+	],
+	"description": "Mostra a linha de ajuda de where"
+},
+
+//query
+"query": {
+	"prefix": "ç*query",
+	"body": [
+		"query <expressao_pandas>       - ex: query LOCAL == 'OC'",
+		"     strings precisam de aspas: query REGIAO == 'INTERIOR'",
+		"     número: query MUN.astype(int) > 500"
+	],
+	"description": "Mostra a linha de ajuda de query"
+},
+
+//like
+"like": {
+	"prefix": "ç*like",
+	"body": [
+		"like <col> <texto>             - contém texto (case-insensitive)",
+		"     ex: like NOMEUA ESCOLA"
+	],
+	"description": "Mostra a linha de ajuda de like"
+},
+
+//like_in
+"like_in": {
+	"prefix": "ç*like_in",
+	"body": [
+		"like_in <col> <v1>,<v2>,...       - valor em lista",
+		"     ex: like_in REGIAO INTERIOR,CAPITAL"
+	],
+	"description": "Mostra a linha de ajuda de like_in"
+},
+
+//between
+"between": {
+	"prefix": "ç*between",
+	"body": [
+		"between <col> <min> <max>      - faixa de valores",
+		"     ex: between MUN 100 500"
+	],
+	"description": "Mostra a linha de ajuda de between"
+},
+
+//isnull
+"isnull": {
+	"prefix": "ç*isnull",
+	"body": [
+		"isnull <col>                   - linhas com nulo"
+	],
+	"description": "Mostra a linha de ajuda de isnull"
+},
+
+//notnull
+"notnull": {
+	"prefix": "ç*notnull",
+	"body": [
+		"notnull <col>                  - linhas sem nulo"
+	],
+	"description": "Mostra a linha de ajuda de notnull"
+},
+
+//coalesce
+"coalesce": {
+	"prefix": "ç*coalesce",
+	"body": [
+		"coalesce <col|*> <valor>      - substitui NaN por valor",
+		"     ex: coalesce COD_INEP ''",
+		"     ex: coalesce * 'SEM INFO'"
+	],
+	"description": "Mostra a linha de ajuda de coalesce"
+},
+
+//order
+"order": {
+	"prefix": "ç*order",
+	"body": [
+		"order <col> [asc|desc]          - ordena (aceita múltiplas)",
+		"     ex: order NOMEMUN asc",
+		"     ex: order REGIAO asc,NOMEUA desc"
+	],
+	"description": "Mostra a linha de ajuda de order"
+},
+
+//aleatorio
+"aleatorio": {
+	"prefix": "ç*aleatorio",
+	"body": [
+		"aleatorio [n]                  - N linhas aleatórias"
+	],
+	"description": "Mostra a linha de ajuda de aleatorio"
+},
+
+//distinct
+"distinct": {
+	"prefix": "ç*distinct",
+	"body": [
+		"distinct <col>                 - valores únicos de uma coluna"
+	],
+	"description": "Mostra a linha de ajuda de distinct"
+},
+
+//count
+"count": {
+	"prefix": "ç*count",
+	"body": [
+		"count <col> [n]                - top N valores mais frequentes"
+	],
+	"description": "Mostra a linha de ajuda de count"
+},
+
+//pipeline
+"pipeline": {
+	"prefix": "ç*pipeline",
+	"body": [
+		"pipeline <cmd1> / <cmd2> / ...",
+		"     ex: pipeline like NOMEUA ESCOLA / order NOMEMUN / top 10"
+	],
+	"description": "Mostra a linha de ajuda de pipeline"
+},
+
+//listar_temp
+"listar_temp": {
+	"prefix": "ç*listar_temp",
+	"body": [
+		"listar_temp                    - lista parquets temporários"
+	],
+	"description": "Mostra a linha de ajuda de listar_temp"
+},
+
+//carregar_temp
+"carregar_temp": {
+	"prefix": "ç*carregar_temp",
+	"body": [
+		"carregar_temp <n>              - carrega o N-ésimo temporário"
+	],
+	"description": "Mostra a linha de ajuda de carregar_temp"
+},
+
+//limpar_temp
+"limpar_temp": {
+	"prefix": "ç*limpar_temp",
+	"body": [
+		"limpar_temp                    - apaga todos os temporários"
+	],
+	"description": "Mostra a linha de ajuda de limpar_temp"
+},
+
+//renomear
+"renomear": {
+	"prefix": "ç*renomear",
+	"body": [
+		"renomear <col> <novo>          - renomeia coluna",
+		"     ex: renomear REGIAO_C REGIAO"
+	],
+	"description": "Mostra a linha de ajuda de renomear"
+},
+
+//remover_coluna
+"remover_coluna": {
+	"prefix": "ç*remover_coluna",
+	"body": [
+		"remover_coluna <col1,col2,...> - remove coluna(s)",
+		"     ex: remover_coluna COD_INEP,OBS_E"
+	],
+	"description": "Mostra a linha de ajuda de remover_coluna"
+},
+
+//concatenar
+"concatenar": {
+	"prefix": "ç*concatenar",
+	"body": [
+		"concatenar <nova> <c1>,<c2>,... - junta colunas",
+		"     ex: concatenar CHAVE REGIAO_C,MUN_C ' - '"
+	],
+	"description": "Mostra a linha de ajuda de concatenar"
+},
+
+//limpar
+"limpar": {
+	"prefix": "ç*limpar",
+	"body": [
+		"limpar <col>                   - remove espaços das pontas"
+	],
+	"description": "Mostra a linha de ajuda de limpar"
+},
+
+//substituir
+"substituir": {
+	"prefix": "ç*substituir",
+	"body": [
+		"substituir <col> <de> <para>   - replace de texto",
+		"     ex: substituir NOMEMUN SAO SÃO"
+	],
+	"description": "Mostra a linha de ajuda de substituir"
+},
+
+//remover_caracteres
+"remover_caracteres": {
+	"prefix": "ç*remover_caracteres",
+	"body": [
+		"remover_caracteres <col> <chars> - remove chars",
+		"     ex: remover_caracteres CPF .-"
+	],
+	"description": "Mostra a linha de ajuda de remover_caracteres"
+},
+
+//zeros_esquerda
+"zeros_esquerda": {
+	"prefix": "ç*zeros_esquerda",
+	"body": [
+		"zeros_esquerda <col> <n>       - zeros à esquerda",
+		"     ex: zeros_esquerda CPF 11"
+	],
+	"description": "Mostra a linha de ajuda de zeros_esquerda"
+},
+
+//tipo
+"tipo": {
+	"prefix": "ç*tipo",
+	"body": [
+		"tipo <col> <int|float|str|datetime> - converte tipo",
+		"     ex: tipo MUN_C int"
+	],
+	"description": "Mostra a linha de ajuda de tipo"
+},
+
+//extrair
+"extrair": {
+	"prefix": "ç*extrair",
+	"body": [
+		"extrair <col> <inicio> <fim>   - substring",
+		"     ex: extrair CPF 0 3"
+	],
+	"description": "Mostra a linha de ajuda de extrair"
+},
+
+//criar_extrair
+"criar_extrair": {
+	"prefix": "ç*criar_extrair",
+	"body": [
+		"criar_extrair <nova> <col> <inicio> <fim> - substring → nova col",
+		"     ex: criar_extrair PREFIXO CPF 0 3"
+	],
+	"description": "Mostra a linha de ajuda de criar_extrair"
+},
+
+//substituir_pos
+"substituir_pos": {
+	"prefix": "ç*substituir_pos",
+	"body": [
+		"substituir_pos <col> <ini> <fim> <novo>  - substitui faixa",
+		"     ex: substituir_pos CPF 0 3 'XXX'"
+	],
+	"description": "Mostra a linha de ajuda de substituir_pos"
+},
+
+//calcular
+"calcular": {
+	"prefix": "ç*calcular",
+	"body": [
+		"calcular <nova> <expr>         - operação matemática",
+		"     ex: calcular TOTAL TOTBRU - TOTMES"
+	],
+	"description": "Mostra a linha de ajuda de calcular"
+},
+
+//data
+"data": {
+	"prefix": "ç*data",
+	"body": [
+		"data <col>                     - converte para datetime",
+		"     ex: data DTNASC"
+	],
+	"description": "Mostra a linha de ajuda de data"
+},
+
+//data_formatar
+"data_formatar": {
+	"prefix": "ç*data_formatar",
+	"body": [
+		"data_formatar <col> <formato>  - reformata a data",
+		"     ex: data_formatar DTNASC '%d/%m/%Y'"
+	],
+	"description": "Mostra a linha de ajuda de data_formatar"
+},
+
+//data_extrair
+"data_extrair": {
+	"prefix": "ç*data_extrair",
+	"body": [
+		"data_extrair <nova> <col> <parte> - extrai ano/mes/dia/...",
+		"     ex: data_extrair ANO DTNASC ano"
+	],
+	"description": "Mostra a linha de ajuda de data_extrair"
+},
+
+//data_calcular
+"data_calcular": {
+	"prefix": "ç*data_calcular",
+	"body": [
+		"data_calcular <nova> <expr>    - diferença entre datas",
+		"     ex: data_calcular DIAS hoje - DTNASC"
+	],
+	"description": "Mostra a linha de ajuda de data_calcular"
+},
+
+//contar
+"contar": {
+	"prefix": "ç*contar",
+	"body": [
+		"contar <col>                   - conta linhas por valor",
+		"     ex: contar REGIAO_C"
+	],
+	"description": "Mostra a linha de ajuda de contar"
+},
+
+//somar
+"somar": {
+	"prefix": "ç*somar",
+	"body": [
+		"somar <col> por <col2>         - soma agrupada",
+		"     ex: somar TOTBRU por REGIAO_C"
+	],
+	"description": "Mostra a linha de ajuda de somar"
+},
+
+//media
+"media": {
+	"prefix": "ç*media",
+	"body": [
+		"media <col> por <col2>         - média agrupada",
+		"     ex: media IDADE por REGIAO_C"
+	],
+	"description": "Mostra a linha de ajuda de media"
+},
+
+//minimo
+"minimo": {
+	"prefix": "ç*minimo",
+	"body": [
+		"minimo <col> por <col2>        - mínimo agrupado",
+		"     ex: minimo IDADE por REGIAO_C"
+	],
+	"description": "Mostra a linha de ajuda de minimo"
+},
+
+//maximo
+"maximo": {
+	"prefix": "ç*maximo",
+	"body": [
+		"maximo <col> por <col2>        - máximo agrupado",
+		"     ex: maximo IDADE por REGIAO_C"
+	],
+	"description": "Mostra a linha de ajuda de maximo"
+},
+
+//if
+"if": {
+	"prefix": "ç*if",
+	"body": [
+		"if <nova> <cond1> <val1> [...] <else> - cria coluna condicional",
+		"     ex: if FAIXA IDADE < 18 'menor' 'adulto'",
+		"     ex: if SIT SITVINC == '1' 'Ativo' SITVINC == '2' 'Inativo' 'Outro'"
+	],
+	"description": "Mostra a linha de ajuda de if"
+},
+
+//duplicados
+"duplicados": {
+	"prefix": "ç*duplicados",
+	"body": [
+		"duplicados [col1,col2,...]     - mostra duplicados (sem args: linhas iguais)",
+		"     ex: duplicados CPF"
+	],
+	"description": "Mostra a linha de ajuda de duplicados"
+},
+
+//remover_duplicados
+"remover_duplicados": {
+	"prefix": "ç*remover_duplicados",
+	"body": [
+		"remover_duplicados [col1,...]  - remove duplicados",
+		"     ex: remover_duplicados CPF"
+	],
+	"description": "Mostra a linha de ajuda de remover_duplicados"
+},
+
+//row
+"row": {
+	"prefix": "ç*row",
+	"body": [
+		"row <nova>                     - numeração sequencial (1, 2, 3...)",
+		"     ex: row ID"
+	],
+	"description": "Mostra a linha de ajuda de row"
+},
+
+//toupper
+"toupper": {
+	"prefix": "ç*toupper",
+	"body": [
+		"toupper <col>                  - MAIÚSCULO",
+		"     ex: toupper NOMEMUN"
+	],
+	"description": "Mostra a linha de ajuda de toupper"
+},
+
+//tolower
+"tolower": {
+	"prefix": "ç*tolower",
+	"body": [
+		"tolower <col>                  - minúsculo"
+	],
+	"description": "Mostra a linha de ajuda de tolower"
+},
+
+//capitalizar
+"capitalizar": {
+	"prefix": "ç*capitalizar",
+	"body": [
+		"capitalizar <col>              - Primeira Letra Maiúscula"
+	],
+	"description": "Mostra a linha de ajuda de capitalizar"
 }
-	
+		
 }
-	
-	
+		
+		
