@@ -1368,29 +1368,6 @@
 	"description": "COLA_COR_AUTODECLARACAO"
   },
   
-  // CPFCEPEA
-  "CPFCEPEA": {
-	"scope": "sql",
-	"prefix": "ZCPFCEPEA",
-	"body": [
-	  "DROP TABLE IF EXISTS #CPF_CEPEA",
-	  "CREATE TABLE #CPF_CEPEA (",
-	  "    CPF VARCHAR(11)",
-	  "    )",
-	  "INSERT INTO #CPF_CEPEA (CPF) VALUES",
-	  "('11890095877'),",
-	  "('05141351823'),",
-	  "('35868577809'),",
-	  "('39545399856'),",
-	  "('02832580807'),",
-	  "('06642460448'),",
-	  "('35146922896'),",
-	  "('36988698884'),",
-	  "('52020927845')"
-	],
-	"description": "CPF_CEPEA"
-  },
-  
   // TIRARZEROSESQUERDACPF
   "TIRARZEROSESQUERDACPF": {
 	"scope": "sql",
