@@ -1367,6 +1367,25 @@
 	],
 	"description": "COLA_COR_AUTODECLARACAO"
   },
+
+// COLAEXCEL
+"COLAEXCEL": {
+	"scope": ["excel", "plaintext"],
+	"prefix": "ZCOLAEXCEL",
+	"body": [
+	  "-- COLA_EXCEL",
+	  "",
+	  "-- PROCV (VLOOKUP)",
+	  "=PROCV(${1:B14};${2:Planilha1}!$${3:A}$${4:1}:$${5:B}$${6:52};${7:2};FALSO)",
+	  "",
+	  "-- DIREITA + TEXTO (RIGHT + TEXT) - 11 dígitos com zeros à esquerda",
+	  "=DIREITA(TEXTO(${1:h7};\"00000000000\");11)",
+	  "",
+	  "-- CPF + DI ÚNICOS ",
+	  "=CONT.VALORES(ÚNICO(FILTRO(E14:E157&\"|\"&F14:F157;SUBTOTAL(103;DESLOC(E14;LIN(E14:E157)-LIN(F14);0)))))"
+	],
+	"description": "COLA_EXCEL"
+  },
   
   // TIRARZEROSESQUERDACPF
   "TIRARZEROSESQUERDACPF": {
@@ -30303,3 +30322,4 @@
   }
 
   }
+  
