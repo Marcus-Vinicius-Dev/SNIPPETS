@@ -248,6 +248,7 @@
 		"# SUPER_GERENCIADOR (núcleo do projeto)",
 		"# ============================================================================",
 		"python -m pip install --force-reinstall duckdb               # ← Núcleo de consulta SQL",
+		"python -m pip install --force-reinstall flask                # ← flask (pesquisar pra que serve)",
 		"python -m pip install --force-reinstall loguru               # ← Logging simples e rotativo",
 		"python -m pip install --force-reinstall openpyxl             # ← Leitura de Excel (.xlsx)",
 		"python -m pip install --force-reinstall pandas               # ← Entrada/saída de DataFrames",
