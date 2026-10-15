@@ -30319,7 +30319,91 @@
 	  "WHERE CD_SIT_REG = 'A'"
 	],
 	"description": "BASES_SAS"
-  }
+  },
+
+// **************************************************************************************************************************************************************
+// EXCEL
+// **************************************************************************************************************************************************************
+
+// XSELECT
+"XSELECT": {
+	"scope": "sql",
+	"prefix": "ZXSEL",
+	"body": [
+		"SELECT *          ",
+		"FROM read_parquet('dados/parquet/${1:CTG0926}.parquet')"
+	],
+	"description": "SELECT SIMPLES"
+	},
+
+// ZXCPF11ZEROS
+"ZXCPF11ZEROS": {
+	"scope": "sql",
+	"prefix": "ZXCPF11ZEROS",
+	"body": [
+		"LPAD(REGEXP_REPLACE(CAST(${1:A}.CPF AS VARCHAR), '[^0-9]', '', 'g'), 11, '0') AS CPF,"
+	],
+	"description": "CPF 11 DÍG ZEROS"
+	},
+
+// ZXNULL_FILTRAR
+"ZXNULL_FILTRAR": {
+	"scope": "sql",
+	"prefix": "ZXNULL_FILTRAR",
+	"body": [
+		"WHERE ${1:MOTIAFAS} IS NOT NULL",
+		"  AND UPPER(TRIM(${1:MOTIAFAS})) != 'NULL'",
+		"  AND TRIM(${1:MOTIAFAS}) != ''"
+	],
+	"description": "FILTRAR NULOS"
+	},
+
+// ZXTEMP
+"ZXTEMP": {
+	"scope": "sql",
+	"prefix": "ZXTEMP",
+	"body": [
+		"COPY (",
+		"    SELECT *",
+		"    FROM read_parquet('dados/parquet/${1:CTG0926}.parquet') ",
+		") TO 'temporarias/_#${2:ctg}.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)"
+	],
+	"description": "CRIAR TEMPORÁRIAS PARQUET"
+	},
+
+// ZXJOIN
+"ZXJOIN": {
+	"scope": "sql",
+	"prefix": "ZXJOIN",
+	"body": [
+		"LEFT JOIN read_parquet('dados/parquet/${1:CTG0926}.parquet') ${2:B} ON ${3:A}.CPF = ${2:B}.CPF"
+	],
+	"description": "LEFT JOIN PARQUET"
+	},
+
+// ZXROW
+"ZXROW": {
+	"scope": "sql",
+	"prefix": "ZXROW",
+	"body": [
+		"COPY (",
+		"    WITH numerado AS (",
+		"        SELECT",
+		"            ROW_NUMBER() OVER (",
+		"                PARTITION BY ${1:CPF} ",
+		"                ORDER BY ${2:ID}) ",
+		"        AS RN,",
+		"            *",
+		"        FROM read_parquet('temporarias/_#${3:JOIN_ESCOLAS0926}.parquet')",
+		"    )",
+		"        SELECT *",
+		"        FROM numerado",
+		"        WHERE RN = 1",
+		"        ORDER BY ${2:ID}",
+		") TO 'temporarias/_#ROW_${4:ESCOLAS0926}.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)"
+	],
+	"description": "ROW_NUMBER DEDUP"
+	}
 
   }
   
