@@ -30403,7 +30403,48 @@
 		") TO 'temporarias/_#ROW_${4:ESCOLAS0926}.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)"
 	],
 	"description": "ROW_NUMBER DEDUP"
-	}
+	},
+
+// ZXCEPEA_MAP
+"ZXCEPEA_MAP": {
+	"scope": "sql",
+	"prefix": "ZXCEPEA_MAP",
+	"body": [
+		"SELECT ",
+		"    -- DT                ,",
+		"    ANO_ULT_ALTERACAO ,",
+		"    MONTH(DT) AS MES  ,",
+		"    DAY(DT) AS DIA    ,",
+		"    CONCAT(HOUR(DT),':', MINUTE(DT)) AS HORA  ,",
+		"    NOME_ARQ          ,",
+		"    EXTENSAO_ARQ      ,",
+		"    ULT_PASTA         ,",
+		"    PENULT_PASTA      ,",
+		"    END_COMPLETO          ",
+		"FROM read_parquet('dados/parquet/mapeamento_cepea.parquet')",
+		"${1:-- }WHERE END_COMPLETO LIKE  '%SERVID%' ",
+		"${1:-- }OR END_COMPLETO LIKE     '%servid%' ",
+		"${1:-- }OR END_COMPLETO LIKE     '%Servid%' ",
+		"ORDER BY  ANO_ULT_ALTERACAO DESC, MONTH(DT) DESC, DAY(DT) DESC",
+		"",
+		"",
+		"/*",
+		"",
+		"TIPOS DE ARQUIVOS:",
+		"",
+		"APACHE, APACHE2, ARJ, BAK, BAT, BMP, BPD, BSD, CHK, CLI, COD, COM, COR, CPP, CPS, CSV, DBF, DIZ, DLL, DMP, DOC, DOCX, DRV, Doc, EXE, FX, GID, HLP, HTM, ICO, IDT, II, INI, JPG, ",
+		"LET, LEX, LNK, MDB, ME, MEM, MFM, MIT, MNU, MOV, MS, NTF, OBJ, OVL, OVR, PDF, PNG, PPD, PPS, PPT, PRG, PSF, QAE, QM04, REC, RTF, Rosalice, SAS, SOS, SPD, SQL, SYS, TMP, TXT, VD, ",
+		"XLS, XLSX, ZIP, asm, asp, baixados, bas, bat, bmp, build, bz2, c, cer, cfg, chm, class, cmd, cnt, cod, cpp, crt, csf, css, csv, dat, db, dbf, diagcab, dll, doc, docm, docx, dot, ",
+		"dotx, download, dql~, ecf, emf, eml, etária, exe, f, f90, f95, fits, ftb, gif, gz, h, hlp, hpp, htm, html, ico, idl, inc, ini, ipynb, iqy, java, jpeg, jpg, js, json, key, kmf, ",
+		"lib, lnk, log, md, md_, mdb, mem, met, mht, mnu, mo, mp3, mp4, msg, msi, msu, npy, npz, obj, odc, ods, odt, oft, ovr, p7s, parquet, pbix, pc, pcoor, pdb, pdf, pem, pfx, php, pkl, ",
+		"png, po, ppd, pps, ppsx, ppt, pptx, prg, ps1, psd, pth, pxd, pxi, py, pyc, pyd, pyf, pyi, pys, python, pyw, pyx, qlt, qmc, qup~, rar, rc, rdp, rels, rng, rst, rtf, sas, sct, sh, ",
+		"shb, shs, sql, sqlite, ssmssln, svg, tab, template, thmx, tif, tlb, tmp, toml, tpl, tps, ttf, txt, typed, url, vbs, vc, vd, vsidx, vssettings, wav, wmv, xcf, xlam, xlk, xls, xlsb, ",
+		"xlsm, xlsx, xlt, xltm, xltx, xml, xsl, xt, zi, zip, ",
+		"",
+		"*/"
+	],
+	"description": "CEPEA MAP"
+	},
 
   }
   
