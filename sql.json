@@ -30454,7 +30454,17 @@
 		"strftime(CAST(${1:COLUNA} AS DATE), '${2|%d/%m/%Y,%Y/%m/%d|}') AS ${1:COLUNA} -- USE ESSE '%d/%m/%Y' OU ESSE '%Y/%m/%d'"
 	],
 	"description": "CONVERTER DATAS"
-	}
+	},
+
+// ZXORDER
+	"ZXORDER": {
+		"scope": "sql",
+		"prefix": "ZXORDER",
+		"body": [
+			"ORDER BY ${1:A}.REGIAO, ${1:A}.UNIDADE_REGIONAL_DE_ENSINO, ${1:A}.NOME_UA, ${1:A}.NOME_DO_SERVIDOR"
+		],
+		"description": "ORDER BY PADRAO"
+		}
 
   }
   
