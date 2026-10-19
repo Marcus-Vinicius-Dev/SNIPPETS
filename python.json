@@ -253,6 +253,7 @@
 		"python -m pip install --force-reinstall openpyxl             # ← Leitura de Excel (.xlsx)",
 		"python -m pip install --force-reinstall pandas               # ← Entrada/saída de DataFrames",
 		"python -m pip install --force-reinstall pyarrow              # ← Escrita/leitura Parquet",
+		"python -m pip install --force-reinstall pyxlsb               # ← PRECISO PESQUISAR SOBRE",
 		"python -m pip install --force-reinstall pyyaml               # ← Leitura de YAML",
 		"python -m pip install --force-reinstall rich                 # ← Tabelas e progresso no terminal",
 		"",

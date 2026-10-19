@@ -30446,5 +30446,15 @@
 	"description": "CEPEA MAP"
 	},
 
+// ZXCONVERT_DATAS
+"ZXCONVERT_DATAS": {
+	"scope": "sql",
+	"prefix": "ZXCONVERT_DATAS",
+	"body": [
+		"strftime(CAST(${1:COLUNA} AS DATE), '${2|%d/%m/%Y,%Y/%m/%d|}') AS ${1:COLUNA} -- USE ESSE '%d/%m/%Y' OU ESSE '%Y/%m/%d'"
+	],
+	"description": "CONVERTER DATAS"
+	}
+
   }
   
