@@ -26,9 +26,8 @@ function z {
 
     switch ($comando) {	
 
-		"z" { python central.py }
-		"zz" { cd 'C:\Users\marcus.silva05\Desktop\Central_de_Trabalho' }
-                "sic" { cd 'C:\Users\marcus.silva05\Desktop\DADOS\sic\SIC_2026091117121611' }
+		"z" { python main.py }
+		"zz" { cd 'C:\Users\marcus.silva05\Desktop\Super_Gerenciador' }
 
 # ===========================================================
 # NAVEGAÇÃO POWER SHELL
@@ -1148,3 +1147,21 @@ Set-Alias -Name dbtf -Value "C:\Users\marcus.silva05\.local\bin\dbt.exe"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 chcp 65001 | Out-Null
+
+# ============================================================================
+# ATIVACAO AUTOMATICA DO .venv
+# Detecta se a pasta atual tem um .venv e o ativa automaticamente
+# ============================================================================
+function Ativar-VenvSeExistir {
+    # Verifica se existe uma pasta .venv no diretorio atual
+    if (Test-Path ".\.venv\Scripts\Activate.ps1") {
+        # Verifica se a venv ja esta ativa (evita reativar)
+        if (-not $env:VIRTUAL_ENV) {
+            & ".\.venv\Scripts\Activate.ps1"
+            Write-Host "Ambiente .venv ATIVADO automaticamente!" -ForegroundColor Green
+        }
+    }
+}
+
+# Executa a funcao sempre que o PS for aberto
+Ativar-VenvSeExistir
