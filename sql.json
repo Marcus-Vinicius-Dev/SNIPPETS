@@ -30446,14 +30446,20 @@
 	"description": "CEPEA MAP"
 	},
 
-// ZXCONVERT_DATAS
-"ZXCONVERT_DATAS": {
+// ZXDT_CONVERT
+"ZXDT_CONVERT": {
 	"scope": "sql",
-	"prefix": "ZXCONVERT_DATAS",
+	"prefix": "ZXDT_CONVERT",
 	"body": [
-		"strftime(CAST(${1:COLUNA} AS DATE), '${2|%d/%m/%Y,%Y/%m/%d|}') AS ${1:COLUNA} -- USE ESSE '%d/%m/%Y' OU ESSE '%Y/%m/%d'"
+		"COALESCE(",
+		"   strftime(",
+		"      try_cast(${1:COLUNA} AS DATE),",
+		"      '${2|%d/%m/%Y,%Y/%m/%d|}'",
+		"   ),",
+		"   ''",
+		") AS ${1:COLUNA},"
 	],
-	"description": "CONVERTER DATAS"
+	"description": "DT CONVERT SAFE"
 	},
 
 // ZXORDER
