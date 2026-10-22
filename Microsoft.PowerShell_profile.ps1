@@ -769,6 +769,12 @@ function z {
 			$arquivo = Read-Host "Arquivo para remover"
 			git rm $arquivo
 		}
+		"git_erro_fetch" {
+			Write-Host "Solucionar erro 'error: fetching ref refs/remotes/origin/main failed: incorrect old value provided'" -ForegroundColor Yellow
+			git update-ref -d refs/remotes/origin/main
+			git fetch origin
+			git pull
+		}
 
 # ===========================================================
 # PYTHON
@@ -1097,7 +1103,8 @@ Register-ArgumentCompleter -CommandName z -ParameterName comando -ScriptBlock {
 		"git_log_oneline","git_log_author","git_log_before","git_log_after","git_restore_staged","git_reset_hard","git_reset_soft","git_amend","git_revert",
 		"git_branch_D","git_merge","git_checkout_b","git_clone","git_remote_v","git_remote_add","git_push_u","git_pull_origin","git_fetch","git_rebase",
 		"git_tag","git_tag_v","git_tag_push","git_checkout_tag","git_switch_c","git_checkout_detached_fix","git_checkout_head","git_checkout_head_arquivo",
-		"git_config_user","git_config_global","git_credential_store","git_credential_unset","git_credential_unset_global","git_ignore_criar","git_status_ignore","git_mv","git_rm",
+		"git_config_user","git_config_global","git_credential_store","git_credential_unset","git_credential_unset_global","git_ignore_criar","git_status_ignore",
+		"git_mv","git_rm","git_erro_fetch",
 		# Python
 		"py_verificar_python","py_instalar_python","py_venv_criar","py_venv_ativar","py_venv_desativar","py_requirements_instalar","py_requirements_congelar",
                 "py_requirements_baixar",
