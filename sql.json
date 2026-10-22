@@ -30463,14 +30463,34 @@
 	},
 
 // ZXORDER
-	"ZXORDER": {
-		"scope": "sql",
-		"prefix": "ZXORDER",
-		"body": [
-			"ORDER BY ${1:A}.REGIAO, ${1:A}.UNIDADE_REGIONAL_DE_ENSINO, ${1:A}.NOME_UA, ${1:A}.NOME_DO_SERVIDOR"
-		],
-		"description": "ORDER BY PADRAO"
-		}
+"ZXORDER": {
+	"scope": "sql",
+	"prefix": "ZXORDER",
+	"body": [
+		"ORDER BY ${1:A}.REGIAO, ${1:A}.UNIDADE_REGIONAL_DE_ENSINO, ${1:A}.NOME_UA, ${1:A}.NOME_DO_SERVIDOR"
+	],
+	"description": "ORDER BY PADRAO"
+	},
+
+// ZXDD_EDIT_STUFF
+"ZXDD_EDIT_STUFF": {
+	"scope": "sql",
+	"prefix": "ZXDD_EDIT_STUFF",
+	"body": [
+		"regexp_replace(${1:COLUNA}, '^.{${2:8}}', '${3:URE}') AS ${1:COLUNA} , --  ${2:8} SÃO SO OITO PRIMEIROS CARACTERES DO DADO, '${3:URE}' SÃO SO NOVOS CARACTERES ACRESCENTADOS"
+	],
+	"description": "APAGA OS PRIMEIROS CARACTERES E ESCREVE OUTRO NO LUGAR"
+	},
+
+// ZXDD_EDIT_LIKE
+"ZXDD_EDIT_LIKE": {
+	"scope": "sql",
+	"prefix": "ZXDD_EDIT_LIKE",
+	"body": [
+		"replace(${1:A}.UNIDADE_REGIONAL_DE_ENSINO, '${2:D.E.REG.}', '${3:URE}')"
+	],
+	"description": "TROCA UMA PALVRA POR OUTRA"
+	}
 
   }
   
