@@ -1368,24 +1368,24 @@
 	"description": "COLA_COR_AUTODECLARACAO"
   },
 
-// COLAEXCEL
-"COLAEXCEL": {
-	"scope": ["excel", "plaintext"],
-	"prefix": "ZCOLAEXCEL",
-	"body": [
-	  "-- COLA_EXCEL",
-	  "",
-	  "-- PROCV (VLOOKUP)",
-	  "=PROCV(${1:B14};${2:Planilha1}!$${3:A}$${4:1}:$${5:B}$${6:52};${7:2};FALSO)",
-	  "",
-	  "-- DIREITA + TEXTO (RIGHT + TEXT) - 11 dígitos com zeros à esquerda",
-	  "=DIREITA(TEXTO(${1:h7};\"00000000000\");11)",
-	  "",
-	  "-- CPF + DI ÚNICOS ",
-	  "=CONT.VALORES(ÚNICO(FILTRO(E14:E157&\"|\"&F14:F157;SUBTOTAL(103;DESLOC(E14;LIN(E14:E157)-LIN(F14);0)))))"
-	],
-	"description": "COLA_EXCEL"
-  },
+	// COLAEXCEL
+	"COLAEXCEL": {
+		"scope": ["excel", "plaintext"],
+		"prefix": "ZCOLAEXCEL",
+		"body": [
+		"-- COLA_EXCEL",
+		"",
+		"-- PROCV (VLOOKUP)",
+		"=PROCV(${1:B14};${2:Planilha1}!$${3:A}$${4:1}:$${5:B}$${6:52};${7:2};FALSO)",
+		"",
+		"-- DIREITA + TEXTO (RIGHT + TEXT) - 11 dígitos com zeros à esquerda",
+		"=DIREITA(TEXTO(${1:h7};\"00000000000\");11)",
+		"",
+		"-- CPF + DI ÚNICOS ",
+		"=CONT.VALORES(ÚNICO(FILTRO(F9:F1000000&\"|\"&G9:G1000000;SUBTOTAL(103;DESLOC(F9;LIN(F9:F1000000)-LIN(G9);0)))))"
+		],
+		"description": "COLA_EXCEL"
+  	},
   
   // TIRARZEROSESQUERDACPF
   "TIRARZEROSESQUERDACPF": {
@@ -30487,9 +30487,25 @@
 	"scope": "sql",
 	"prefix": "ZXDD_EDIT_LIKE",
 	"body": [
-		"replace(${1:A}.UNIDADE_REGIONAL_DE_ENSINO, '${2:D.E.REG.}', '${3:URE}')"
+		"replace(${1:COLUNA}, '${2:D.E.REG.}', '${3:URE}') AS ${1:COLUNA}"
 	],
 	"description": "TROCA UMA PALVRA POR OUTRA"
+	},
+
+// ZXCOLA_CABECALHO
+"ZXCOLA_CABECALHO": {
+	"scope": "sql",
+	"prefix": "ZXCOLA_CABECALHO_EXCEL",
+	"body": [
+		"NOME: LISTAGEM DE DOCENTES TEMPORÁRIOS COM AULAS ATRIBUÍDAS NA MATÉRIA 2700 - MATEMÁTICA NAS URES SOLICITADAS",
+		"OBS.: FORAM LISTADOS APENAS PROFESSORES EM SALA DE AULA E QUE NÃO POSSUEM ACÚMULO",
+		"FONTE: CADASTRO FUNCIONAL DA EDUCAÇÃO",
+		"DATA-BASE: 30/09/2026",
+		"SEDUC/SUCOR/DIPES/COAPES/DGERD",
+		"NOME DO ARQUIVO: PROFESSORES_DA_PEI_SEM_ACUMULO",
+		"NOME DA ABA EXCEL: 2026"
+	],
+	"description": "CABECALHO EXCEL"
 	}
 
   }
