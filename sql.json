@@ -1368,24 +1368,24 @@
 	"description": "COLA_COR_AUTODECLARACAO"
   },
 
-	// COLAEXCEL
-	"COLAEXCEL": {
-		"scope": ["excel", "plaintext"],
-		"prefix": "ZCOLAEXCEL",
-		"body": [
-		"-- COLA_EXCEL",
-		"",
-		"-- PROCV (VLOOKUP)",
-		"=PROCV(${1:B14};${2:Planilha1}!$${3:A}$${4:1}:$${5:B}$${6:52};${7:2};FALSO)",
-		"",
-		"-- DIREITA + TEXTO (RIGHT + TEXT) - 11 dígitos com zeros à esquerda",
-		"=DIREITA(TEXTO(${1:h7};\"00000000000\");11)",
-		"",
-		"-- CPF + DI ÚNICOS ",
-		"=CONT.VALORES(ÚNICO(FILTRO(F9:F1000000&\"|\"&G9:G1000000;SUBTOTAL(103;DESLOC(F9;LIN(F9:F1000000)-LIN(G9);0)))))"
-		],
-		"description": "COLA_EXCEL"
-  	},
+// COLAEXCEL
+"COLAEXCEL": {
+	"scope": ["excel", "plaintext"],
+	"prefix": "ZCOLAEXCEL",
+	"body": [
+	  "-- COLA_EXCEL",
+	  "",
+	  "-- PROCV (VLOOKUP)",
+	  "=PROCV(${1:B14};${2:Planilha1}!$${3:A}$${4:1}:$${5:B}$${6:52};${7:2};FALSO)",
+	  "",
+	  "-- DIREITA + TEXTO (RIGHT + TEXT) - 11 dígitos com zeros à esquerda",
+	  "=DIREITA(TEXTO(${1:h7};\"00000000000\");11)",
+	  "",
+	  "-- CPF + DI ÚNICOS ",
+	  "=CONT.VALORES(ÚNICO(FILTRO(F9:F1000000&\"|\"&G9:G1000000;SUBTOTAL(103;DESLOC(F9;LIN(F9:F1000000)-LIN(G9);0)))))"
+	],
+	"description": "COLA_EXCEL"
+  },
   
   // TIRARZEROSESQUERDACPF
   "TIRARZEROSESQUERDACPF": {
@@ -30459,7 +30459,7 @@
 		"   ''",
 		") AS ${1:COLUNA},"
 	],
-	"description": "DT CONVERT SAFE"
+	"description": "CONVERTE DATA"
 	},
 
 // ZXORDER
@@ -30506,6 +30506,16 @@
 		"NOME DA ABA EXCEL: 2026"
 	],
 	"description": "CABECALHO EXCEL"
+	},
+
+// ZXDD_CONVERT
+"ZXDD_CONVERT": {
+	"scope": "sql",
+	"prefix": "ZXDD_CONVERT",
+	"body": [
+		"TRY_CAST(${1:COLUNA} AS INT) AS ${1:COLUNA} ,"
+	],
+	"description": "CONVERTER TIPO DE DADO"
 	}
 
   }
