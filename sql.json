@@ -30492,6 +30492,16 @@
 	"description": "TROCA UMA PALVRA POR OUTRA"
 	},
 
+// ZXDD_EDIT_MULTIPLOS
+"ZXDD_EDIT_MULTIPLOS": {
+	"scope": "sql",
+	"prefix": "ZXDD_EDIT_MULTIPLOS",
+	"body": [
+		"REPLACE(REPLACE(REPLACE(REPLACE(${1:COLUNA}, '${2:.}', ''), '${3:,}', ''), '${4:;}', ''), '${5::}', '') AS ${1:COLUNA}"
+	],
+	"description": "TROCA UMA PALVRA POR OUTRA MULTIPLAS VEZES"
+	},
+
 // ZXCOLA_CABECALHO
 "ZXCOLA_CABECALHO": {
 	"scope": "sql",
