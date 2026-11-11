@@ -30526,7 +30526,23 @@
 		"TRY_CAST(${1:COLUNA} AS INT) AS ${1:COLUNA} ,"
 	],
 	"description": "CONVERTER TIPO DE DADO"
-	}
+	},
+
+	// ZXDDCONV_PORCENTAGEM
+	"ZXDDCONV_PORCENTAGEM": {
+		"scope": "sql",
+		"prefix": "ZXDDCONV_PORCENTAGEM",
+		"body": [
+			"REPLACE(",
+			"    CAST(",
+			"        ROUND(",
+			"            CAST(REPLACE(${1:COLUNA}, ',', '.') AS DOUBLE) * 100",
+			"        , 2) AS VARCHAR",
+			"    ), '.', ','",
+			") || '%' AS ${1:COLUNA},"
+		],
+		"description": "CONVERTE PARA PORCENTAGEM"
+		}
 
   }
   
