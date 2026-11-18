@@ -1445,15 +1445,15 @@
 	"description": "CARACTERES NO INICIO E CARACTERES NO FINAL"
   },
 
-  	// ZVAR
-	"ZVAR": {
-	"scope": "sql",
-	"prefix": "ZVAR",
-	"body": [
-	  "DECLARE @${1:CONTRIB_PATRONAL} DECIMAL(10,2) = ${2:176667}/${3:100}" // Declara variável decimal já com valor calculado (divisão)
-	],
-	"description": "DECLARAR_VARIAVEL"
-  },
+   // DECLARAR_VARIAVEIS
+   "DECLARAR_VARIAVEIS": {
+		"scope": "sql",
+		"prefix": "ZVAR",
+		"body": [
+			"DECLARE @${1:CONTRIB_PATRONAL} DECIMAL(10,2) = ${2:176667}/${3:100}" // Declara variável decimal já com valor calculado (divisão)
+		],
+		"description": "DECLARAR_VARIAVEL"
+   },
   
   // COLACATEGORIAS
   "COLACATEGORIAS": {
